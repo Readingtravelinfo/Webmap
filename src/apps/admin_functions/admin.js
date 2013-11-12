@@ -1,4 +1,4 @@
-/*Edited by F Senyah
+
 
 /*Global variable configuration*/
 var conLayers = [];
