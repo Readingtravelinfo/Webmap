@@ -1,4 +1,3 @@
-//edit1
 /*Global variable configuration*/
 var conLayers = [];
 var conLayersT = [];
