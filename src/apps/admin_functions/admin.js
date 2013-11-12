@@ -1,5 +1,5 @@
-//edit1
-//This is a test of working together
+//paulwittle change
+
 /*Global variable configuration*/
 var conLayers = [];
 var conLayersT = [];
