@@ -1,0 +1,1 @@
+Please note, that the scripts may reference "dev_functions" in AJAX calls so please ensure these links are altered in the live system to point at "functions"!

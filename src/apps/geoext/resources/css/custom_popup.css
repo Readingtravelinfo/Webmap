@@ -1,0 +1,95 @@
+/*This one is used if anchor position is set*/
+.gx-popup-anc {
+    background: transparent url(../images/custom/anchor-bl-white.png) no-repeat 11px 0;
+	position: relative;
+    top:0px;
+    left:0px;
+    z-index:-1;
+    height:56px;
+    width:55px;
+}
+
+/*These ones are used if it is not*/
+/*.gx-popup-anc.bottom-left{
+    background: transparent url(../images/custom/anchor-bl-white.png) no-repeat 11px 0;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:56px;
+    width:55px;
+}
+
+.gx-popup-anc.bottom-right{
+    background: transparent url(../images/custom/anchor-br-white.png) no-repeat 40px 0;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:55px;
+    width:56px;
+}
+
+.gx-popup-anc.top-left{
+    background: transparent url(../images/custom/anchor-tl-white.png) no-repeat 11px 55px;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:56px;
+    width:55px;
+}
+
+.gx-popup-anc.top-right{
+    background: transparent url(../images/custom/anchor-tr-white.png) no-repeat 40px 55px;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:55px;
+    width:56px;
+}
+
+.gx-popup-anc.top{
+    background:transparent url(../images/custom/anchor-tm-white.png) no-repeat 11px 0;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:12px;
+    width:65px;
+}
+
+.gx-popup-anc.right{
+    background:transparent url(../images/custom/anchor-rm-white.png) no-repeat 11px 0;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:65px;
+    width:12px;
+}
+
+.gx-popup-anc.left{
+    background:transparent url(../images/custom/anchor-lm-white.png) no-repeat 11px 0;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:65px;
+    width:12px;
+}
+
+.gx-popup-anc.bottom{
+    background:transparent url(../images/custom/anchor-bm-white.png) no-repeat 11px 0;
+	position: relative;
+	top:0px;
+    left:0px;
+    z-index:-1;
+    height:12px;
+    width:65px;
+}*/
+
+.gx-ruledrag-insert-below{border-bottom:1px dotted;}
+.gx-ruledrag-insert-above{border-top:1px dotted;}
+.gx-grid-symbolizercol div{padding:0;}

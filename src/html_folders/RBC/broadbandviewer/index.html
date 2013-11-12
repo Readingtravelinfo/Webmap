@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title></title>
+	<!--Definitions-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+	<!--Librarys-->
+	<script src="../../apps/openlayers/OpenLayers.js"></script>
+	<script src="../../apps/Firebug/firebug.js"></script>
+	<script src="../../apps/openlayers/proj4js-compressed.js"></script>
+	<script src="../../apps/jszip/jszip.js"></script>
+	<script src="../../apps/jszip/jszip-load.js"></script>
+	<script src="../../apps/jszip/jszip-deflate.js"></script>
+	<script src="../../apps/jszip/jszip-inflate.js"></script>
+
+    <!-- Ext resources -->
+	<script src="../../apps/ext/adapter/ext/ext-base.js"></script>
+	<script src="../../apps/ext/ext-all-debug.js"></script> 
+	<!-- <script src="../../apps/ext4-2/ext-core-debug.js"></script> -->
+	<!--<script src="../../apps/ext/ext-all.js"  type="text/javascript"></script>-->
+    <!--<link rel="stylesheet" type="text/css" href="../../apps/ext/resources/css/ext-all.css"></link>-->
+	<link rel="stylesheet" type="text/css" href="../../apps/ext/resources/css/ext-custom.css"></link>
+	<!--<link rel="stylesheet" type="text/css" href="../../apps/ext4-2/resources/css/ext-custom.css"></link>-->
+    <!--<link rel="stylesheet" type="text/css" href="../../apps/ext/resources/css/xtheme-gray.css"></link>-->
+
+    <!-- GeoExt resources -->
+	<script src="../../apps/geoext/GeoExt.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../apps/geoext/resources/css/custom_popup.css"></link>
+
+	<!--Style Sheets-->
+	<link href="../../apps/css/styles2.css" rel="stylesheet" type="text/css" charset="utf-8" />
+	<link href="../../apps/css/istyles.css" rel="stylesheet" type="text/css" charset="utf-8" />
+	
+	<!--Scripts-->
+	<link href="../../apps/jquery/css/cupertino/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="../../apps/jquery/jquery-1.9.1.js"></script>
+	<script src="../../apps/jquery/jquery-ui-1.10.3.custom.js"></script>
+	<script src="../../apps/secit/secit.js"></script> <!--Important, this must be in this order-->
+	<script src="../../apps/functions/popupSetter.js"></script> <!--Important, this must be in this order-->
+	<link rel="stylesheet" type="text/css" href="../../apps/css/popupTables.css"></link>
+	<script>
+		document.write('\x3Cscript type="text/javascript" src="../../apps/functions/tools.php?random=' + Math.random()*99999 + '">\x3C/script>');
+	</script>
+	<script src="../../apps/functions/dynamicScripts.js?"></script>
+	<script src="../../apps/functions/styleScripts.js"></script>
+	<script src="../../apps/functions/mapdefinition.js"></script>
+	<script>
+		var map;
+		function toggle(div) {
+			var HTMLtext;
+			if (div!='none'){
+				if (document.getElementById(div).style.display == 'block') {
+					document.getElementById(div).style.display = 'none';
+					document.getElementById(div).style.visibility = 'hidden';
+					moreorless.src = '../../../apps/img/more.gif';
+				} else {
+					document.getElementById(div).style.display = 'block';
+					document.getElementById(div).style.visibility = 'visible';
+					moreorless.src = '../../../apps/img/less.gif';
+				}
+			}
+        }
+	</script>
+	<style type="text/css">
+        .legend {
+            padding-left: 18px;
+        }
+        .x-tree-node-el {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
+        }
+        .x-tree-ec-icon {
+            width: 3px;
+        }
+        .gx-tree-layer-icon {
+            display: none;
+        }
+		.ui-dialog-titlebar {
+			display:none;
+		}
+		.ui-dialog, .ui-dialog, .ui-widget, .ui-widget-content, .ui-corner-all, .foo, .ui-draggable, .ui-resizable {
+			background:rgba(93,138,179,0.5) !important
+		}​
+    </style>
+    </head>
+
+<body>
+<div id="header"></div>
+<noscript>This page requires JavaScript to be enabled.</noscript>
+<div class="activefix">
+	<div id="h_first" class="h_first">
+	</div>
+</div>
+<form style="display: hidden" action="../../apps/functions/sirdownloadalot.php" method="POST" id="sirdownloadalotform">
+  <input type="hidden" id="sdalval" name="sdalval" value=""/>
+  <input type="hidden" id="sdalval2" name="sdalval2" value=""/>
+  <input type="hidden" id="sdalval3" name="sdalval3" value=""/>
+</form>
+<input type="hidden" id="urlS" name="urlS" value="" />
+<input type='hidden' id='username' name='username' value='' />
+<input type="hidden" id="filterS" name="filterS" value="" />
+<input type="hidden" id="functionS" name="functionS" value="blank" />
+<input type='hidden' id='colNo' name='colNo' value='' />
+<input type="hidden" id="recnoS" name="recnoS" value=0 />
+<input type="hidden" id="lowerS" name="lowerS" value=0 />
+<input type="hidden" id="lower2S" name="lower2S" value=0 />
+<input type="hidden" id="currGID" name="currGID" value="" />
+<input type="hidden" id="currGIDdone" name="currGIDdone" value="" />
+<div id="photoscroller"></div>
+<div id="nodelist"></div>
+<div id="searchHandler" style="display:none;">Attribute Searches Go Here</div>
+<div id="footerWrap"><table style="width:100%; border:0;"><tr><td id="copyrightTxt" style="text-align:left;"></td><td id="footer" style=" text-align:right;"></td></tr></table></div>
+<iframe style="visibility: hidden" src="blank.html" name="loader" width="1px" height="1px" id="loader" onload="checkFrame();" />
+</body>
+</html>

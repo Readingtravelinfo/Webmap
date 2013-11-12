@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Reading Borough Council - GIS Server Documentation</title>
+
+  <!--Style Sheets-->
+  <link href="../apps/css/styles2.css" rel="stylesheet" type="text/css" charset="utf-8" />
+  <link href="../apps/css/admin_table_style.css" rel="stylesheet" type="text/css" charset="utf-8" />
+  <script type="text/javascript">
+    function resizeWin() {
+      //Pickup the browser size
+      var winW = 630, winH = 460;
+      if (document.body && document.body.offsetWidth) {
+       winW = document.body.offsetWidth;
+       winH = document.body.offsetHeight;
+      }
+      if (document.compatMode=='CSS1Compat' &&
+          document.documentElement &&
+          document.documentElement.offsetWidth ) {
+       winW = document.documentElement.offsetWidth;
+       winH = document.documentElement.offsetHeight;
+      }
+      if (window.innerWidth && window.innerHeight) {
+       winW = window.innerWidth;
+       winH = window.innerHeight;
+      }
+
+      //Remove the height of the header and footer
+      winH = winH - 82 - 42;
+
+      document.getElementById('container').style.height = winH + "px";
+    }
+    function toggle(divID, SubID, SubSubID) {
+        //This function toggles the relevant help entry
+
+        //Please add divs to the following arrays to enable toggling on them
+        var toggleArray = [];
+        var Array1 = [1,2,3];
+        var Array2 = [1,2,3];
+        var Array3 = [1,2,3];
+        var Array4 = [1,2,3,4];
+        var Array5 = [1,2,3];
+        var Array6 = [1,2,3,4];
+        toggleArray[1] = Array1;
+        toggleArray[2] = Array2;
+        toggleArray[3] = Array3;
+        toggleArray[4] = Array4;
+        toggleArray[5] = Array5;
+        toggleArray[6] = Array6;
+
+    }
+	function loadContext(nodeRef){
+		var xhr = false;
+		if (window.ActiveXObject){
+			xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		} else {
+			xhr = new XMLHttpRequest();
+		}
+		
+		nodeRef = "pmanual.php?refID=" + nodeRef + "&manID=manual-small.xml";
+		xhr.open("GET",nodeRef,true); // Insert a reference of the php page you wanna get instead of yourpage.php
+		xhr.send(null);
+		xhr.onreadystatechange = function () {
+			if (xhr.readyState == 4 && xhr.status == 200)
+			{
+				//Write the HTML (stored in XML and parsed with PHP) into the content div
+				document.getElementById('contentBar').innerHTML = xhr.responseText;
+			} else {
+				if (xhr.status != 200){
+					alert ('Request Failed' + xhr.status);
+				}
+			}
+		};
+	}
+  </script>
+</head>
+
+<body onload="resizeWin()">
+
+<div id="header"><h2>GIS Server Documentation</h2></div>
+<!--<div id="container" style="height:0px;">-->
+  <div id="indexBar" class="indexBar" style="float:left"><!-- This is the sidebar div, add content below -->
+    <div id="1"><img src='../apps/img/more.gif' id='moreImage' width='11px' height='11px'  onclick='toggle(1,0,0)' /> <a onclick="loadContext('C1')">Introduction</a></div>
+        <!-- Sub divs -->
+		<div id="1-2"> <a onclick="loadContext('C1S2')">Reporting a Fault</a></div>
+		<div id="1-3"> <a onclick="loadContext('C1S3')">Key Contacts</a></div>
+    <div id="2"><img src='../apps/img/more.gif' id='moreImage' width='11px' height='11px'  onclick='toggle(2,0,0)' /> <a onclick="loadContext('C2')">Viewing Data</a></div>
+		<!-- Sub divs -->
+		<div id="2-1"> <a onclick="loadContext('C2S1')">Basic Tools - Moving Around the Map</a></div>
+		<div id="2-3"> <a onclick="loadContext('C2S3')">Quick Views</a></div>
+    <div id="4"><img src='../apps/img/more.gif' id='moreImage' width='11px' height='11px'  onclick='toggle(4,0,0)' /> <a onclick="loadContext('C4')">Querying Data</a></div>
+		<!-- Sub divs -->
+		<div id="4-1"> <a onclick="loadContext('C4S1')">Basic Searches</a></div>
+    <div id="5"><img src='../apps/img/more.gif' id='moreImage' width='11px' height='11px'  onclick='toggle(5,0,0)' /> <a onclick="loadContext('C5')">Additional Features</a></div>
+		<!-- Sub divs -->
+		<div id="5-2"> <a onclick="loadContext('C5S2')">Data Downloads</a></div>
+		<div id="5-3"> <a onclick="loadContext('C5S3')">Measurement Tools</a></div>
+  </div>
+  <div id="contentBar" class="contentBar" style="float:left"><!-- This is the body text div, add content below -->
+</div>
+<div id="footer" style="clear:both;"></div>
+
+</body>
+
+</html>

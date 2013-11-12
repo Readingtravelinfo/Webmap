@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Reading GIS Server Authentication</title>
+	<!--Definitions-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<!--Librarys-->
+	<script src="../../apps/openlayers/OpenLayers.js"></script>
+	<script src="../../apps/jquery/jquery-1.9.1.min.js"></script>
+	
+	<!--Style Sheets-->
+	<link href="../../apps/css/styles2.css" rel="stylesheet" type="text/css" charset="utf-8">
+
+	<!-- Ext resources -->
+	<script src="../../apps/ext/adapter/ext/ext-base.js"></script>
+	<script src="../../apps/ext/ext-all.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../apps/ext/resources/css/ext-all.css"></link>
+
+    <!-- GeoExt resources -->
+	<script src="../../apps/geoext/GeoExt.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../apps/GeoExt/resources/css/gxtheme-gray.css"></link>
+
+	<!--Scripts-->
+	<script>
+		function loginScript(){
+			//../j_spring_security_check
+			Dpath = document.URL;
+			//Sort out the URL path (local vrs remote)
+			var pos;
+			pos = Dpath.indexOf("/", 9);
+			Dpath = Dpath.substr(0,pos);
+			if (Dpath.search("https://64") == -1) {
+				Dpath = "https://geo.reading-travelinfo.co.uk/geoserver/j_spring_security_check";
+			} else {
+				Dpath = "https://64.5.1.218/geoserver/j_spring_security_check";
+			}
+			
+			var uNam, uPas;
+			uNam = document.getElementById("username").value;
+			uPas = document.getElementById("password").value;
+			$.post(Dpath, {username: uNam, password: uPas, async:false})
+			.done(function(data) {
+				finduser = data.search('Logged in as');
+				if (finduser!=-1){
+					//logged in
+					finduser = finduser + 12 + 7; //12 is the length of the search string and 7 is the buffer
+					if (data.indexOf('SPAN',finduser) == -1){ //Another ie fix for case sensitivity
+						stopuser = data.indexOf('span',finduser);
+					} else {
+						stopuser = data.indexOf('SPAN',finduser);
+					}
+					stopuser = stopuser -2; //2 is the buffer
+					usertext = data.substr(finduser,(stopuser-finduser));
+					if (usertext.search("DIV class=wrap") != -1) {
+						//Oh dear...why are you using internet explorer!!! Lets reload and try again.
+						document.location.reload();
+					}
+					itsOK = "YES";
+					//Example URL https://geo.reading-travelinfo.co.uk/rbc/something?onward=address
+					var onward = window.location.href;
+					var splitat = onward.search("=");
+					onward = onward.substr(splitat+1, (onward.length - splitat));
+					parent.window.location = onward;
+				} else {
+					//Unsuccessful log in
+					var htmlStr;
+					htmlStr = "<h2 align=\"center\">Reading GIS Server Log On</h2><p id=\"logonText\" align=\"center\"><font color=\"red\">Your attempt to log on was unsuccessful! <br /> please contact Marc Allen or PBA.</font></p>";
+					document.getElementById("logon").innerHTML = htmlStr;
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+<div id="logon">
+	<h2 align="center">Reading GIS Server Authentication</h2>
+	<p id="logonText" align="center">In order to view this page you need to login, please use the form below to login.</p>
+	<h2 align="center" style="color:red">Log on was unsuccessful, please try again...</h2>
+	<form id="Login_Form">
+		<p align="center">
+        <label class="noshow" for="username">Username</label>
+        <input id="username" type="text" name="username" value="" title="Username"/>
+        <label class="noshow" for="password">Password</label>
+        <input id="password" type="password" name="password" value="" title="Password"/>
+        
+        <br />
+        <button id="submitB" class="button-login positive icon" type="button" onclick="loginScript()"><div>Login</div></button>
+		</p>
+        <script type="text/javascript">
+        //<![CDATA[
+        jQuery(document).ready(function() {$('#username, #password').inlineInfoTextify();});
+        //]]>
+        </script>
+		<script>
+			var xTriggered = 0;
+			$("#username").keypress(function(event) {
+				if ( event.which == 13 ) {
+					$("#password").focus();
+				}
+			});
+			$("#password").keypress(function(event) {
+				if ( event.which == 13 ) {
+					$("#submitB").click();
+				}
+			});
+		</script>
+    </form>
+</body>
+</html>	

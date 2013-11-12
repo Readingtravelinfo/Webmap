@@ -1,0 +1,3 @@
+<!-- Automatically generated Hover template -->
+<span style='float: left;text-align: left;' class='Hover-para'>$[fieldvalues.siteref] - OTU = $[fieldvalues.oturef] <br />
+</span>

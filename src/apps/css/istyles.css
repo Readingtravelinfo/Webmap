@@ -1,0 +1,260 @@
+/* Results table styles */
+
+tr.header{
+    background-color: #6699FF;
+    font-size: small;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+table.topRow{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	background-color: #C0C0C0;
+	width: 99%;
+	font-size: 12px;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+/* Main Row Magic */
+table.mainRow{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+#mainRow td {
+	padding: 5px;
+	background: #e8edff;
+	color: #669;
+	border-bottom: thin solid #00008B;
+	border-top: 1px solid transparent;
+	border-left: thin dotted #FFFFFF;
+	border-right: thin dotted #FFFFFF;
+}
+
+#mainRow tr:hover td{
+	background: #d0dafd;
+	color: #339;
+}
+
+/* Row Selection */
+
+tr.selectedRow td{
+    background-color: #66FF99 !important;
+	color: #339 !important;
+}
+
+tr.selectedRow:hover td{
+	background: #009966 !important;
+	color: #FFFFFF !important;
+}
+
+/* Left / Right Classes - Upto 5 tables*/
+/* Table 1 */
+td.T0back-dis{
+	background-image: url(../img/left-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T0back{
+	background-image: url(../img/left-edge.png) !important;
+	width: 12px;
+}
+
+td.T0forward-dis{
+	background-image: url(../img/right-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T0forward{
+	background-image: url(../img/right-edge.png) !important;
+	width: 12px;
+}
+
+/* Table 2 */
+td.T1back-dis{
+	background-image: url(../img/left-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T1back{
+	background-image: url(../img/left-edge.png) !important;
+	width: 12px;
+}
+
+td.T1forward-dis{
+	background-image: url(../img/right-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T1forward{
+	background-image: url(../img/right-edge.png) !important;
+	width: 12px;
+}
+
+/* Table 3 */
+td.T2back-dis{
+	background-image: url(../img/left-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T2back{
+	background-image: url(../img/left-edge.png) !important;
+	width: 12px;
+}
+
+td.T2forward-dis{
+	background-image: url(../img/right-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T2forward{
+	background-image: url(../img/right-edge.png) !important;
+	width: 12px;
+}
+
+/* Table 4 */
+td.T3back-dis{
+	background-image: url(../img/left-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T3back{
+	background-image: url(../img/left-edge.png) !important;
+	width: 12px;
+}
+
+td.T3forward-dis{
+	background-image: url(../img/right-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T3forward{
+	background-image: url(../img/right-edge.png) !important;
+	width: 12px;
+}
+
+/* Table 5 */
+td.T4back-dis{
+	background-image: url(../img/left-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T4back{
+	background-image: url(../img/left-edge.png) !important;
+	width: 12px;
+}
+
+td.T4forward-dis{
+	background-image: url(../img/right-edge-dis.png) !important;
+	width: 12px;
+}
+
+td.T4forward{
+	background-image: url(../img/right-edge.png) !important;
+	width: 12px;
+}
+
+/* Show and hide scripts */
+
+.showIt {
+	display:block;
+	visibility: visible;
+}
+
+.showItTab {
+	display:table-cell;
+	visibility: visible;
+}
+
+.hideIt {
+	display:none;
+	visibility: hidden;
+}
+
+/* Specific table and span styles */
+th.moreIcon{
+    background-color: #00008B;
+}
+
+td.moreInfo{
+    background-color: #6699FF;
+    font-size: small;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+tr.moreInfo{
+    background-color: #E6E6FA;
+    font-size: small;
+}
+
+table.moreInfo{
+    position: relative;
+    left: 30px;
+    width: 920px;
+}
+
+div.more {
+}
+
+td#bb{
+	width: 10%;
+	height: 100%;
+}
+
+td#fb{
+	width: 10%;
+	height: 100%;
+}
+
+td.carouselcell{
+	width: 10%;
+	height: 100%;
+}
+
+div#holdscreen{
+	text-align:center;
+	vertical-align:middle;
+}
+
+div#EditInfo{
+    width: 100%;
+    overflow: auto;
+    background-color: #E6E6FA;
+}
+
+div#EditButtons{
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    background-color: #000080;
+    color: #FFFAFA;
+}
+
+span#filterStrSpan {
+	text-align:left;
+	font-weight:bold;
+	color: #000066;
+}
+
+span#colNameSpan {
+	text-align:left;
+	font-weight:bold;
+	color: #000066;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	

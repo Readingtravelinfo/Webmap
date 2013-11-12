@@ -1,0 +1,426 @@
+<?xml version='1.0' standalone='yes'?>
+<settings>
+  <!-- Automatically Generated Settings -->
+  <userArray>
+    <option>PWittle</option>
+    <option>RBC</option>
+    <option>DMcDougall</option>
+    <option>SKeen</option>
+    <option>KWalton-Melhuish</option>
+    <option>JBailey</option>
+    <option>DHarvey</option>
+    <option>RMcDonald</option>
+    <option>FSenyah</option>
+    <option>SParkinson</option>
+    <option>SMcGinnity</option>
+    <option>GeoSolutionsSupport</option>
+  </userArray>
+  <other>
+    <appTitle>Reading Project Management Viewer</appTitle>
+    <projectPath>/client/projectviewer</projectPath>
+    <proj>27700</proj>
+    <projMap>EPSG:27700</projMap>
+    <reproject>No</reproject>
+    <projMap2></projMap2>
+    <popupPan>True</popupPan>
+    <ddFull>True</ddFull>
+    <popupDefault>True</popupDefault>
+    <legendtree>False</legendtree>
+    <selectlegendtree>True</selectlegendtree>
+    <licence>&#169; Crown Copyright 100019672 {Year} | &#169; Reading Borough Council {Year}</licence>
+    <wfsedits>Client/wfs</wfsedits>
+    <wmsbase>Client/wms</wmsbase>
+    <photoscroll></photoscroll>
+    <photoscrollpath></photoscrollpath>
+    <recNo>15|15</recNo>
+    <lower>0|0</lower>
+    <order_by>gid</order_by>
+    <geom_field>the_geom</geom_field>
+    <active_table>rbcprojects</active_table>
+    <attribute>False</attribute>
+    <edits>False</edits>
+    <Gog>1</Gog>
+  </other>
+  <toolbar>
+    <actionType>
+      <option>Button</option>
+      <option>Button</option>
+      <option>-</option>
+      <option>Button</option>
+    </actionType>
+    <actionTitle>
+      <option>Zoom</option>
+      <option>Measure</option>
+      <option>-</option>
+      <option>?</option>
+    </actionTitle>
+    <actionArr>
+      <option></option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+    </actionArr>
+    <actionCls>
+      <option>-</option>
+      <option>webgis-mapaction-mline</option>
+      <option>-</option>
+      <option></option>
+    </actionCls>
+    <actionGroup>
+      <option></option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+    </actionGroup>
+    <actionText>
+      <option>Zoom to an Area</option>
+      <option>Measure</option>
+      <option>-</option>
+      <option>?</option>
+    </actionText>
+    <actionHandler>
+      <option>zoomConSwitch();</option>
+      <option>MeasurementSwitch();</option>
+      <option>-</option>
+      <option>loadManual();</option>
+    </actionHandler>
+    <toolIn>
+      <option>4-0</option>
+      <option>4-0</option>
+      <option>3-0</option>
+      <option>4-0</option>
+    </toolIn>
+  </toolbar>
+  <basemaps>
+    <map>
+      <mapURL>Client:ClientBase</mapURL>
+      <mapTitle>Base Mapping</mapTitle>
+    </map>
+  </basemaps>
+  <wms>
+    <overlay>
+      <overlayAddress>Client:rbcprojects</overlayAddress>
+      <overlayPath>Client/wms</overlayPath>
+      <overlayTitle>Other Projects - All</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <onasdefault>False</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+"      <overlayDDtitle>All Active Travel, Cycle Hire, PT and PTP Projects</overlayDDtitle>"
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>f</overlayPopup>
+      <overlayPopupTemp></overlayPopupTemp>
+      <overlayPopupWidth></overlayPopupWidth>
+      <overlayPopupHeight></overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>rbcprojects</overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>Client:upgrade_plans</overlayAddress>
+      <overlayPath>Client/wms</overlayPath>
+      <overlayTitle>Information Services Projects</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>False</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Information Services Projects</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
+      <overlayPopupWidth>465px</overlayPopupWidth>
+      <overlayPopupHeight>220px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>strategydata</overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>Client:ptpprojects</overlayAddress>
+      <overlayPath>Client/wms</overlayPath>
+      <overlayTitle>Personalise Travel Planning Projects</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>False</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>PTP Projects</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate2.txt</overlayPopupTemp>
+      <overlayPopupWidth>300px</overlayPopupWidth>
+      <overlayPopupHeight>300px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>rbcprojects</overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>Client:ptprojects</overlayAddress>
+      <overlayPath>Client/wms</overlayPath>
+      <overlayTitle>Public Transport Projects</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>False</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Public Transport Projects</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate2.txt</overlayPopupTemp>
+      <overlayPopupWidth>300px</overlayPopupWidth>
+      <overlayPopupHeight>300px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>rbcprojects</overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>Client:cyclehireprojects</overlayAddress>
+      <overlayPath>Client/wms</overlayPath>
+      <overlayTitle>Cycle Hire Projects</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>False</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Cycle Hire Projects</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate2.txt</overlayPopupTemp>
+      <overlayPopupWidth>300px</overlayPopupWidth>
+      <overlayPopupHeight>300px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>rbcprojects</overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>Client:activetravelprojects</overlayAddress>
+      <overlayPath>Client/wms</overlayPath>
+      <overlayTitle>Active Travel Projects</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>True</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Active Travel Projects</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate2.txt</overlayPopupTemp>
+      <overlayPopupWidth>300px</overlayPopupWidth>
+      <overlayPopupHeight>300px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>rbcprojects</overlayTable>
+    </overlay>
+  </wms>
+  <wfs>
+    <overlay>
+      <overlayfeatureType>rbcprojects</overlayfeatureType>
+      <overlayPath>Client/wfs</overlayPath>
+      <overlayTitle>Other Projects - All</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/client</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>upgrade_plans</overlayfeatureType>
+      <overlayPath>Client/wfs</overlayPath>
+      <overlayTitle>Information Services Projects</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/client</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>ptpprojects</overlayfeatureType>
+      <overlayPath>Client/wfs</overlayPath>
+      <overlayTitle>Personalise Travel Planning Projects</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/client</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>ptprojects</overlayfeatureType>
+      <overlayPath>Client/wfs</overlayPath>
+      <overlayTitle>Public Transport Projects</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/client</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>cyclehireprojects</overlayfeatureType>
+      <overlayPath>Client/wfs</overlayPath>
+      <overlayTitle>Cycle Hire Projects</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/client</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>activetravelprojects</overlayfeatureType>
+      <overlayPath>Client/wfs</overlayPath>
+      <overlayTitle>Active Travel Projects</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/client</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+  </wfs>
+    <styleOptions>
+    </styleOptions>
+    <lookups>
+    </lookups>
+    <optionsList>
+    </optionsList>
+    <status>
+    </status>
+    <exclusions>
+      <exclusion>the_geom</exclusion>
+      <exclusionT>rbcprojects</exclusionT>
+      <exclusion>the_geom</exclusion>
+      <exclusionT>strategydata</exclusionT>
+    </exclusions>
+    <disable>
+      <option>gid</option>
+      <optionT>rbcprojects</optionT>
+      <option>mod_by</option>
+      <optionT>rbcprojects</optionT>
+      <option>mod_date</option>
+      <optionT>rbcprojects</optionT>
+      <option>gid</option>
+      <optionT>strategydata</optionT>
+      <option>mod_by</option>
+      <optionT>strategydata</optionT>
+      <option>mod_date</option>
+      <optionT>strategydata</optionT>
+    </disable>
+    <table>
+      <tableName>rbcprojects</tableName>
+      <tableGeom>True</tableGeom>
+      <tableTitle>RBC Projects</tableTitle>
+      <tableName>strategydata</tableName>
+      <tableGeom>True</tableGeom>
+      <tableTitle>RBC ITS Projects</tableTitle>
+    </table>
+    <tableLoops>
+    </tableLoops>
+    <functions>
+    </functions>
+    <pdmArr>
+      <option>Default</option>
+      <option>All at Concept Stage</option>
+      <option>All at Design Stage</option>
+      <option>All Completed Projects</option>
+      <option>Concept in 2012/2013</option>
+      <option>Design in 2012/2013</option>
+      <option>Complete in 2012/2013</option>
+      <option>Concept in 2013/2014</option>
+      <option>Design in 2013/2014</option>
+      <option>Complete in 2013/2014</option>
+      <option>Concept in 2014/2015</option>
+      <option>Design in 2014/2015</option>
+      <option>Complete in 2014/2015</option>
+      <option>Concept in 2015/2016</option>
+      <option>Design in 2015/2016</option>
+      <option>Complete in 2015/2016</option>
+    </pdmArr>
+    <pdmFilter>
+      <option></option>
+      <option>recstatus|==|Concept</option>
+      <option>recstatus|==|Design</option>
+      <option>recstatus|==|Complete</option>
+      <option>AND|startdate|..|2012-04-01|2013-03-31|recstatus|==|Concept</option>
+      <option>AND|startdate|..|2012-04-01|2013-03-31|recstatus|==|Design</option>
+      <option>AND|enddate|..|2012-04-01|2013-03-31|recstatus|==|Complete</option>
+      <option>AND|startdate|..|2013-04-01|2014-03-31|recstatus|==|Concept</option>
+      <option>AND|startdate|..|2013-04-01|2014-03-31|recstatus|==|Design</option>
+      <option>AND|enddate|..|2013-04-01|2014-03-31|recstatus|==|Complete</option>
+      <option>AND|startdate|..|2014-04-01|2015-03-31|recstatus|==|Concept</option>
+      <option>AND|startdate|..|2014-04-01|2015-03-31|recstatus|==|Design</option>
+      <option>AND|enddate|..|2014-04-01|2015-03-31|recstatus|==|Complete</option>
+      <option>AND|startdate|..|2015-04-01|2016-03-31|recstatus|==|Concept</option>
+      <option>AND|startdate|..|2015-04-01|2016-03-31|recstatus|==|Design</option>
+      <option>AND|enddate|..|2015-04-01|2016-03-31|recstatus|==|Complete</option>
+    </pdmFilter>
+    <pdmUFilter>
+      <option></option>
+      <option>recstatus&#165;Equal&#165;to&#165;Concept</option>
+      <option>recstatus&#165;Equal&#165;to&#165;Design</option>
+      <option>recstatus&#165;Equal&#165;to&#165;Complete</option>
+      <option>AND|startdate&#165;Between&#165;2012-04-01|2013-03-31|recstatus&#165;Equal&#165;to&#165;Concept</option>
+      <option>AND|startdate&#165;Between&#165;2012-04-01|2013-03-31|recstatus&#165;Equal&#165;to&#165;Design</option>
+      <option>AND|enddate&#165;Between&#165;2012-04-01|2013-03-31|recstatus&#165;Equal&#165;to&#165;Complete</option>
+      <option>AND|startdate&#165;Between&#165;2013-04-01|2014-03-31|recstatus&#165;Equal&#165;to&#165;Concept</option>
+      <option>AND|startdate&#165;Between&#165;2013-04-01|2014-03-31|recstatus&#165;Equal&#165;to&#165;Design</option>
+      <option>AND|enddate&#165;Between&#165;2013-04-01|2014-03-31|recstatus&#165;Equal&#165;to&#165;Complete</option>
+      <option>AND|startdate&#165;Between&#165;2014-04-01|2015-03-31|recstatus&#165;Equal&#165;to&#165;Concept</option>
+      <option>AND|startdate&#165;Between&#165;2014-04-01|2015-03-31|recstatus&#165;Equal&#165;to&#165;Design</option>
+      <option>AND|enddate&#165;Between&#165;2014-04-01|2015-03-31|recstatus&#165;Equal&#165;to&#165;Complete</option>
+      <option>AND|startdate&#165;Between&#165;2015-04-01|2016-03-31|recstatus&#165;Equal&#165;to&#165;Concept</option>
+      <option>AND|startdate&#165;Between&#165;2015-04-01|2016-03-31|recstatus&#165;Equal&#165;to&#165;Design</option>
+      <option>AND|enddate&#165;Between&#165;2015-04-01|2016-03-31|recstatus&#165;Equal&#165;to&#165;Complete</option>
+    </pdmUFilter>
+</settings>

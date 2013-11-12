@@ -1,0 +1,6 @@
+<!-- Automatically generated popup template -->
+<span style='float: left;text-align: left;' class='popup-para'><b>$[fieldvalues.workstype]</b> <br />
+$[fieldvalues.workstitle]  <br />
+Current Status: <b>$[fieldvalues.worksstatus]</b> <br />
+Last Update by: $[fieldvalues.mod_by] on $[fieldvalues.mod_date] <br />
+</span>

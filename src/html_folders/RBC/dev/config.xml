@@ -1,0 +1,440 @@
+<?xml version='1.0' standalone='yes'?>
+<settings>
+  <!-- Automatically Generated Settings -->
+  <userArray>
+    <option>PWittle</option>
+    <option>MAllen</option>
+    <option>GWarren</option>
+    <option>LGeorge</option>
+    <option>SKeen</option>
+    <option>KWalton-Melhuish</option>
+    <option>SParkinson</option>
+    <option>DODwyer</option>
+    <option>Gnelmes</option>
+  </userArray>
+  <other>
+    <appTitle>Traffic Sites in Reading (inc. UTC)</appTitle>
+    <projectPath>/rbc/trafficsites</projectPath>
+    <proj>27700</proj>
+    <projMap>EPSG:27700</projMap>
+    <reproject>No</reproject>
+    <projMap2></projMap2>
+    <popupPan>True</popupPan>
+    <ddFull>True</ddFull>
+    <popupDefault>True</popupDefault>
+    <legendtree>False</legendtree>
+    <selectlegendtree>True</selectlegendtree>
+    <licence>&#169; Crown Copyright 100019672 {Year} | &#169; Reading Borough Council {Year}</licence>
+    <wfsedits>RBC/wfs</wfsedits>
+    <wmsbase>RBC/wms</wmsbase>
+    <photoscroll>True</photoscroll>
+    <photoscrollpath>photopath</photoscrollpath>
+    <recNo>15</recNo>
+    <lower>0</lower>
+    <order_by>gid</order_by>
+    <geom_field>the_geom</geom_field>
+    <active_table>trafficsites_view</active_table>
+    <attribute>True</attribute>
+    <edits>True</edits>
+    <Gog>0</Gog>
+  </other>
+  <toolbar>
+    <actionType>
+      <option>Button</option>
+      <option>-</option>
+      <option>Button</option>
+      <option>Button</option>
+      <option>Button</option>
+      <option>-</option>
+      <option>Button</option>
+      <option>-</option>
+      <option>Button</option>
+      <option>-</option>
+      <option>Button</option>
+    </actionType>
+    <actionTitle>
+      <option>Table</option>
+      <option>-</option>
+      <option>Pan</option>
+      <option>Select</option>
+      <option>Zoom</option>
+      <option>-</option>
+      <option>Measure</option>
+      <option>-</option>
+      <option>Edit</option>
+      <option>-</option>
+      <option>?</option>
+    </actionTitle>
+    <actionArr>
+      <option></option>
+      <option>-</option>
+      <option></option>
+      <option></option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+    </actionArr>
+    <actionCls>
+      <option></option>
+      <option>-</option>
+      <option>webgis-mapaction-pan</option>
+      <option></option>
+      <option></option>
+      <option>-</option>
+      <option>webgis-mapaction-mline</option>
+      <option>-</option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+    </actionCls>
+    <actionGroup>
+      <option></option>
+      <option>-</option>
+      <option>map-action</option>
+      <option>map-action</option>
+      <option>map-action</option>
+      <option>-</option>
+      <option>map-action</option>
+      <option>-</option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+    </actionGroup>
+    <actionText>
+      <option>Attributes Table</option>
+      <option>-</option>
+      <option>Move the Map</option>
+      <option>Select a Feature</option>
+      <option>Zoom to an Area</option>
+      <option>-</option>
+      <option>Measure</option>
+      <option>-</option>
+      <option>Editing Tools</option>
+      <option>-</option>
+      <option>?</option>
+    </actionText>
+    <actionHandler>
+      <option>tableload();</option>
+      <option>-</option>
+      <option>navSwitch();</option>
+"      <option>selectTog('Select a Feature', 'map-action');</option>"
+      <option>zoomConSwitch();</option>
+      <option>-</option>
+      <option>MeasurementSwitch();</option>
+      <option>-</option>
+      <option>edMOst();</option>
+      <option>-</option>
+      <option>loadManual();</option>
+    </actionHandler>
+    <toolIn>
+      <option>4-0</option>
+      <option>3-0</option>
+      <option>4-1</option>
+      <option>4-0</option>
+      <option>4-0</option>
+      <option>3-0</option>
+      <option>4-0</option>
+      <option>3-0</option>
+      <option>4-0</option>
+      <option>3-0</option>
+      <option>4-0</option>
+    </toolIn>
+  </toolbar>
+  <basemaps>
+    <map>
+      <mapURL>RBC:RBCbase</mapURL>
+      <mapTitle>Base Mapping</mapTitle>
+    </map>
+  </basemaps>
+  <wms>
+    <overlay>
+      <overlayAddress>RBC:Reading_Postcodes</overlayAddress>
+      <overlayPath>RBC/wms</overlayPath>
+      <overlayTitle>RBC Postcode Zones</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>False</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>RBC Postcode Zones</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>f</overlayPopup>
+      <overlayPopupTemp></overlayPopupTemp>
+      <overlayPopupWidth></overlayPopupWidth>
+      <overlayPopupHeight></overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Shapefile</overlayType>
+      <overlayTable></overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>RBC:trafficsitesother</overlayAddress>
+      <overlayPath>RBC/wms</overlayPath>
+      <overlayTitle>Other Transport Sites</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>False</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Other Transport Sites</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
+      <overlayPopupWidth>320px</overlayPopupWidth>
+      <overlayPopupHeight>140px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>trafficsites_view</overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>RBC:trafficsitesped</overlayAddress>
+      <overlayPath>RBC/wms</overlayPath>
+      <overlayTitle>Ped Transport Sites</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>True</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Ped Transport Sites</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
+      <overlayPopupWidth>320px</overlayPopupWidth>
+      <overlayPopupHeight>140px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>trafficsites_view</overlayTable>
+    </overlay>
+    <overlay>
+      <overlayAddress>RBC:trafficsites</overlayAddress>
+      <overlayPath>RBC/wms</overlayPath>
+      <overlayTitle>Transport Sites</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>True</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Transport Sites</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>True</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
+      <overlayPopupWidth>320px</overlayPopupWidth>
+      <overlayPopupHeight>140px</overlayPopupHeight>
+      <overlayHoverTemp></overlayHoverTemp>
+      <overlayHoverWidth></overlayHoverWidth>
+      <overlayHoverHeight></overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>trafficsites_view</overlayTable>
+    </overlay>
+  </wms>
+  <wfs>
+    <overlay>
+      <overlayfeatureType>Reading_Postcodes</overlayfeatureType>
+      <overlayPath>RBC/wfs</overlayPath>
+      <overlayTitle>RBC Postcode Zones</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>trafficsitesother</overlayfeatureType>
+      <overlayPath>RBC/wfs</overlayPath>
+      <overlayTitle>Other Transport Sites</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>trafficsitesped</overlayfeatureType>
+      <overlayPath>RBC/wfs</overlayPath>
+      <overlayTitle>Ped Transport Sites</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+    <overlay>
+      <overlayfeatureType>trafficsites</overlayfeatureType>
+      <overlayPath>RBC/wfs</overlayPath>
+      <overlayTitle>Transport Sites</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+  </wfs>
+    <styleOptions>
+    </styleOptions>
+    <lookups>
+    </lookups>
+    <optionsList>
+      <optionsListOp>Unknown</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Tele12 - BT Private Wire</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini1 - BT Private Wire</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini2 - BT Private Wire</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Chameleon - BT Private Wire</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Tele12 - ADSL</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini1 - ADSL</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini2 - ADSL</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Chameleon - ADSL</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Tele12 - Wireless</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini1 - Wireless</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini2 - Wireless</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Chameleon - Wireless</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Tele12 - Other</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini1 - Other</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Gemini2 - Other</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Chameleon - Other</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>OMU - GSM</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>OMU - PSTN</optionsListOp>
+      <optionListNo>1</optionListNo>
+      <optionsListOp>Unknown</optionsListOp>
+      <optionListNo>2</optionListNo>
+      <optionsListOp>No Change</optionsListOp>
+      <optionListNo>2</optionListNo>
+      <optionsListOp>Planned Change</optionsListOp>
+      <optionListNo>2</optionListNo>
+      <optionsListOp>Change on Order</optionsListOp>
+      <optionListNo>2</optionListNo>
+      <optionsListCol>otu_coms_type</optionsListCol>
+      <optionsListColLoop>1</optionsListColLoop>
+      <optionsListCol>coms_status</optionsListCol>
+      <optionsListColLoop>2</optionsListColLoop>
+    </optionsList>
+    <status>
+      <statusValue>Approved Record</statusValue>
+      <statusAvail>True</statusAvail>
+      <statusText>Approved Record</statusText>
+      <statusTable>trafficsites_view</statusTable>
+      <statusField>recstatus</statusField>
+      <statusValue>Awaiting QA Check</statusValue>
+      <statusAvail>True</statusAvail>
+      <statusText>Awaiting QA Check</statusText>
+      <statusTable>trafficsites_view</statusTable>
+      <statusField>recstatus</statusField>
+      <statusValue>PBA Import</statusValue>
+      <statusAvail>True</statusAvail>
+      <statusText>PBA Import</statusText>
+      <statusTable>trafficsites_view</statusTable>
+      <statusField>recstatus</statusField>
+    </status>
+    <exclusions>
+      <exclusion>the_geom</exclusion>
+      <exclusionT>trafficsites_view</exclusionT>
+    </exclusions>
+    <disable>
+      <option>gid</option>
+      <optionT>trafficsites_view</optionT>
+      <option>mod_by</option>
+      <optionT>trafficsites_view</optionT>
+      <option>mod_date</option>
+      <optionT>trafficsites_view</optionT>
+      <option>easting</option>
+      <optionT>trafficsites_view</optionT>
+      <option>northing</option>
+      <optionT>trafficsites_view</optionT>
+    </disable>
+    <table>
+      <tableName>trafficsites_view</tableName>
+      <tableGeom>True</tableGeom>
+      <tableTitle>Traffic Sites Table</tableTitle>
+    </table>
+    <tableLoops>
+    </tableLoops>
+    <functions>
+    </functions>
+    <pdmArr>
+      <option>Default</option>
+      <option>VMS Sites (Live)</option>
+      <option>Broadband Sites (Live)</option>
+      <option>Bluetooth Sites (Live)</option>
+      <option>CCTV Sites (Live)</option>
+      <option>VMS Sites (Planned)</option>
+      <option>Broadband Sites (Planned)</option>
+      <option>Bluetooth Sites (Planned)</option>
+      <option>CCTV Sites (Planned)</option>
+    </pdmArr>
+    <pdmFilter>
+      <option></option>
+      <option>vms|==|YES</option>
+      <option>broadband|==|YES</option>
+      <option>bluetooth|==|YES</option>
+      <option>cctv|==|YES</option>
+      <option>vms|==|Planned</option>
+      <option>broadband|==|Planned</option>
+      <option>bluetooth|==|Planned</option>
+      <option>cctv|==|Planned</option>
+    </pdmFilter>
+    <pdmUFilter>
+      <option></option>
+      <option>vms&#165;Equal&#165;to&#165;YES</option>
+      <option>broadband&#165;Equal&#165;to&#165;YES</option>
+      <option>bluetooth&#165;Equal&#165;to&#165;YES</option>
+      <option>cctv&#165;Equal&#165;to&#165;YES</option>
+      <option>vms&#165;Equal&#165;to&#165;Planned</option>
+      <option>broadband&#165;Equal&#165;to&#165;Planned</option>
+      <option>bluetooth&#165;Equal&#165;to&#165;Planned</option>
+      <option>cctv&#165;Equal&#165;to&#165;Planned</option>
+    </pdmUFilter>
+</settings>

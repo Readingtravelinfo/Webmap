@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <title>Map Configuration Page</title>
+  <!-- Ext resources -->
+  <script src="../../apps/ext/adapter/ext/ext-base.js"></script>
+  <script src="../../apps/ext/ext-all-debug.js"></script> 
+  <link rel="stylesheet" type="text/css" href="../../apps/ext/resources/css/ext-custom.css"></link>	
+  <!--Scripts-->
+  <script src="../../apps/jquery/jquery-1.9.1.min.js"></script>
+  <script src="../../apps/admin_functions/jeditable.js"></script>
+  <script src="../../apps/secit/secit.js"></script> <!--Important, this must be in this order-->
+  <script src="../../apps/admin_functions/admin.js"></script>
+  <link rel="stylesheet" href="../../apps/admin_functions/admin.css"></script>
+</head>
+
+<body onload='pageSetup()'>
+<div id='header'></div>
+<h3 id='pageHeader'></h3>
+<div id='configForm'></div>
+<div id='pageFooter'></div>
+<input type='hidden' id='username' name='username' value='' />
+<iframe style="visibility: hidden" src="blank.html" name="loader" width="1px" height="1px" id="loader" onload="checkFrame();" />
+</body>
+
+</html>

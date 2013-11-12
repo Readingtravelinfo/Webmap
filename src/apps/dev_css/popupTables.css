@@ -1,0 +1,113 @@
+table.blue {
+  border-color: #000000;
+  border-collapse: collapse;
+  page-break-before: auto;
+  page-break-after: auto;
+  overflow: auto;
+  background-color: #E4E4F1;
+}
+
+table.blue th {
+  background-color: #00005B;
+  color: #FFFFFF;
+  padding: 4px;
+}
+
+table.blue td {
+  padding: 4px;
+}
+
+table.green {
+  border-color: #000000;
+  border-collapse: collapse;
+  page-break-before: auto;
+  page-break-after: auto;
+  overflow: auto;
+  background-color: #B7D9A8;
+}
+
+table.green th {
+  background-color: #008000;
+  color: #FFFFFF;
+  padding: 4px;
+}
+
+table.green td {
+  padding: 4px;
+}
+
+table.red {
+  border-color: #000000;
+  border-collapse: collapse;
+  page-break-before: auto;
+  page-break-after: auto;
+  overflow: auto;
+  background-color: #FFC1C1;
+}
+
+table.red th {
+  background-color: #990000;
+  color: #FFFFFF;
+  padding: 4px;
+}
+
+table.red td {
+  padding: 4px;
+}
+
+table.purple {
+  border-color: #000000;
+  border-collapse: collapse;
+  page-break-before: auto;
+  page-break-after: auto;
+  overflow: auto;
+  background-color: #ECD9EC;
+}
+
+table.purple th {
+  background-color: #663366;
+  color: #FFFFFF;
+  padding: 4px;
+}
+
+table.purple td {
+  padding: 4px;
+}
+
+table.grey {
+  border-color: #000000;
+  border-collapse: collapse;
+  page-break-before: auto;
+  page-break-after: auto;
+  overflow: auto;
+  background-color: #DDDDDD;
+}
+
+table.grey th {
+  background-color: #555555;
+  color: #FFFFFF;
+  padding: 4px;
+}
+
+table.grey td {
+  padding: 4px;
+}
+
+table.clear {
+  border-color: #000000;
+  border-collapse: collapse;
+  page-break-before: auto;
+  page-break-after: auto;
+  overflow: auto;
+  background-color: #FFFFFF;
+}
+
+table.clear th {
+  background-color: transparent;
+  color: #000000;
+  padding: 4px;
+}
+
+table.clear td {
+  padding: 4px;
+}

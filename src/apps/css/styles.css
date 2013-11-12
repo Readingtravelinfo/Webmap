@@ -1,0 +1,349 @@
+ body {
+	margin:0;
+	padding:0;
+	border:0;			/* This removes the border around the viewport in old versions of IE */
+	width:100%;
+	background:#fff;
+	min-width: 780px;
+	max-width: 1920px;
+	font-size:90%;
+}
+
+/* column container */
+.widthfix {
+	position:relative;	/* This fixes the IE7 overflow hidden bug */
+	clear:both;
+	float:left;
+	width:100%;			/* width of whole page */
+	overflow:hidden;		/* This chops off any overhanging divs */
+}
+/* common column settings */
+.activefix {
+	float:left;
+	width:100%;
+	position:relative;
+}
+.mapWrapper,
+.h_first,
+.toolsWrapper {
+	float:left;
+	position:relative;
+	overflow:hidden;
+}
+/* 2 Column (right menu) settings */
+.widthfix {
+	background:#eee;		/* right column background colour */
+}
+.widthfix .activefix {
+	right:15%;			/* right column width */
+	background:#fff;		/* left column background colour */
+}
+
+.activefix .mapWrapper {
+	width:85%;			/* left column content width (left column width minus left and right padding) */
+	left:15%;			/* (right column width) plus (left column left padding) */
+}
+
+/*This is used if there is no Map*/
+.activefix .h_first {
+	width:100%;			/* left column content width (left column width minus left and right padding) */
+	left:15%;			/* (right column width) plus (left column left padding) */
+}
+
+.activefix .toolsWrapper {
+	width:15%;			/* right column content width (right column width minus left and right padding) */
+	left:15%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+}
+
+#blockheader{
+	height: 25px;
+    background: #fcfcfc url('../img/blockheader.png') top repeat-x;
+    font-family: 'Helvetica Neue',tahoma,helvetica,verdana, sans-serif;
+    font-size: smaller;
+    color: #10418C;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-top: 4px;
+}
+
+.h_second {
+    display: none;
+    visibility: hidden;
+	position: absolute;
+    z-index: 99;
+	width:100%;			/* left column content width (left column width minus left and right padding) */
+	top: 25px; 			/*Offset from the top*/
+}
+
+.v_first {
+    display: none;
+    visibility: hidden;
+	position: absolute;
+    z-index: 999;
+	width:100%;			/* left column content width (left column width minus left and right padding) */
+	top: 50px; 			/*Offset from the top*/
+}
+
+#vheader{
+    width:25px;
+    height: 100%;
+    padding: 0;
+    background: #fcfcfc url('../img/vheader.png') repeat-x;
+}
+
+span.vheaderText{
+    /*This is a text rotation section */
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    display:block;
+    padding: 0;
+    width:100%;
+    height:100%;
+    font-family: 'Helvetica Neue',tahoma,helvetica,verdana, sans-serif;
+    font-size: smaller;
+    color: #10418C;
+    font-weight: bold;
+}
+
+
+#mapLegend {
+    height:80%;
+}
+
+#mapStyler {
+    height:20%;
+	border: thin;
+    border-color: #9CBAEF;
+    border-style: solid;
+}
+
+#header {
+	background: #fcfcfc url('../img/grey_box_bg.png') top repeat-x;
+	border: 1px solid #cccccc;
+	text-align: left;
+	font-size: 28px;
+    font-weight: normal;
+    color: #6B97AD;
+}
+
+#footer {
+	background: #fcfcfc url('../img/grey_box_bg.png') top repeat-x;
+	text-align: right;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	border: 1px solid #cccccc;
+	font-size: x-small;
+	color: #999999;
+}
+
+a {
+    color: #191970;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #483D8B;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h2{
+	font-size: 28px;
+    font-weight: bold;
+    color: #6B97AD;
+}
+
+h3{
+	font-size: large;
+    font-weight: bold;
+    color: #6B97AD;
+}
+
+h4{
+	color: #666666;
+	font-size: x-small;
+	text-decoration: none;
+	font-style:italic;
+}
+
+div#disclaimer{
+	width: 960px;
+	height: 35px;
+	font-size: small;
+}
+
+iframe.results{
+    border: none;
+    border-style: none;
+    width: 100%;
+	min-height: 800px;
+    overflow: auto;
+}
+
+iframe.results2{
+    border: none;
+    border-style: none;
+    width: 100%;
+    min-height: 800px;
+    overflow: auto;
+}
+
+iframe.editorWin{
+    border: none;
+    border-style: none;
+    width:100%;
+	min-height: 800px;
+    overflow: auto;
+}
+
+tr.header{
+    background-color: #6699FF;
+    font-size: small;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+tr.mainRow{
+    background-color: #E6E6FA;
+    font-size: small;
+}
+
+th.moreIcon{
+    background-color: #00008B;
+}
+
+
+td.moreInfo{
+    background-color: #6699FF;
+    font-size: small;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+tr.moreInfo{
+    background-color: #E6E6FA;
+    font-size: small;
+}
+
+table.mainRow{
+    border-bottom-color: #00008B;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+    width: 100%;
+}
+
+
+table.moreInfo{
+    position: relative;
+    left: 30px;
+    width: 920px;
+}
+
+div.more {
+    visibility: hidden;
+    display: none;
+}
+
+p.mapStyler {
+	padding: 15px 8px 15px 8px;
+}
+
+div#EditInfo{
+    width: 100%;
+    height: 450px;
+    overflow: scroll;
+    background-color: #E6E6FA;
+}
+
+div#EditButtons{
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    background-color: #000080;
+    color: #FFFAFA;
+}
+
+body.Edit {
+    background-color: #000080;
+}
+
+.disabled{
+    background-color: #DDDDDD;
+}
+
+.webgis-mapaction-draw {
+	background-image: url(../img/draw.png);
+}
+
+.webgis-mapaction-edit {
+	background-image: url(../img/edit.png);
+}
+
+.webgis-mapaction-save {
+	background-image: url(../img/save.png);
+}
+
+.webgis-mapaction-reshape {
+	background-image: url(../img/reshape.png);
+}
+
+.webgis-mapaction-delete {
+	background-image: url(../img/delete.png);
+}
+
+.webgis-mapaction-info {
+	background-image: url(../img/info.png);
+}
+
+.webgis-mapaction-pan {
+	background-image: url(../img/pan.png);
+}
+
+/* GetFeatureInfo style */
+
+/*table.featureInfo, table.featureInfo td, table.featureInfo th {   */
+p.featureInfo {
+	border:1px solid #ddd;
+	border-collapse:collapse;
+	margin:0;
+	padding:0;
+    white-space:pre;
+	font-size: 90%;
+	padding:.2em .1em;
+}
+
+table.featureInfo th {
+	padding:.2em .2em;
+	font-weight:bold;
+	background:#eee;
+}
+
+table.featureInfo td{
+	background:#fff;
+}
+
+table.featureInfo tr.odd td{
+	background:#eee;
+}
+
+table.featureInfo caption{
+	text-align:left;
+	font-size:100%;
+	font-weight:bold;
+	padding:.2em .2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	

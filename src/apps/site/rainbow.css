@@ -1,0 +1,130 @@
+.issue{
+	background-color: #FEDDD8;
+}
+.currTD{
+	color: #006600;
+	background-color: #CFCFCF;
+}
+
+.currTR{
+	color: #006600;
+	background-color: #CFCFCF;
+}
+
+.greenText{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: white;
+	background-color: green;
+}
+.orangeText{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: black;
+	background-color: orange;
+}
+.redText{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: white;
+	background-color: red;
+}
+.greyText{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: black;
+	background-color: silver;
+}
+.leftbox3 {
+	border: 2px solid #F4A460;
+}
+.leftbox2 {
+	border: 2px solid #6495ED;
+}
+.leftbox1 {
+	border: 2px solid #3CB371;
+}
+.leftbox0 {
+	border: 2px solid #D3D3D3;
+}
+.rightbox3 {
+	border: 2px solid #F4A460;
+}
+.rightbox2 {
+	border: 2px solid #6495ED;
+}
+.rightbox1 {
+	border: 2px solid #3CB371;
+}
+.rightbox0 {
+	border: 2px solid #D3D3D3;
+}
+.featureBox3 {
+	border: 1px dotted #F4A460;
+	text-align: center;
+}
+.featureBox2 {
+	border: 1px dotted #6495ED;
+	text-align: center;
+}
+.featureBox1 {
+	border: 1px dotted #90EE90;
+	text-align: center;
+}
+.featureBox0 {
+	border: 1px dotted #D3D3D3;
+	text-align: center;
+}
+.pageS3 {
+	text-align: center; 
+	background-color: #D2691E; 
+	border:5px solid #FFA500; 
+	color: #ffffff;
+}
+.pageS2 {
+	text-align: center; 
+	background-color: #000080; 
+	border:5px solid #0000CD; 
+	color: #ffffff;
+}
+.pageS1 {
+	text-align: center; 
+	background-color: #98FB98; 
+	border:5px solid #3CB371; 
+	color: #000000;
+}
+.pageS0 {
+	text-align: center; 
+	background-color: #808080; 
+	border:5px solid #A9A9A9; 
+	color: #ffffff;
+}
+.mainS3 {
+	background-color: #FFDEAD; 
+}
+.mainS2 {
+	background-color: #B0C4DE; 
+}
+.mainS1 {
+	background-color: #D0FDD0;
+}
+.mainS0 {
+	background-color: #DCDCDC; 
+}
+
+a:link { 
+	text-decoration: none;
+	color: #2E2E2E;
+}
+
+a:visited { 
+	text-decoration: none;
+	color: #696969;
+}
+
+a:hover { 
+	text-decoration: underline;
+	font-weight: bold;
+	color: #2E2E2E;
+	font-style:italic;
+}

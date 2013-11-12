@@ -1,0 +1,22 @@
+<p><b>This is an $[fieldvalues.funding] Project</b> <br /> 
+<i>$[fieldvalues.project_title]</i><br />
+<!--<img width=100px height=100px src=$[fieldvalues.project_image] />--></p>
+<hr />
+<p><b>Project Description</b><br />
+$[fieldvalues.project_desc]</p>
+<hr />
+<div>
+<p><b>Project Status</b><br />
+<img style=float:left; width=20px height=15px src=Key/$[fieldvalues.recstatus]_Box.png />  
+&nbsp;&nbsp;&nbsp;$[fieldvalues.recstatus]</p>
+<p><b>Programme</b><br />
+On Site from: $[fieldvalues.startdate]<br />
+Planned Opening Date: <br /> $[fieldvalues.enddate]</p>
+</div>
+<hr />
+<p><b>RBC Contact:</b> $[fieldvalues.council_contact] <br />
+<b>Email:</b><a href=mailto:$[fieldvalues.council_contact_email]?$[fieldvalues.project_title]>$[fieldvalues.council_contact_email]</a></p> 
+<p><b>Client Contact:</b> $[fieldvalues.project_manager]<br />
+<b>Email:</b><a href=mailto:$[fieldvalues.project_manager_email]?$[fieldvalues.project_title]>$[fieldvalues.project_manager_email]</a></p>
+<hr />
+Funded via the $[fieldvalues.project_type] budget</p>

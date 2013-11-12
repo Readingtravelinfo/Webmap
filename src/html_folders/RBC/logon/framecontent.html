@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+	<!--Definitions-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<!--Scripts-->
+	<script type="text/javascript">
+		function checkFrame() {
+			var iframe = window.frames['loader'];
+			
+			if(iframe == null) alert('Frame not found');
+			else {
+				if(iframe.document.body.innerHTML == null)
+					//alert('Frame exists, but page has not yet loaded');
+					setTimeout('checkFrame();', 500);
+				else
+					//We now have the username within the html and we need to pick it up
+					var finduser, stopuser, usertext, icontent;
+					icontent = iframe.document.body.innerHTML;
+					finduser = icontent.search('Logged in as');
+					finduser = finduser + 12 + 7; //12 is the length of the search string and 7 is the buffer
+					stopuser = icontent.indexOf('span',finduser);
+					stopuser = stopuser -2; //2 is the buffer
+					usertext = icontent.substr(finduser,(stopuser-finduser));
+			}
+		}
+	</script>
+</head>
+<body onload="checkFrame()">
+<iframe style="visibility: hidden" src="" name="loader" />
+
+</body>
+</html>
+

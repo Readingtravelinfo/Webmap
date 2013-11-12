@@ -1,0 +1,1 @@
+Some running and cycle images taken from http://openclipart.org

@@ -1,0 +1,182 @@
+<?xml version='1.0' standalone='yes'?>
+<settings>
+  <!-- Automatically Generated Settings -->
+  <userArray>
+    <option>RBC</option>
+  </userArray>
+  <other>
+    <appTitle>Broadband Upgrade Viewer</appTitle>
+    <projectPath>/rbc/broadbandviewer</projectPath>
+    <proj>27700</proj>
+    <projMap>EPSG:27700</projMap>
+    <reproject>No</reproject>
+    <projMap2></projMap2>
+    <popupPan>True</popupPan>
+    <ddFull>True</ddFull>
+    <popupDefault>True</popupDefault>
+    <legendtree>False</legendtree>
+    <selectlegendtree>True</selectlegendtree>
+    <licence>&#169; Crown Copyright 100019672 {Year} | &#169; Reading Borough Council {Year}</licence>
+    <wfsedits>RBC/wfs</wfsedits>
+    <wmsbase>RBC/wms</wmsbase>
+    <photoscroll>False</photoscroll>
+    <photoscrollpath></photoscrollpath>
+    <recNo>15</recNo>
+    <lower>0</lower>
+    <order_by>gid</order_by>
+    <geom_field>the_geom</geom_field>
+    <active_table>siteworks</active_table>
+    <attribute>False</attribute>
+    <edits>False</edits>
+    <Gog>1</Gog>
+  </other>
+  <toolbar>
+    <actionType>
+      <option>Button</option>
+      <option>Button</option>
+      <option>-</option>
+      <option>Button</option>
+    </actionType>
+    <actionTitle>
+      <option>Zoom</option>
+      <option>Measure</option>
+      <option>-</option>
+      <option>?</option>
+    </actionTitle>
+    <actionArr>
+      <option></option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+    </actionArr>
+    <actionCls>
+      <option>-</option>
+      <option>webgis-mapaction-mline</option>
+      <option>-</option>
+      <option></option>
+    </actionCls>
+    <actionGroup>
+      <option></option>
+      <option></option>
+      <option>-</option>
+      <option></option>
+    </actionGroup>
+    <actionText>
+      <option>Zoom to an Area</option>
+      <option>Measure</option>
+      <option>-</option>
+      <option>?</option>
+    </actionText>
+    <actionHandler>
+      <option>zoomConSwitch();</option>
+      <option>MeasurementSwitch();</option>
+      <option>-</option>
+      <option>loadManual();</option>
+    </actionHandler>
+    <toolIn>
+      <option>4-0</option>
+      <option>4-0</option>
+      <option>3-0</option>
+      <option>4-0</option>
+    </toolIn>
+  </toolbar>
+  <basemaps>
+    <map>
+      <mapURL>RBC:RBCbase</mapURL>
+      <mapTitle>Base Mapping</mapTitle>
+    </map>
+  </basemaps>
+  <wms>
+    <overlay>
+      <overlayAddress>RBC:broadband</overlayAddress>
+      <overlayPath>RBC/wms</overlayPath>
+      <overlayTitle>Broadband Upgrades</overlayTitle>
+      <overlayDILS>True</overlayDILS>
+      <onasdefault>True</onasdefault>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayDOME>True</overlayDOME>
+      <overlayBuffer>0</overlayBuffer>
+      <overlayDDtitle>Broadband Upgrades</overlayDDtitle>
+      <overlaySTYLES></overlaySTYLES>
+      <overlayCache>False</overlayCache>
+      <overlayTRAN>True</overlayTRAN>
+      <overlayENV></overlayENV>
+      <overlayPopup>t</overlayPopup>
+      <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
+      <overlayPopupWidth>250px</overlayPopupWidth>
+      <overlayPopupHeight>125px</overlayPopupHeight>
+      <overlayHoverTemp>/hovertemplate1.txt</overlayHoverTemp>
+      <overlayHoverWidth>50px</overlayHoverWidth>
+      <overlayHoverHeight>20px</overlayHoverHeight>
+      <overlayZoom>False</overlayZoom>
+      <overlayZoomLevel></overlayZoomLevel>
+      <overlayZoomSelF></overlayZoomSelF>
+      <overlayZoomRepT></overlayZoomRepT>
+      <overlayZoomRepF></overlayZoomRepF>
+      <overlayType>Postgis</overlayType>
+      <overlayTable>siteworks</overlayTable>
+    </overlay>
+  </wms>
+  <wfs>
+    <overlay>
+      <overlayfeatureType>broadband</overlayfeatureType>
+      <overlayPath>RBC/wfs</overlayPath>
+      <overlayTitle>Broadband Upgrades</overlayTitle>
+      <overlayDILS>False</overlayDILS>
+      <overlaySRS>EPSG:27700</overlaySRS>
+      <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
+      <overlaygeometryName>the_geom</overlaygeometryName>
+    </overlay>
+  </wfs>
+    <styleOptions>
+    </styleOptions>
+    <lookups>
+    </lookups>
+    <optionsList>
+    </optionsList>
+    <status>
+    </status>
+    <exclusions>
+    </exclusions>
+    <disable>
+    </disable>
+    <table>
+    </table>
+    <tableLoops>
+    </tableLoops>
+    <functions>
+    </functions>
+    <pdmArr>
+      <option>Default</option>
+      <option>RBC tasks (planned)</option>
+      <option>RBC tasks (complete)</option>
+      <option>BT tasks (proposed)</option>
+      <option>BT tasks (ordered/planned)</option>
+      <option>BT tasks (complete)</option>
+      <option>Completed works</option>
+      <option>Cancelled works</option>
+      <option>Works with comments / issues</option>
+    </pdmArr>
+    <pdmFilter>
+      <option></option>
+      <option>AND|worksstatus|!=|Complete|secondary_contact|!=|BT</option>
+      <option>AND|worksstatus|==|Complete|secondary_contact|!=|BT</option>
+      <option>AND|worksstatus|==|Proposed|secondary_contact|==|BT</option>
+      <option>AND|worksstatus|!=|Complete|secondary_contact|==|BT</option>
+      <option>AND|worksstatus|==|Complete|secondary_contact|==|BT</option>
+      <option>worksstatus|==|Complete</option>
+      <option>worksstatus|==|Cancelled</option>
+      <option>worksstatus|==|Comments</option>
+    </pdmFilter>
+    <pdmUFilter>
+      <option></option>
+      <option>AND|worksstatus|!=|Complete|secondary_contact|!=|BT</option>
+      <option>AND|worksstatus&#165;Equal&#165;to&#165;Complete|secondary_contact|!=|BT</option>
+      <option>AND|worksstatus&#165;Equal&#165;to&#165;Proposed|secondary_contact&#165;Equal&#165;to&#165;BT</option>
+      <option>AND|worksstatus|!=|Complete|secondary_contact&#165;Equal&#165;to&#165;BT</option>
+      <option>AND|worksstatus&#165;Equal&#165;to&#165;Complete|secondary_contact&#165;Equal&#165;to&#165;BT</option>
+      <option>worksstatus&#165;Equal&#165;to&#165;Complete</option>
+      <option>worksstatus&#165;Equal&#165;to&#165;Cancelled</option>
+      <option>worksstatus&#165;Equal&#165;to&#165;Comments</option>
+    </pdmUFilter>
+</settings>
