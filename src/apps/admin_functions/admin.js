@@ -7,7 +7,7 @@ var oR = []; //objectReference array
 var i, i2, i3; 
 
 /*Create the blank row strings for each of the tables*/
-var pUsers = '<tr><td id="pUr£c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"pUr£c1\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pUr£\")")>&#x25BC;</a></td></tr>';
+var pUsers = '<tr><td id="pUr£c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"pUr`c1\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pUr£\")")>&#x25BC;</a></td></tr>';
 var pBase = '<tr><td id="bMr£c1" class="ed"></td><td id="bMr£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"bMr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"bMr£\")")>&#x25BC;</a></td></tr>';
 var pFExclusion = '<tr><td id="fEr£c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"fEr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"fEr£\")")>&#x25BC;</a></td></tr>';
 var pPredef = '<tr><td id="pDmr£c1" class="ed"></td><td id="pDmr£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"pDmr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pDmr£\")")>&#x25BC;</a></td></tr>';
