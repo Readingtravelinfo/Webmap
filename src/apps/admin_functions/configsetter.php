@@ -1,9 +1,9 @@
 <?php
-$doc = new DOMDocument();
+//Create or replace the config.xml file in the relevant directory (assuming Javascript string is valid XML)
 $xmlString = $_POST['xml'];
 $location = 'D:\\webserver\\rbc_internet\\' . $_POST['loc'];
-$doc->loadXML($xmlString);
-$doc->save($location . 'config.xml');
+$filename = $location . 'config.xml';
+file_put_contents($filename, $xmlString);
 
 //Next we copy the required files to the folder
 $source1 = 'D:\\webserver\\rbc_internet\\RBC\\set\\index.html';

@@ -4,119 +4,29 @@ var conLayersT = [];
 var conTables = [];
 var conTablesT = [];
 var oR = []; //objectReference array
-var i, i2, i3; 
+var i, i2, i3, i4; 
+var str = '';
 
 /*Create the blank row strings for each of the tables*/
-var pUsers = '<tr><td id="pUr£c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"pUr£c1\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pUr£\")")>&#x25BC;</a></td></tr>';
-var pBase = '<tr><td id="bMr£c1" class="ed"></td><td id="bMr£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"bMr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"bMr£\")")>&#x25BC;</a></td></tr>';
-var pFExclusion = '<tr><td id="fEr£c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"fEr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"fEr£\")")>&#x25BC;</a></td></tr>';
-var pPredef = '<tr><td id="pDmr£c1" class="ed"></td><td id="pDmr£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"pDmr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pDmr£\")")>&#x25BC;</a></td></tr>';
-var pStyle = '<tr><td id="sCr£c1"><select id="sCsel"></select></td><td id="sCr£c2" class="ed"></td><td id="sCr£c3" class="ed"></td><td><a onclick("moveRow(\"up\",\"sCr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"sCr£\")")>&#x25BC;</a></td></tr>';
-var pLayer = '<tr><td><a onclick("moveRow(\"up\",\"pLr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pLr£\")")>&#x25BC;</a></td><td id="pLr£c1" class="ed"></td><td id="pLr£c2" class="ed"></td><td id="pLr£c3" class="ed"></td><td id="pLr£c4"><select id="pLbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c5"><select id="pLbool2-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c6" class="ed"></td><td id="pLr£c7"><select id="pLbool3-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c8" class="ed"></td><td id="pLr£c9" class="ed"></td><td id="pLr£c10"><select id="pLbool4-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c11"><select id="pLbool5-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c12" class="ed"></td></tr>';
-var pPopHov = '<tr><td id="pUhr£c1"></td><td id="pUhr£c2"><select id="pUhbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pUhr£c3" class="ed"></td><td id="pUhr£c4" class="ed"></td><td id="pUhr£c5" class="ed"></td><td id="pUhr£c6" class="ed"></td><td id="pUhr£c7" class="ed"></td><td id="pUhr£c8" class="ed"></td></tr>';
-var pZoom = '<tr><td id="pZr£c1"></td><td id="pZr£c2"><select id="pZbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr£c3" class="ed"></td><td id="pZr£c4"><select id="pZbool2-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr£c5" class="ed"></td><td id="pZr£c6" class="ed"></td></tr>';
-var pWFS = '<tr><td id="pWFSr£c1"></td><td id="pWFSr£c2" class="ed"></td><td id="pWFSr£c3" class="ed"></td><td id="pWFSr£c4" class="ed"></td><td id="pWFSr£c5" class="ed"></td><td id="pWFSr£c6" class="ed"></td><td id="pWFSr£c7" class="ed"></td><td id="pWFSr£c8" class="ed"></td><td id="pWFSr£c9" class="ed"></td></tr>';
-var pLookup = '<tr><td id="tLr£c1" class="ed"></td><td id="tLr£c2" class="ed"></td><td id="tLr£c3" class="ed"></td><td id="tLr£c4" class="ed"></td><td><a onclick("moveRow(\"up\",\"tLr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tLr£\")")>&#x25BC;</a></td></tr>';
-var pOption = '<tr><td id="tOr£c1" class="ed"></td><td id="tOr£c2" class="ed"></td><td id="tOr£c3" class="ed"></td><td id="tOr£c4" class="ed"></td><td><a onclick("moveRow(\"up\",\"tOr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tOr£\")")>&#x25BC;</a></td></tr>';
-var pStatus = '<tr><td id="tSr£c1" class="ed"></td><td id="tSr£c2"><select id="pSbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="tSr£c3" class="ed"></td><td id="tSr£c4"><select id="tSsel"></select></td><td id="tSr£c5" class="ed"></td><td><a onclick("moveRow(\"up\",\"tSr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tSr£\")")>&#x25BC;</a></td></tr>';
-var pOTable = '<tr><td><a onclick("moveRow(\"up\",\"oTr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"oTr£\")")>&#x25BC;</a></td><td id="oTr£c1" class="ed"></td><td id="oTr£c2"><select id="oTbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="oTr£c3" class="ed"></td><td id="oTr£c4" class="ed"></td><td id="oTr£c5" class="ed"></td><td id="oTr£c6" class="ed"></td><td id="oTr£c7" class="ed"></td><td id="oTr£c8" class="ed"></td></tr>';
-var pExclusion = '<tr><td id="tEr£c1" class="ed"></td><td id="tEr£c2"><select id="tEsel"></select></td><td><a onclick("moveRow(\"up\",\"tEr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tEr£\")")>&#x25BC;</a></td></tr>';
-var pDiscol = '<tr><td id="dCr£c1" class="ed"></td><td id="dCr£c2"><select id="dCsel"></select></td><td><a onclick("moveRow(\"up\",\"dCr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"dCr£\")")>&#x25BC;</a></td></tr>';
-var pLoops = '<tr><td id="tLor£c1"><select id="tLosel"></select></td><td id="tLor£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"tLor£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tLor£\")")>&#x25BC;</a></td></tr>';
+var pUsers = '<tr><td id="pUr`c1" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pUsers\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pUsers\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'pUr`c1\')" /></td></tr>';
+var pBase = '<tr><td id="bMr`c1" class="ed"></td><td id="bMr`c2" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pBase\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pBase\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'bMr`c1\')" /></td></tr>';
+var pFExclusion = '<tr><td id="fEr`c1" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pFExclusion\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pFExclusion\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'fEr`c1\')" /></td></tr>';
+var pPredef = '<tr><td id="pDmr`c1" class="ed"></td><td id="pDmr`c2" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pPredef\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pPredef\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'pDmr`c1\')" /></td></tr>';
+var pStyle = '<tr><td id="sCr`c1"><select id="sCsel-`"></select></td><td id="sCr`c2" class="ed"></td><td id="sCr`c3" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pStyle\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pStyle\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'sCr`c1\')" /></td></tr>';
+var pLayer = '<tr><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pLayer\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pLayer\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'pLr`c1\')" /></td><td id="pLr`c1" class="ed"></td><td id="pLr`c2" class="ed"></td><td id="pLr`c3" class="ed"></td><td id="pLr`c4"><select id="pLbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c5"><select id="pLbool2-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c6" class="ed"></td><td id="pLr`c7"><select id="pLbool3-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c8" class="ed"></td><td id="pLr`c9" class="ed"></td><td id="pLr`c10"><select id="pLbool4-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c11"><select id="pLbool5-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c12" class="ed"></td></tr>';
+var pPopHov = '<tr><td id="pUhr`c1"></td><td id="pUhr`c2"><select id="pUhbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pUhr`c3" class="ed"></td><td id="pUhr`c4" class="ed"></td><td id="pUhr`c5" class="ed"></td><td id="pUhr`c6" class="ed"></td><td id="pUhr`c7" class="ed"></td><td id="pUhr`c8" class="ed"></td></tr>';
+var pZoom = '<tr><td id="pZr`c1"></td><td id="pZr`c2"><select id="pZbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr`c3" class="ed"></td><td id="pZr`c4"><select id="pZbool2-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr`c5" class="ed"></td><td id="pZr`c6" class="ed"></td></tr>';
+var pWFS = '<tr><td id="pWFSr`c1"></td><td id="pWFSr`c2"><select id="pWFStype-`"><option value="Postgis">Postgis</option><option value="Shapefile">Shapefile</option><option value="Other">Other</option></select></td><td id="pWFSr`c3" class="ed"></td><td id="pWFSr`c4" class="ed"></td><td id="pWFSr`c5" class="ed"></td><td id="pWFSr`c6"><select id="pWFSbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pWFSr`c7" class="ed"></td><td id="pWFSr`c8" class="ed"></td><td id="pWFSr`c9" class="ed"></td></tr>';
+var pLookup = '<tr><td id="tLr`c1" class="ed"></td><td id="tLr`c2" class="ed"></td><td id="tLr`c3" class="ed"></td><td id="tLr`c4" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pLookup\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pLookup\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tLr`c1\')" /></td></tr>';
+var pOption = '<tr><td id="tOr`c1" class="ed"></td><td id="tOr`c2" class="ed"></td><td id="tOr`c3" class="ed"></td><td id="tOr`c4" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pOption\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pOption\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tOr`c1\')" /></td></tr>';
+var pStatus = '<tr><td id="tSr`c1" class="ed"></td><td id="tSr`c2"><select id="pSbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="tSr`c3" class="ed"></td><td id="tSr`c4"><select id="tSsel"></select></td><td id="tSr`c5" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pStatus\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pStatus\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tSr`c1\')" /></td></tr>';
+var pOTable = '<tr><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pOTable\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pOTable\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'oTr`c1\')" /></td><td id="oTr`c1" class="ed"></td><td id="oTr`c2"><select id="oTbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="oTr`c3" class="ed"></td><td id="oTr`c4"><select id="oTview-`"><option value="view">Highlighted Row</option><option value="view-edit">Record View</option></select></td><td id="oTr`c5" class="ed"></td><td id="oTr`c6" class="ed"></td><td id="oTr`c7" class="ed"></td><td id="oTr`c8" class="ed"></td></tr>';
+var pExclusion = '<tr><td id="tEr`c1" class="ed"></td><td id="tEr`c2"><select id="tEsel"></select></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pExclusion\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pExclusion\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tEr`c1\')" /></td></tr>';
+var pDiscol = '<tr><td id="dCr`c1" class="ed"></td><td id="dCr`c2"><select id="dCsel"></select></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pDiscol\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pDiscol\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'dCr`c1\')" /></td></tr>';
+var pLoops = '<tr><td id="tLor`c1"><select id="tLosel"></select></td><td id="tLor`c2" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pLoops\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pLoops\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tLor`c1\')" /></td></tr>';
 
 //Column Function arrays
-var pBaseA = [
-	"eC.mL.basemaps[*].mapURL", 
-	"eC.mL.basemaps[*].mapTitle"
-];
-
-var pLayerA = [
-	"eC.mL.overlays[*].overlayAddress", 
-	"eC.mL.overlays[*].overlayPath", 
-	"eC.mL.overlays[*].overlayTitle", 
-	"eC.mL.overlays[*].overlayDILS", 
-	"eC.mL.overlays[*].onasdefault", 
-	"eC.mL.overlays[*].overlaySRS", 
-	"eC.mL.overlays[*].overlayDOME", 
-	"eC.mL.overlays[*].overlayDDtitle", 
-	"eC.mL.overlays[*].overlaySTYLES", 
-	"eC.mL.overlays[*].overlayCache", 
-	"eC.mL.overlays[*].overlayTRAN", 
-	"eC.mL.overlays[*].overlayENV", 
-	"eC.mL.overlays[*].overlayPopup", 
-	"eC.mL.overlays[*].overlayPopupTemp", 
-	"eC.mL.overlays[*].overlayPopupWidth", 
-	"eC.mL.overlays[*].overlayPopupHeight", 
-	"eC.mL.overlays[*].overlayHoverTemp", 
-	"eC.mL.overlays[*].overlayHoverWidth", 
-	"eC.mL.overlays[*].overlayHoverHeight", 
-	"eC.mL.overlays[*].overlayZoom", 
-	"eC.mL.overlays[*].overlayZoomLevel", 
-	"eC.mL.overlays[*].overlayZoomSelF", 
-	"eC.mL.overlays[*].overlayZoomRepT", 
-	"eC.mL.overlays[*].overlayZoomRepF"
-];
-
-var pWFSA = [
-	"eC.mL.wfs[*].overlayType", 
-	"eC.mL.wfs[*].overlayTable", 
-	"eC.mL.wfs[*].overlayfeatureType", 
-	"eC.mL.wfs[*].overlayPath", 
-	"eC.mL.wfs[*].overlayDILS", 
-	"eC.mL.wfs[*].overlaySRS", 
-	"eC.mL.wfs[*].overlayfeatureNS", 
-	"eC.mL.wfs[*].overlaygeometryName", 
-	"eC.mL.wfs[*].overlayTitle.0"
-];
-
-var pTableA = [
-	"eC.tD.table[*].tableName", 
-	"eC.tD.table[*].tableGeom", 
-	"eC.tD.table[*].tableTitle", 
-	"eC.tD.table[*].selStyle", 
-	"eC.tD.table[*].recNo", 
-	"eC.tD.table[*].lower", 
-	"eC.tD.table[*].order_by", 
-	"eC.tD.table[*].geom_field"
-];
-
-var tLoopA = [
-	"eC.tD.tloops[*].tableName", 
-	"eC.tD.tloops[*].tableCondition"
-];
-
-var pLookupA = [
-	"eC.tD.lookup[*].targetCol", 
-	"eC.tD.lookup[*].targetTable", 
-	"eC.tD.lookup[*].replaceCol", 
-	"eC.tD.lookup[*].replaceTable"
-];
-
-var pStatusA = [
-	"eC.tD.status[*].statusValue", 
-	"eC.tD.status[*].statusAvail", 
-	"eC.tD.status[*].statusText", 
-	"eC.tD.status[*].statusTable", 
-	"eC.tD.status[*].statusField"
-];
-
-var pExclusionA = [
-	"eC.tD.exclusions[*].exclusion", 
-	"eC.tD.exclusions[*].exclusionT"
-];
-
-var pDiscolA = [
-	"eC.tD.discols[*].option", 
-	"eC.tD.discols[*].optionT"
-];
-
-var pFExclusionA = [
-	"eC.oS.funcEx[*].functionEx"
-];
-
-var pPredefA = [
-	"eC.oS.pdm[*].option"
-];
+var pUsersA, pBaseA, pLayerA, pWFSA, pOTableA, pLoopsA, pOptionA, pLookupA, pStatusA, pExclusionA, pDiscolA, pFExclusionA, pPredefA, pStyleA;
 		
 /*This function checks for a logged in user*/
 function checkFrame() {
@@ -130,10 +40,10 @@ var locStr = window.location.href.replace("https://geo.reading-travelinfo.co.uk/
 locStr = locStr.replace("https://64.5.1.218/","");
 locStr = locStr.replace(/\//g,"\\");
 locStr = locStr.replace("admin.html","");
-var eC;
+var eC, popi, tmpS, fieldL, element, arrayN;
 function pageSetup(){
 	//Variable definitions
-	var fH, fF;
+	var fH, fF, blankA, blankA2;
 	tmpURL = "../../apps/admin_functions/existinggrab.php";
 	eC = $.ajax({
 		type: 'POST',
@@ -157,6 +67,857 @@ function pageSetup(){
 		//Update the header section
 		ft = "Map Configuration Form for " + eC.configuredMap + " <span class='saveB'><input type='button' onclick='saveConfig()' value='Save Configuration' /></span>";
 		$('#pageHeader').html(ft);
+		
+		//Setup the column array references
+		pUsersA = [
+			cols = [
+				"c1"
+			],
+			vals = [],
+			ref = "pU"
+		];
+		fieldL = [
+			"option"
+		];
+		element = 'userArray';
+		arrayN = 'pUsersA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pBaseA = [
+			cols = [
+				"c1",
+				"c2"
+			],
+			vals = [],
+			ref = "bM"
+		];
+		fieldL = [
+			"mapURL",
+			"mapTitle"
+		];
+		element = 'basemaps';
+		var element2 = 'map'; //Extra element for this one
+		arrayN = 'pBaseA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][element2][tmpS] === 'object'){
+					for (var key in eC["0"][element][element2][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pLayerA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4",
+				"c5",
+				"c6",
+				"c7",
+				"c8",
+				"c9",
+				"c10",
+				"c11",
+				"c12"
+			],
+			vals = [],
+			ref = "pL"
+		];
+		fieldL = [
+			"overlayAddress", 
+			"overlayPath", 
+			"overlayTitle", 
+			"overlayDILS", 
+			"onasdefault", 
+			"overlaySRS", 
+			"overlayDOME", 
+			"overlayDDtitle", 
+			"overlaySTYLES", 
+			"overlayCache", 
+			"overlayTRAN", 
+			"overlayENV"
+		];
+		element = 'wms';
+		element2 = 'overlay'; //Extra element for this one
+		arrayN = 'pLayerA';
+		blankA = 'overlayAddress'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			//for each column
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				//We use a try as sometimes the element is not present if not defined and this would cause an error (which we will ignore)
+				if(typeof eC["0"][element][element2][tmpS] === 'object'){
+					for (var key in eC["0"][element][element2][tmpS]) {
+						if(eC["0"][element][element2][blankA][key]!==''){
+							//This if means that if the blankA field is blank the row is ignored
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+							}
+						}
+					}
+				} else {
+					//There is only one value but is it blank (indicating that we should ignore this value)
+					if(eC["0"][element][element2][blankA]!==''){
+						//This if means that if the blankA field is blank the row is ignored
+						window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pPopHovA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4",
+				"c5",
+				"c6",
+				"c7",
+				"c8"
+			],
+			vals = [],
+			ref = "pUh"
+		];
+		fieldL = [
+			"*",
+			"overlayPopup", 
+			"overlayPopupTemp", 
+			"overlayPopupWidth", 
+			"overlayPopupHeight", 
+			"overlayHoverTemp", 
+			"overlayHoverWidth", 
+			"overlayHoverHeight"
+		];
+		element = 'wms';
+		element2 = 'overlay2'; //Extra element for this one
+		arrayN = 'pPopHovA';
+		blankA = 'overlayPopupTemp'; //This field defines whether this is a valid record or not
+		blankA2 = 'overlayHoverTemp'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(tmpS==='*'){
+					if(typeof eC["0"]["wms"]["overlay"]["overlayAddress"] === 'object'){
+						for (var key in eC["0"]["wms"]["overlay"]["overlayAddress"]) {
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"][key]);
+							}
+						}
+					} else {
+						window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"]);
+					}
+				} else {
+					if(typeof eC["0"][element][element2][tmpS] === 'object'){
+						for (var key in eC["0"][element][element2][tmpS]) {
+							if(typeof eC["0"][element][element2][blankA][key]!=='undefined' || typeof eC["0"][element][element2][blankA2][key]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								if(key!=='remove'){
+									//Ignore last object (remove) as this is a function
+									window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+								}
+							}
+						}
+					} else {
+						if(typeof eC["0"][element][element2][blankA]!=='undefined' || typeof eC["0"][element][element2][blankA2]!=='undefined'){
+							//This if means that if the blankA field is blank the row is ignored
+							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+						}
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pZoomA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4",
+				"c5",
+				"c6"
+			],
+			vals = [],
+			ref = "pZ"
+		];
+		fieldL = [
+			"*",
+			"overlayZoom", 
+			"overlayZoomLevel", 
+			"overlayZoomSelF", 
+			"overlayZoomRepT", 
+			"overlayZoomRepF"
+		];
+		element = 'wms';
+		element2 = 'overlay3'; //Extra element for this one
+		arrayN = 'pZoomA';
+		blankA = 'overlayZoomLevel'; //This field defines whether this is a valid record or not
+		blankA2 = 'overlayZoomSelF'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(tmpS==='*'){
+					if(typeof eC["0"]["wms"]["overlay"]["overlayAddress"] === 'object'){
+						for (var key in eC["0"]["wms"]["overlay"]["overlayAddress"]) {
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"][key]);
+							}
+						}
+					} else {
+						window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"]);
+					}
+				} else {
+					if(typeof eC["0"][element][element2][tmpS] === 'object'){
+						for (var key in eC["0"][element][element2][tmpS]) {
+							if(typeof eC["0"][element][element2][blankA][key]!=='undefined' || typeof eC["0"][element][element2][blankA2][key]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								if(key!=='remove'){
+									//Ignore last object (remove) as this is a function
+									window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+								}
+							}
+						}
+					} else {
+						if(typeof eC["0"][element][element2][blankA]!=='undefined' || typeof eC["0"][element][element2][blankA2]!=='undefined'){
+							//This if means that if the blankA field is blank the row is ignored
+							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+						}
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pWFSA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4",
+				"c5",
+				"c6",
+				"c7",
+				"c8",
+				"c9",
+				"c10"
+			],
+			vals = [],
+			ref = "pWFS"
+		];
+		fieldL = [
+			"*",
+			"overlayType", 
+			"overlayTable", 
+			"overlayfeatureType", 
+			"overlayPath", 
+			"overlayDILS", 
+			"overlaySRS", 
+			"overlayfeatureNS", 
+			"overlaygeometryName", 
+			"overlayTitle"
+		];
+		element = 'wfs';
+		element2 = 'overlay'; //Extra element for this one
+		arrayN = 'pWFSA';
+		blankA = 'overlayTitle'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(tmpS==='*'){
+					if(typeof eC["0"]["wms"]["overlay"]["overlayAddress"] === 'object'){
+						for (var key in eC["0"]["wms"]["overlay"]["overlayAddress"]) {
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"][key]);
+							}
+						}
+					} else {
+						window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"]);
+					}
+				} else {
+					if(typeof eC["0"][element][element2][tmpS] === 'object'){
+						for (var key in eC["0"][element][element2][tmpS]) {
+							if(eC["0"][element][element2][blankA][key]!==''){
+								//This if means that if the blankA field is blank the row is ignored
+								if(key!=='remove'){
+									//Ignore last object (remove) as this is a function
+									window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+								}
+							}
+						}
+					} else {
+						if(eC["0"][element][element2][blankA]!==''){
+							//This if means that if the blankA field is blank the row is ignored
+							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+						}
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+
+		pOTableA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4",
+				"c5",
+				"c6",
+				"c7",
+				"c8"
+			],
+			vals = [],
+			ref = "oT"
+		];
+		fieldL = [
+			"tableName", 
+			"tableGeom", 
+			"tableTitle", 
+			"selStyle", 
+			"recNo", 
+			"lower", 
+			"order_by", 
+			"geom_field"
+		];
+		element = 'table';
+		arrayN = 'pOTableA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pLoopsA = [
+			cols = [
+				"c1",
+				"c2"
+			],
+			vals = [],
+			ref = "tLo"
+		];
+		fieldL = [
+			"tableName", 
+			"tableCondition"
+		];
+		element = 'tableLoops';
+		arrayN = 'pLoopsA';
+		blankA = 'tableCondition'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(typeof eC["0"][element][blankA][key]!=='undefined'){
+							//This if means that if the blankA field is blank the row is ignored
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+							}
+						}
+					}
+				} else {
+					if(typeof eC["0"][element][blankA]!=='undefined'){
+						//This if means that if the blankA field is blank the row is ignored
+						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pLookupA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4"
+			],
+			vals = [],
+			ref = "tL"
+		];
+		fieldL = [
+			"targetCol", 
+			"targetTable",
+			"replaceCol",
+			"replaceTable"
+		];
+		element = 'lookups';
+		arrayN = 'pLookupA';
+		blankA = 'targetCol'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(typeof eC["0"][element][blankA][key]!=='undefined'){
+							//This if means that if the blankA field is blank the row is ignored
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+							}
+						}
+					}
+				} else {
+					if(typeof eC["0"][element][key]!=='undefined'){
+						//This if means that if the blankA field is blank the row is ignored
+						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pStatusA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4",
+				"c5"
+			],
+			vals = [],
+			ref = "tS"
+		];
+		fieldL = [
+			"statusValue", 
+			"statusAvail",
+			"statusText",
+			"statusTable",
+			"statusField"
+		];
+		element = 'status';
+		arrayN = 'pStatusA';
+		blankA = 'statusValue'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(typeof eC["0"][element][blankA][key]!=='undefined'){
+							//This if means that if the blankA field is blank the row is ignored
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+							}
+						}
+					}
+				} else {
+					if(typeof eC["0"][element][blankA]!=='undefined'){
+						//This if means that if the blankA field is blank the row is ignored
+						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pExclusionA = [
+			cols = [
+				"c1",
+				"c2"
+			],
+			vals = [],
+			ref = "tE"
+		];
+		fieldL = [
+			"exclusion", 
+			"exclusionT"
+		];
+		element = 'exclusions';
+		arrayN = 'pExclusionA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pDiscolA = [
+			cols = [
+				"c1",
+				"c2"
+			],
+			vals = [],
+			ref = "dC"
+		];
+		fieldL = [
+			"option", 
+			"optionT"
+		];
+		element = 'disable';
+		arrayN = 'pDiscolA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		//Special case as this table is populated by two arrays
+		pOptionA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3",
+				"c4"
+			],
+			vals = [],
+			ref = "tO"
+		];
+		//Get array 1
+		fieldL = [
+			"optionsListOp", 
+			"optionListNo",
+			"optionsListCol", 
+			"optionsListColLoop"
+		];
+		element = 'optionsList';
+		element2 = 'oList1'; //Extra element here
+		var element3 = 'oList2'; //Extra element here
+		arrayN = 'pOptionA';
+		blankA = 'optionsListOp'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length-2;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][element2][tmpS] === 'object'){
+					for (var key in eC["0"][element][element2][tmpS]) {
+						if(eC["0"][element][element2][blankA][key]!==''){
+							//This if means that if the blankA field is blank the row is ignored
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+							}
+						}
+					}
+				} else {
+					if(eC["0"][element][element2][blankA]!==''){
+						//This if means that if the blankA field is blank the row is ignored
+						window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		for(popi=1;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][element3][tmpS] === 'object'){
+					for (var key in eC["0"][element][element3][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi].push(eC["0"][element][element3][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi].push(eC["0"][element][element3][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		pFExclusionA = [
+			cols = [
+				"c1"
+			],
+			vals = [],
+			ref = "fE"
+		];
+		fieldL = [
+			"functionEx"
+		];
+		element = 'functions';
+		arrayN = 'pFExclusionA';
+		blankA = 'functionEx'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(typeof eC["0"][element][blankA][key]!=='undefined'){
+							//This if means that if the blankA field is blank the row is ignored
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+							}
+						}
+					}
+				} else {
+					if(typeof eC["0"][element][blankA]!=='undefined'){
+						//This if means that if the blankA field is blank the row is ignored
+						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		
+		//This is a special case as we need to reconstruct the simpler syntax
+		pStyleA = [
+			cols = [
+				"c1",
+				"c2",
+				"c3"
+			],
+			vals = [],
+			ref = "sC"
+		];
+		//Get the first value 
+		fieldL = [
+			"style"
+		];
+		element = 'styles';
+		arrayN = 'pStyleA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		//Get the second value
+		fieldL = [
+			"sTitle"
+		];
+		element = 'styleTitles';
+		arrayN = 'pStyleA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi+1].push(eC["0"][element][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi+1].push(eC["0"][element][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi+1].push('');
+			}
+		}
+		//Get the third value
+		fieldL = [
+			"sLayer"
+		];
+		element = 'styleLayer';
+		arrayN = 'pStyleA';
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							//Ignore last object (remove) as this is a function
+							window[arrayN][1][popi+2].push(eC["0"][element][tmpS][key]); 
+						}
+					}
+				} else {
+					window[arrayN][1][popi+2].push(eC["0"][element][tmpS]);
+				}
+			} catch(error){
+				window[arrayN][1][popi+2].push('');
+			}
+		}
+		
+		
+		//This is a special case as we need to reconstruct the simpler syntax
+		pPredefA = [
+			cols = [
+				"c1",
+				"c2"
+			],
+			vals = [],
+			ref = "pDm"
+		];
+		//Get the first value (this will be the predefined map title
+		fieldL = [
+			"option"
+		];
+		element = 'pdmArr';
+		arrayN = 'pPredefA';
+		blankA = 'option'; //This field defines whether this is a valid record or not
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(typeof eC["0"][element][blankA][key]!=='undefined'){
+							//This if means that if the blankA field is blank the row is ignored
+							if(key!=='remove'){
+								//Ignore last object (remove) as this is a function
+								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+							}
+						}
+					}
+				} else {
+					if(typeof eC["0"][element][blankA]!=='undefined'){
+						//This if means that if the blankA field is blank the row is ignored
+						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+					}
+				}
+			} catch(error){
+				window[arrayN][1][popi].push('');
+			}
+		}
+		//Get and manipulate the second value
+		fieldL = [
+			"option"
+		];
+		element = 'pdmFilter';
+		arrayN = 'pPredefA';
+		var filterFix;
+		//Logic to check for single value or array
+		for(popi=0;popi<fieldL.length;popi++){
+			window[arrayN][1].push([]);
+			tmpS = fieldL[popi];
+			try {
+				if(typeof eC["0"][element][tmpS] === 'object'){
+					for (var key in eC["0"][element][tmpS]) {
+						if(key!=='remove'){
+							if(typeof eC["0"][element][tmpS][key] === 'object'){
+								//This will be a blank
+								window[arrayN][1][1].push('');
+							} else {
+								//Ignore last object (remove) as this is a function
+								filterFix = eC["0"][element][tmpS][key].replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+								window[arrayN][1][1].push(filterFix); 
+							}
+						}
+					}
+				} else {
+					filterFix = eC["0"][element][tmpS].replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+					window[arrayN][1][1].push(filterFix);
+				}
+			} catch(error){
+				window[arrayN][1][1].push('');
+			}
+		}
 	}
 	
 	/*In both situations we will set up the form as blank before filling it in with existing options*/
@@ -186,7 +947,7 @@ function pageSetup(){
 	fH += "<span class='optH'>Include measurement tool:</span><span class='opt'><select id='iMt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
 	fH += "<span class='optH'>Include editing tools:</span><span class='opt'><select id='iEt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
 	fH += "<span class='optH'>Active Table (for Editing):</span><span class='opt'><input type='text' id='aT' /></span><br />";
-	fH += "<span class='optH'>Active tool:</span><span class='opt'><input type='text' id='aT' value='3' /></span><br />";
+	fH += "<span class='optH'>Active tool:</span><span class='opt'><input type='text' id='aTo' value='3' /></span><br />";
 	fH += "</div>";
 	//Start of Multiple Option Area
 	//Overlays
@@ -266,29 +1027,29 @@ function pageSetup(){
 		
 		//OK we need to sort out a lookup array to let us parse the config object into the corresponding html elements on the form as these are 
 		//automatically generated id references based on the table in question.
-		
 		oR = {"R" : [
 			//The R (Reference) section provides the key for each value
-			eC.mD.appTitle["0"], 
-			eC.mD.projectPath["0"], 
-			eC.mD.proj["0"], 
-			eC.mD.projMap["0"], 
-			eC.mD.reproject["0"], 
-			eC.mD.projMap2["0"], 
-			eC.mD.wfsedits["0"], 
-			eC.mD.wmsbase["0"], 
-			eC.mD.popupPan["0"], 
-			eC.mD.popupDefault["0"], 
-			eC.mD.attribute["0"], 
-			eC.mD.edits["0"], 
-			eC.mD.active_table["0"], 
-			eC.mD.ddFull["0"], 
-			eC.mD.photoscroll["0"], 
-			eC.mD.photoscrollpath["0"], 
-			eC.mD.licence["0"], 
-			eC.mD.Gog["0"], 
-			eC.mD.legendtree["0"], 
-			eC.mD.selectlegendtree["0"],
+			eC["0"].other.appTitle, 
+			eC["0"].other.projectPath, 
+			eC["0"].other.proj, 
+			eC["0"].other.projMap, 
+			eC["0"].other.reproject, 
+			eC["0"].other.projMap2, 
+			eC["0"].other.wfsedits, 
+			eC["0"].other.wmsbase, 
+			eC["0"].other.popupPan, 
+			eC["0"].other.popupDefault, 
+			eC["0"].other.attribute, 
+			eC["0"].other.edits, 
+			eC["0"].other.active_table, 
+			eC["0"].other.ddFull, 
+			eC["0"].other.photoscroll, 
+			eC["0"].other.photoscrollpath, 
+			eC["0"].other.licence, 
+			eC["0"].other.Gog, 
+			eC["0"].other.legendtree, 
+			eC["0"].other.selectlegendtree,
+			"ec.mD.users[*1*]",
 			"eC.tB.actionType[1]", 
 			"eC.tB.actionTitle[1]", 
 			"eC.tB.actionArr:[1]", 
@@ -298,79 +1059,20 @@ function pageSetup(){
 			"eC.tB.actionHandler[1]", 
 			"eC.tB.toolIn[1]",
 			"eC.mL.basemaps[*2*]",
-			"eC.mL.basemaps[*].mapURL", 
-			"eC.mL.basemaps[*].mapTitle",
-			"eC.mL.overlays[*24*]",
-			"eC.mL.overlays[*].overlayAddress", 
-			"eC.mL.overlays[*].overlayPath", 
-			"eC.mL.overlays[*].overlayTitle", 
-			"eC.mL.overlays[*].overlayDILS", 
-			"eC.mL.overlays[*].onasdefault", 
-			"eC.mL.overlays[*].overlaySRS", 
-			"eC.mL.overlays[*].overlayDOME", 
-			"eC.mL.overlays[*].overlayDDtitle", 
-			"eC.mL.overlays[*].overlaySTYLES", 
-			"eC.mL.overlays[*].overlayCache", 
-			"eC.mL.overlays[*].overlayTRAN", 
-			"eC.mL.overlays[*].overlayENV", 
-			"eC.mL.overlays[*].overlayPopup", 
-			"eC.mL.overlays[*].overlayPopupTemp", 
-			"eC.mL.overlays[*].overlayPopupWidth", 
-			"eC.mL.overlays[*].overlayPopupHeight", 
-			"eC.mL.overlays[*].overlayHoverTemp", 
-			"eC.mL.overlays[*].overlayHoverWidth", 
-			"eC.mL.overlays[*].overlayHoverHeight", 
-			"eC.mL.overlays[*].overlayZoom", 
-			"eC.mL.overlays[*].overlayZoomLevel", 
-			"eC.mL.overlays[*].overlayZoomSelF", 
-			"eC.mL.overlays[*].overlayZoomRepT", 
-			"eC.mL.overlays[*].overlayZoomRepF", 
+			"eC.mL.overlay[*12*]",
+			"eC.mL.overlay2[*8*]",
+			"eC.mL.overlay3[*5*]",
 			"eC.mL.wfs[*9*]",
-			"eC.mL.wfs[*].overlayType", 
-			"eC.mL.wfs[*].overlayTable", 
-			"eC.mL.wfs[*].overlayfeatureType", 
-			"eC.mL.wfs[*].overlayPath", 
-			"eC.mL.wfs[*].overlayDILS", 
-			"eC.mL.wfs[*].overlaySRS", 
-			"eC.mL.wfs[*].overlayfeatureNS", 
-			"eC.mL.wfs[*].overlaygeometryName", 
-			"eC.mL.wfs[*].overlayTitle[\"0\"]",
 			"eC.tD.table[*8*]",
-			"eC.tD.table[*].tableName", 
-			"eC.tD.table[*].tableGeom", 
-			"eC.tD.table[*].tableTitle", 
-			"eC.tD.table[*].selStyle", 
-			"eC.tD.table[*].recNo", 
-			"eC.tD.table[*].lower", 
-			"eC.tD.table[*].order_by", 
-			"eC.tD.table[*].geom_field",
-			"eC.tD.tloops[*2*]",
-			"eC.tD.tloops[*].tableName", 
-			"eC.tD.tloops[*].tableCondition",
+			"eC.tD.tableLoops[*2*]",
 			"eC.tD.lookup[*4*]",
-			"eC.tD.lookup[*].targetCol", 
-			"eC.tD.lookup[*].targetTable", 
-			"eC.tD.lookup[*].replaceCol", 
-			"eC.tD.lookup[*].replaceTable",
-			"eC.tD.options.oList1", 
-			"eC.tD.options.oList2",
+			"eC.tD.options.oList", 
 			"eC.tD.status[*5*]",
-			"eC.tD.status[*].statusValue", 
-			"eC.tD.status[*].statusAvail", 
-			"eC.tD.status[*].statusText", 
-			"eC.tD.status[*].statusTable", 
-			"eC.tD.status[*].statusField",
 			"eC.tD.exclusions[*2*]",
-			"eC.tD.exclusions[*].exclusion", 
-			"eC.tD.exclusions[*].exclusionT",
 			"eC.tD.discols[*2*]",
-			"eC.tD.discols[*].option", 
-			"eC.tD.discols[*].optionT",
 			"eC.oS.styles", 
 			"eC.oS.funcEx[*1*]",
-			"eC.oS.funcEx[*].functionEx",
 			"eC.oS.pdm[*1*]",
-			"eC.oS.pdm[*].option"
 		],
 		"H" : [
 			//The H array provides the documentID in terms of HTML for each R item
@@ -394,111 +1096,50 @@ function pageSetup(){
 			"pCf", 
 			"lS", 
 			"-",
-			//
-			"-",
-			"-",			
-			//"legendT*", 
-			//"legendT*",
+			"tooltypes|legendT|legend1",
+			"tooltypes|legendT|legend2",
+			"addLine|pUsers|1",
 			"-", 
-			"tooltypes('eC.tB.actionTitle','type')", 
+			"tooltypes|eC.tB.actionTitle|type", 
 			"-", 
 			"-", 
 			"-", 
 			"-", 
 			"-", 
-			"tooltypes('eC.tB.toolIn','active')",
-			"addLine('eC.mL.basemaps','pBase',2)",
-			"-", 
-			"-", 
-			"addLine('eC.mL.overlays','pLayer',24)",
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"addLine('eC.mL.wfs','pWFS',9)",
-			"-", 
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"addLine('eC.tD.table','pTable',8)",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"addLine('eC.tD.tloops','pLoop',2)",
-			"-",
-			"-",
-			"addLine('eC.tD.lookup','pLookup',4)",
-			"-",
-			"-",
-			"-",
-			"-",
-			//Issue with object creation for these lines; commented out until able to resolve
-			//"addLine('eC.tD.options.oList1','pOList1',2)", 
-			//"-",
-			"-",
-			//"addLine('eC.tD.options.oList1','pOList2',2)", 
-			//"-",
-			"-",
-			"addLine('eC.tD.status','pStatus',5)",
-			"-",
-			"-",
-			"-",
-			"-",
-			"-",
-			"addLine('eC.tD.exclusions','pExclusion',2)",
-			"-",
-			"-",
-			"addLine('eC.tD.discols','pDiscol',2)",
-			"-",
-			"-",
-			//
-			"-",
-			//"eC.oS.styles", 
-			"addLine('eC.oS.funcEx','pFExclusion',1)",
-			"-",
-			"addLine('eC.oS.pdm','pPredef',1)",
-			"-"
+			"tooltypes|eC.tB.toolIn|active",
+			"addLine|pBase|2",
+			"addLine|pLayer|12",
+			"addLine|pPopHov|8",
+			"addLine|pZoom|5",
+			"addLine|pWFS|9",
+			"addLine|pOTable|8",
+			"addLine|pLoops|2",
+			"addLine|pLookup|4",
+			"addLine|pOption|4", 
+			"addLine|pStatus|5",
+			"addLine|pExclusion|2",
+			"addLine|pDiscol|2",
+			"addLine|pStyle|3", 
+			"addLine|pFExclusion|1",
+			"addLine|pPredef|2"
 		]};
 		
 		//Loop through the object and run the required functions
 		var callLen = oR.R.length;
-		var rA, hA, hO, selOpt;
+		var rA, hA, hO, selOpt, funcRef;
 		for(i=0;i<callLen;i++){
 			rA = oR.R;
 			hA = oR.H;
-			if(hA[i].indexOf("(")!==-1){
+			if(hA[i].indexOf("|")!==-1){
 				//This is a function run
-				
+				funcRef = hA[i].split("|");
+				if(funcRef[0]==='addLine'){
+					//This function call has two inputs
+					addLine(funcRef[1],parseInt(funcRef[2]));
+				} else if (funcRef[0]==='tooltypes') {
+					//This function call has two inputs
+					tooltypes(funcRef[1],funcRef[2]);
+				}
 			} else if (hA[i]!=='-'){
 				//This is a regular value update but is it an input or a select?
 				hO = document.getElementById(hA[i]);
@@ -518,6 +1159,8 @@ function pageSetup(){
 						//This is a standard input text box so we can simply write in the value
 						if (typeof rA[i] === 'undefined'){
 							hO.value = '';
+						} else if (typeof rA[i] === 'object'){
+							hO.value = '';
 						} else {
 							hO.value = rA[i];
 						}
@@ -527,6 +1170,326 @@ function pageSetup(){
 		}
 	}
 }
+
+/*This function allows the user to move table rows up and down*/
+function moveRow(dir, tdID, rowID){
+	//Prepare the rowID
+	rowID = rowID.replace("r","").replace("c","");
+	rowID = parseInt(rowID);
+	var jrefID = rowID + 1; //Because the nth child starts with a 1 base instead of zero 
+	
+	//We need to get the row in question
+	var tr, moveID, tmpID, tmpID2, tmpTR, tmpI, tmpI2, tmpHTML;
+	var tab = $('table#'+tdID +' tbody');
+	var tabLen = tab.find('tr').length -1; //Removing a row from the length to account for the header line
+	
+	//Pickup the row we are moving
+	tr = tab.find('tr:nth-child('+jrefID+')');
+			
+	//We need to adjust the id values for this to work
+	moveID = new RegExp('r' + rowID + 'c','g');
+	if(rowID===1){
+		if(dir==='down'){
+			//First we will temporarily break the refencing system in the row we are moving
+			tmpHTML = tr.html();
+			tmpHTML = tmpHTML.replace(moveID,"rTMPc");
+			tr.html(tmpHTML);
+			//Replace the ID's of the row above to be the original moving rows ID
+			tmpI2 = rowID + 1;
+			tmpID = new RegExp('r' + tmpI2 + 'c','g');
+			tmpID2 = 'r' + rowID + 'c';
+			tmpTR = tab.find('tr:nth-child('+(jrefID+1)+')'); //Pickup the row to modify
+			tmpHTML = tmpTR.html();
+			tmpHTML = tmpHTML.replace(tmpID,tmpID2);
+			tmpTR.html(tmpHTML);
+			//Finally we restore the moving row ID's but to the new ID number (which is now available)
+			moveID = new RegExp('rTMPc','g');
+			tmpHTML = tr.html();
+			tmpHTML = tmpHTML.replace(moveID,"r" + tmpI2 + "c");
+			tr.html(tmpHTML);
+		} //Otherwise do nothing as this function will not fire
+	} else if (rowID>1 && rowID<tabLen){
+		//First we will temporarily break the refencing system in the row we are moving
+		tmpHTML = tr.html();
+		tmpHTML = tmpHTML.replace(moveID,"rTMPc");
+		tr.html(tmpHTML);
+		//Next we sort out all the other values we must fix in the table in order (depending on direction)
+		if(dir==='up'){
+			//Replace the ID's of the row above to be the original moving rows ID
+			tmpI2 = rowID - 1;
+			tmpID = new RegExp('r' + tmpI2 + 'c','g');
+			tmpID2 = 'r' + rowID + 'c';
+			tmpTR = tab.find('tr:nth-child('+(jrefID-1)+')'); //Pickup the row to modify
+			tmpHTML = tmpTR.html();
+			tmpHTML = tmpHTML.replace(tmpID,tmpID2);
+			tmpTR.html(tmpHTML);
+			//Finally we restore the moving row ID's but to the new ID number (which is now available)
+			moveID = new RegExp('rTMPc','g');
+			tmpHTML = tr.html();
+			tmpHTML = tmpHTML.replace(moveID,"r" + tmpI2 + "c");
+			tr.html(tmpHTML);
+		} else {
+			//Replace the ID's of the row above to be the original moving rows ID
+			tmpI2 = rowID + 1;
+			tmpID = new RegExp('r' + tmpI2 + 'c','g');
+			tmpID2 = 'r' + rowID + 'c';
+			tmpTR = tab.find('tr:nth-child('+(jrefID+1)+')'); //Pickup the row to modify
+			tmpHTML = tmpTR.html();
+			tmpHTML = tmpHTML.replace(tmpID,tmpID2);
+			tmpTR.html(tmpHTML);
+			//Finally we restore the moving row ID's but to the new ID number (which is now available)
+			moveID = new RegExp('rTMPc','g');
+			tmpHTML = tr.html();
+			tmpHTML = tmpHTML.replace(moveID,"r" + tmpI2 + "c");
+			tr.html(tmpHTML);
+		}
+	} else {
+		if(dir==='up'){
+			//First we will temporarily break the refencing system in the row we are moving
+			tmpHTML = tr.html();
+			tmpHTML = tmpHTML.replace(moveID,"rTMPc");
+			tr.html(tmpHTML);
+			//Replace the ID's of the row above to be the original moving rows ID
+			tmpI2 = rowID - 1;
+			tmpID = new RegExp('r' + tmpI2 + 'c','g');
+			tmpID2 = 'r' + rowID + 'c';
+			tmpTR = tab.find('tr:nth-child('+(jrefID-1)+')'); //Pickup the row to modify
+			tmpHTML = tmpTR.html();
+			tmpHTML = tmpHTML.replace(tmpID,tmpID2);
+			tmpTR.html(tmpHTML);
+			//Finally we restore the moving row ID's but to the new ID number (which is now available)
+			moveID = new RegExp('rTMPc','g');
+			tmpHTML = tr.html();
+			tmpHTML = tmpHTML.replace(moveID,"r" + tmpI2 + "c");
+			tr.html(tmpHTML);
+		} //Otherwise do nothing as this function will not fire
+	}
+	
+	//This section moves the physical row up and down
+	if (dir==="up"){
+		if (tr.prevAll().length > 1) {
+			tr.insertBefore(tr.prev());
+		}
+	} else if (dir==='down') {
+		if(tr.length > 0) {
+			tr.insertAfter(tr.next());
+		}
+	}
+}
+
+/*This function allows us to remove a row from a table*/
+function deleteRow(tdID){
+	tdID = '#' + tdID;
+	var tr = $(tdID).closest('tr');
+	tr.fadeOut(400, function(){
+		tr.remove();
+	});
+}
+
+/*This function deals with values which require a line adding to a table first*/
+var ai2, ai3, ai4;
+function addLine(tabRef,colNo){
+	//alert(tabRef);
+	var runArray = window[tabRef + "A"];
+	var colList = runArray[0];
+	var objValA = runArray[1];
+	var prefix = runArray[2];
+	var tmpR, tmpI, tmpJQ, tmpJQo;
+	if(colList.length>=1){
+		for(ai2=0;ai2<objValA[0].length;ai2++){
+			//Add a row
+			tmpR = '#' + tabRef + ' tr';
+			tmpI = $(tmpR).length;
+			tmpR = prefix + 'r'+ tmpI;
+			addRow(tabRef,tmpR);
+			//Insert the column values
+			for(ai3=0;ai3<colNo;ai3++){
+				tmpI = ai2 + 1;
+				tmpR = prefix + 'r' + tmpI + colList[ai3]
+				hO = document.getElementById(tmpR);
+				if (hO !== null){
+					if (hO.innerHTML.indexOf('select') !== -1){
+						//We need to identify the select id
+						tmpR = '#' + tmpR + ' select';
+						tmpJQ = $(tmpR);
+						tmpJQo = tmpJQ.children();
+						//This is a select option so we need to work out which value to select
+						selOpt = '';
+						ai4=0;
+						//We loop through using JQuery syntax as this was our way of finding the select element (without knowing the id of the select itself)
+						tmpJQo.each(function() {
+							if(this.value===objValA[ai3][ai2]){
+								selOpt = ai4;
+							}
+							ai4 = ai4 + 1;
+						});
+						if (selOpt!==''){
+							tmpJQ.prop('selectedIndex', selOpt);
+						} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
+					} else if (hO.innerHTML === ''){
+						//This is a standard table cell so we can simply write in the value
+						if (typeof objValA[ai3][ai2] === 'undefined'){
+							hO.innerHTML = '';
+						} else if (typeof objValA[ai3][ai2] === 'object'){
+							hO.innerHTML = '';
+						} else {
+							hO.innerHTML = objValA[ai3][ai2];
+						}
+					}
+				}
+				//Did we add a table?
+				if(tabRef==='pOTable' &&  colList[ai3]==='c1'){
+					//We just added a table so we need to run the table handler
+					conTablesT.push(objValA[ai3][ai2]);
+					conTables.push('overlay' + conTablesT.length-1);
+					tableHandler(objValA[ai3][ai2], prefix + 'r' + tmpI + colList[ai3]);
+				} else if (tabRef==='pLayer' &&  colList[ai3]==='c1') {
+					//If we add a layer we need to add the layer to the selection options
+					conLayersT.push(objValA[ai3][ai2]);
+					conLayers.push('overlay' + conTablesT.length-1);
+					layerHandle(objValA[ai3][ai2], prefix + 'r' + tmpI + colList[ai3]);
+				}
+			}
+		}
+		//If tabRef = pLayer; we just added a layer we should add the other rows but because the values are in the config file we don't need to, they will be added anyway
+	}
+}
+
+/*This function determines form values which are based on an aggregation of XML fields*/
+var legend1, legend2;
+function tooltypes(objRef,rType){
+	var hO, hOlen;
+	if(rType==='legend1'){
+		//This simply sets the legend1 value
+		legend1 = eC["0"].other.legendtree;
+	} else if (rType==='legend2') {
+		//This sets the second legend variable and then runs the logic
+		legend2 = eC["0"].other.selectlegendtree;
+		//Run the logic
+		hO = document.getElementById(objRef);
+		if (legend1==='False'&&legend2==='True'){
+			//Selectable Styles
+			//This is a select option so we need to work out which value to select
+			selOpt = '';
+			for(i2=0;i2<hO.options.length;i2++){
+				if(hO.options[i2].value === 'selectS'){
+					selOpt = i2;
+				}
+			}
+			if (selOpt!==''){
+				hO.selectedIndex = selOpt;
+			} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
+		} else if (legend1==='True'&&legend2==='False') {
+			//Selectable Layers
+			//This is a select option so we need to work out which value to select
+			selOpt = '';
+			for(i2=0;i2<hO.options.length;i2++){
+				if(hO.options[i2].value === 'selectL'){
+					selOpt = i2;
+				}
+			}
+			if (selOpt!==''){
+				hO.selectedIndex = selOpt;
+			} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
+		} else {
+			//Standard Legend
+			//This is a select option so we need to work out which value to select
+			selOpt = '';
+			for(i2=0;i2<hO.options.length;i2++){
+				if(hO.options[i2].value === 'standard'){
+					selOpt = i2;
+				}
+			}
+			if (selOpt!==''){
+				hO.selectedIndex = selOpt;
+			} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
+		}
+	} else if (rType==='type') {
+		//We want to determine a number of True/False options using the toolbar array eC.tB.actionTitle
+		//We have hardcoded the relevant references to we don't really use the inputs at this point
+		hO = eC["0"].toolbar.actionTitle.option;
+		hOlen = hO.length;
+		//Loop through the array
+		var attr = 0; 
+		var pop = 0; 
+		var sel = 0; 
+		var meas = 0; 
+		var edit = 0;
+		for(i2=0;i2<hOlen;i2++){
+			if(hO[i2]==='Table'){
+				attr = 1;
+			} else if(hO[i2]==='Info'){
+				pop = 1;
+			} else if(hO[i2]==='Select'){
+				sel = 1;
+			} else if(hO[i2]==='Measure'){
+				meas = 1;
+			} else if(hO[i2]==='Edit'){
+				edit = 1;
+			}
+		}
+		//Set the attributes table bool
+		if(attr===0){
+			//False
+			document.getElementById('iAt').selectedIndex = 1;
+		} else {
+			//True
+			document.getElementById('iAt').selectedIndex = 0;
+		}
+		//Set the popup bool
+		if (pop===0) {
+			//False
+			document.getElementById('iPbS').selectedIndex = 1;
+		} else {
+			//True
+			document.getElementById('iPbS').selectedIndex = 0;
+		}
+		//Set the selection bool
+		if (sel===0) {
+			//False
+			document.getElementById('iSt').selectedIndex = 1;
+		} else {
+			//True
+			document.getElementById('iSt').selectedIndex = 0;
+		}
+		//Set the measurement bool
+		if (meas===0) {
+			//False
+			document.getElementById('iMt').selectedIndex = 1;
+		} else {
+			//True
+			document.getElementById('iMt').selectedIndex = 0;
+		}
+		//Set the edit bool
+		if (edit===0) {
+			//False
+			document.getElementById('iEt').selectedIndex = 1;
+		} else {
+			//True
+			document.getElementById('iEt').selectedIndex = 0;
+		}
+	} else if (rType==='active') {
+		//We loop through the tools array to find the number of the active tool
+		hO = eC["0"].toolbar.toolIn.option;
+		hOlen = hO.length;
+		var actT = 0;
+		var actD = 0;
+		for(i2=0;i2<hOlen;i2++){
+			if(hO[i2].indexOf("-1")===-1&&actD==0){
+				if(hO[i2]!=='3-0'){
+					//It is not a spacer so we add a tool to the counter variable
+					actT = actT + 1;
+				}
+			} else if (hO[i2].indexOf("-1")!==-1&&actD==0) {
+				//This is the active tool
+				actD = actT + 1;
+			}//This will no longer check; our work here is done
+		}
+		//Record the active tool number
+		document.getElementById('aTo').value = actD;
+	}
+}
+
 /*This function adds a new row to any table*/
 function addRow(table, currRow){
 	//First we pickup the specified table
@@ -534,14 +1497,37 @@ function addRow(table, currRow){
 	var TabNo = '#' + table + ' tr';
 	TabNo = $(TabNo).length;
 	
+	//Is this the pPredef table and if so; is this the first row?
+	if(table==='pPredef' && currRow==='pDmr0'){
+		if(TabNo===1){
+			//We need to add the default case as standard
+			$(updateTab).after(window[table].replace(/`/g,TabNo));
+			
+			//Update the first record
+			$('#pDmr1c1').text('Default');
+		}
+	}
+	//Is this the pStyle table and if so; is this the first row?
+	if(table==='pStyle' && currRow==='sCr0'){
+		if(TabNo===1){
+			//We need to add the default case as standard
+			$(updateTab).after(window[table].replace(/`/g,TabNo));
+			
+			//Update the first record
+			$('#sCr1c1').text('overlay0');
+			$('#sCr1c2').text('');
+			$('#sCr1c3').text('Default Style');
+		}
+	}
+	
 	//We then add a new row to the table in form style
-	$(updateTab).after(window[table].replace(/£/g,TabNo));
+	$(updateTab).after(window[table].replace(/`/g,TabNo));
 	
 	//Set up the layer selects
 	layerHandle();
 	
 	//Set up the table selects
-	tableHandle();
+	tableHandler();
 	
 	//This jQuery allows editing of some table cells (where there is not a select option)
 	$( "td.ed" ).hover(function() {
@@ -586,7 +1572,7 @@ function addRow(table, currRow){
 					conTablesT.push(value);
 					conTables.push('overlay' + conTablesT.length-1);
 					
-					tableHandle(value, $(this).attr("id"));
+					tableHandler(value, $(this).attr("id"));
 				} //No need to do anything if matched
 			}
 			//Return the value
@@ -598,6 +1584,7 @@ function addRow(table, currRow){
 	});
 }
 
+var l1, l2, l3;
 function layerHandle(val, id){
 	var handle = ['pUhsel', 'pZsel', 'pWFSsel', 'sCsel'];
 	var handleP1 = ['pUhr', 'pZr', 'pWFSr', 'sCr'];
@@ -606,25 +1593,26 @@ function layerHandle(val, id){
 	}
 	var tableHandle = ['#pPopHov tr', '#pZoom tr', '#pWFS tr', '#pStyle tr'];
 	var handleType = ['v','v','v','s'];
-	var tdHandle, v, t, layerSelHTML, TabNo, id2;
-	for (i=0;i<handle.length;i++){
-		TabNo = $(tableHandle[i]).length;
-		id2 = handleP1[i] + id;
-		for (i2=0;i2<TabNo;i2++){
-			if(i2!==0){
-				if(handleType[i]==='s'){
-					tdHandle = handleP1[i] + i2 + 'c1';
-					layerSelHTML = '<select id="' + handle[i] + '">';
+	var tdHandle, v, t, layerSelHTML, TabNo, id2, selectId;
+	for (l1=0;l1<handle.length;l1++){
+		TabNo = $(tableHandle[l1]).length;
+		id2 = handleP1[l1] + id;
+		for (l2=0;l2<TabNo;l2++){
+			if(l2!==0){
+				if(handleType[l1]==='s'){
+					/*tdHandle = handleP1[l1] + l2 + 'c1';
+					selectId = handle[l1] + "-" + l2;
+					layerSelHTML = '<select id="' + selectId + '">';
 					if (conLayers.length===0){
 						layerSelHTML += '<option value"">Please Add Layers First</option>'; 
 					} else {
-						selOpt = document.getElementById(handle[i]).options.selectedIndex;
+						selOpt = document.getElementById(window[selectId]).options.selectedIndex;
 						if(selOpt===-1){
 							v = "";
 							t = "";
 						} else {
-							sv = document.getElementById(handle[i]).options[selOpt].value;
-							st = document.getElementById(handle[i]).options[selOpt].text;
+							sv = document.getElementById(window[selectId]).options[selOpt].value;
+							st = document.getElementById(window[selectId]).options[selOpt].text;
 							if (st==='Please Add Layers First' || st===''){
 								v = "";
 								t = "";
@@ -633,22 +1621,22 @@ function layerHandle(val, id){
 								t = st;
 							}
 						}
-						for(i3=0;i3<conLayers.length;i3++){
-							if(conLayers[i3]!=='Click to edit' || conLayers[i3]!=='Save'){
+						for(l3=0;l3<conLayers.length;l3++){
+							if(conLayers[l3]!=='Click to edit' || conLayers[l3]!=='Save'){
 								//Add this option
-								if (conLayers[i3]===v){
+								if (conLayers[l3]===v){
 									layerSelHTML += '<option value"' + v + '" selected="selected">' + t + '</option>';
 								} else {
-									layerSelHTML += '<option value"' + conLayers[i3] + '">' + conLayersT[i3] + '</option>'; 
+									layerSelHTML += '<option value"' + conLayers[l3] + '">' + conLayersT[l3] + '</option>'; 
 								}
 							}
 						}
 					}
 					layerSelHTML += '</select>';
-					document.getElementById(tdHandle).innerHTML = layerSelHTML; 
+					document.getElementById(tdHandle).innerHTML = layerSelHTML; */
 				} else {
 					if (typeof val!=='undefined'){
-						tdHandle = handleP1[i] + i2 + 'c1';
+						tdHandle = handleP1[l1] + l2 + 'c1';
 						if (tdHandle===id2){
 							layerSelHTML = val;
 							document.getElementById(tdHandle).innerHTML = layerSelHTML; 
@@ -660,7 +1648,8 @@ function layerHandle(val, id){
 	}
 }
 
-function tableHandle(val, id){
+var t1, t2, t3;
+function tableHandler(val, id){
 	var thandle = ['tSsel', 'tEsel', 'dCsel', 'tLosel'];
 	var thandleP1 = ['tSr', 'tEr', 'dCr', 'tLor'];
 	var thandleP2 = ['c4','c2','c2','c1'];
@@ -670,24 +1659,24 @@ function tableHandle(val, id){
 	var tableHandle = ['#pStatus tr', '#pExclusion tr', '#pDiscol tr', '#pLoops tr'];
 	var thandleType = ['s','s','s','s'];
 	var ttdHandle, v, t, tableSelHTML, TabNo, id2;
-	for (i=0;i<thandle.length;i++){
-		TabNo = $(tableHandle[i]).length;
-		id2 = thandleP1[i] + id;
-		for (i2=0;i2<TabNo;i2++){
-			if(i2!==0){
-				if(thandleType[i]==='s'){
-					ttdHandle = thandleP1[i] + i2 + thandleP2[i];
-					tableSelHTML = '<select id="' + thandle[i] + '">';
+	for (t1=0;t1<thandle.length;t1++){
+		TabNo = $(tableHandle[t1]).length;
+		id2 = thandleP1[t1] + id;
+		for (t2=0;t2<TabNo;t2++){
+			if(t2!==0){
+				if(thandleType[t1]==='s'){
+					ttdHandle = thandleP1[t1] + t2 + thandleP2[t1];
+					tableSelHTML = '<select id="' + thandle[t1] + '">';
 					if (conTables.length===0){
 						tableSelHTML += '<option value"">Please Add Tables First</option>'; 
 					} else {
-						selOpt = document.getElementById(thandle[i]).options.selectedIndex;
+						selOpt = document.getElementById(thandle[t1]).options.selectedIndex;
 						if(selOpt===-1){
 							v = "";
 							t = "";
 						} else {
-							sv = document.getElementById(thandle[i]).options[selOpt].value;
-							st = document.getElementById(thandle[i]).options[selOpt].text;
+							sv = document.getElementById(thandle[t1]).options[selOpt].value;
+							st = document.getElementById(thandle[t1]).options[selOpt].text;
 							if (st==='Please Add Tables First' || st===''){
 								v = "";
 								t = "";
@@ -696,13 +1685,13 @@ function tableHandle(val, id){
 								t = st;
 							}
 						}
-						for(i3=0;i3<conTables.length;i3++){
-							if(conTables[i3]!=='Click to edit' || conTables[i3]!=='Save'){
+						for(t3=0;t3<conTables.length;t3++){
+							if(conTables[t3]!=='Click to edit' || conTables[t3]!=='Save'){
 								//Add this option
-								if (conTables[i3]===v){
+								if (conTables[t3]===v){
 									tableSelHTML += '<option value"' + v + '" selected="selected">' + t + '</option>';
 								} else {
-									tableSelHTML += '<option value"' + conTables[i3] + '">' + conTablesT[i3] + '</option>'; 
+									tableSelHTML += '<option value"' + conTables[t3] + '">' + conTablesT[t3] + '</option>'; 
 								}
 							}
 						}
@@ -711,7 +1700,7 @@ function tableHandle(val, id){
 					document.getElementById(ttdHandle).innerHTML = tableSelHTML; 
 				} else {
 					if (typeof val!=='undefined'){
-						ttdHandle = handleP1[i] + i2 + 'c1';
+						ttdHandle = handleP1[t1] + t2 + 'c1';
 						if (ttdHandle===id2){
 							tableSelHTML = val;
 							document.getElementById(ttdHandle).innerHTML = tableSelHTML; 
@@ -724,12 +1713,11 @@ function tableHandle(val, id){
 }
 
 function saveConfig(){
-	var oXML, tmpNo, tmpArr, tmpVal, tmpID, Gog;
-	oXML = '<?xml version="1.["0"" standalone="yes" ?>';	 
-	oXML += '<settings>';
-	oXML += '  <!--  Access to this application is limited to the following users-->';  
-	oXML += '  <userArray>';
-	oXML += '    <!--  Array -->'; 
+	var oXML, tmpNo, tmpArr, tmpVal, tmpID, Gog, hM;
+	oXML = '<?xml version="1.0" standalone="yes" ?>\n';	 
+	oXML += '<settings>\n';
+	oXML += '  <!--  Access to this application is limited to the following users-->\n';  
+	oXML += '  <userArray>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pUsers tr');
 	tmpNo = tmpArr.length;
@@ -738,43 +1726,43 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				tmpVal = $(this).text();
-				oXML += '    <option>' + tmpVal + '<option>';
+				oXML += '    <option>' + tmpVal + '</option>\n';
 			}
 		})
 	});
-	oXML += '  </userArray>';
-	oXML += '  <other>';
-	oXML += '    <!--  Other settings -->';
-	oXML += '    <appTitle>' + $('#mT').val() + '</appTitle>'; 
-	oXML += '    <projectPath>' + $('#rURL').val() + '</projectPath>';
+	oXML += '  </userArray>\n';
+	oXML += '  <other>\n';
+	oXML += '    <!--  Other settings -->\n';
+	oXML += '    <appTitle>' + $('#mT').val() + '</appTitle>\n'; 
+	oXML += '    <projectPath>' + $('#rURL').val() + '</projectPath>\n';
 	if($('#rF').val()!==''){
-		oXML += '    <reproject>Yes</reproject>'; 
+		oXML += '    <reproject>Yes</reproject>\n'; 
 	} else {
-		oXML += '    <reproject>No</reproject>'; 
+		oXML += '    <reproject>No</reproject>\n'; 
 	}
-	oXML += '    <proj>' + $('#mP').find(":selected").val() + '</proj>'; 
-	oXML += '    <projMap>EPSG:' + $('#mP').find(":selected").val() + '</projMap>'; 
-	oXML += '    <projMap2>' + $('#rF').val() + '</projMap2>';  
-	oXML += '    <popupPan>' + $('#pMoP').find(":selected").val() + '</popupPan>'; 
-	oXML += '    <ddFull>' + $('#fDd').find(":selected").val() + '</ddFull>';
-	oXML += '    <popupDefault>' + $('#pD').find(":selected").val() + '</popupDefault>';
+	oXML += '    <proj>' + $('#mP').find(":selected").val() + '</proj>\n'; 
+	oXML += '    <projMap>EPSG:' + $('#mP').find(":selected").val() + '</projMap>\n'; 
+	oXML += '    <projMap2>' + $('#rF').val() + '</projMap2>\n';  
+	oXML += '    <popupPan>' + $('#pMoP').find(":selected").val() + '</popupPan>\n'; 
+	oXML += '    <ddFull>' + $('#fDd').find(":selected").val() + '</ddFull>\n';
+	oXML += '    <popupDefault>' + $('#pD').find(":selected").val() + '</popupDefault>\n';
 	if($('#legendT').find(":selected").val()==='standard'){
-		oXML += '    <legendtree>False</legendtree>'; 
-		oXML += '    <selectlegendtree>False</selectlegendtree>';
+		oXML += '    <legendtree>False</legendtree>\n'; 
+		oXML += '    <selectlegendtree>False</selectlegendtree>\n';
 	} else if ($('#legendT').find(":selected").val()==='selectL'){
-		oXML += '    <legendtree>True</legendtree>'; 
-		oXML += '    <selectlegendtree>False</selectlegendtree>';
+		oXML += '    <legendtree>True</legendtree>\n'; 
+		oXML += '    <selectlegendtree>False</selectlegendtree>\n';
 	} else {
-		oXML += '    <legendtree>False</legendtree>'; 
-		oXML += '    <selectlegendtree>True</selectlegendtree>';
+		oXML += '    <legendtree>False</legendtree>\n'; 
+		oXML += '    <selectlegendtree>True</selectlegendtree>\n';
 	}
-	oXML += '    <wfsedits>' + $('#rURLwfs').val() + '</wfsedits>'; 
-	oXML += '    <wmsbase>' + $('#rURLwms').val() + '</wmsbase>'; 
-	oXML += '    <photoscroll>' + $('#pC').find(":selected").val() + '</photoscroll>';
-	oXML += '    <photoscrollpath>' + $('#pCf').val() + '</photoscrollpath>';
-	oXML += '    <active_table>' + $('#aT').val() + '</active_table>';
-	oXML += '    <attribute>' + $('#iAt').find(":selected").val() + '</attribute>';
-	oXML += '    <edits>' + $('#iEt').find(":selected").val() + '</edits>';
+	oXML += '    <wfsedits>' + $('#rURLwfs').val() + '</wfsedits>\n'; 
+	oXML += '    <wmsbase>' + $('#rURLwms').val() + '</wmsbase>\n'; 
+	oXML += '    <photoscroll>' + $('#pC').find(":selected").val() + '</photoscroll>\n';
+	oXML += '    <photoscrollpath>' + $('#pCf').val() + '</photoscrollpath>\n';
+	oXML += '    <active_table>' + $('#aT').val() + '</active_table>\n';
+	oXML += '    <attribute>' + $('#iAt').find(":selected").val() + '</attribute>\n';
+	oXML += '    <edits>' + $('#iEt').find(":selected").val() + '</edits>\n';
 	/*Google maps style would be:
 	False
 	False
@@ -783,15 +1771,15 @@ function saveConfig(){
 	False
 	2*/
 	if($('#iAt').find(":selected").val()==='False' && $('#iPbS').find(":selected").val()==='False' && $('#iSt').find(":selected").val()==='False' && $('#iMt').find(":selected").val()==='True' && $('#iEt').find(":selected").val()==='False' && $('#aT').val()===2){
-		oXML += '    <Gog>1</Gog>';
+		oXML += '    <Gog>1</Gog>\n';
 		Gog = 1;
 	} else {
-		oXML += '    <Gog>0</Gog>';
+		oXML += '    <Gog>0</Gog>\n';
 		Gog = 0;
 	}
-	oXML += '    <licence>' + $('#lS').val() + '</licence>'; 
-	oXML += '  </other>';
-	oXML += '  <!-- This section defines the toolbar -->';
+	oXML += '    <licence>' + $('#lS').val() + '</licence>\n'; 
+	oXML += '  </other>\n';
+	oXML += '  <!-- This section defines the toolbar -->\n';
 	//First we pickup the relevant options into an array
 	var tool = [0,0,0,0,0,0,0,0,0,0,0,1,1];
 	//Attributes
@@ -823,84 +1811,84 @@ function saveConfig(){
 		tool[10]=1;
 	} 
 	//Next define the arrays
-	var actionType =['<option>Button</option>', '<option>-</option>', '<option>Button</option>', '<option>-</option>', '<option>Button</option>', '<option>Button</option>', '<option>Button</option>', '<option>-</option>', '<option>Button</option>', '<option>-</option>', '<option>Button</option>', '<option>-</option>', '<option>Button</option>'];
-	var actionTitle =['<option>Table</option>', '<option>-</option>', '<option>Info</option>', '<option>-</option>', '<option>Pan</option>', '<option>Select</option>', '<option>Zoom</option>', '<option>-</option>', '<option>Measure</option>', '<option>-</option>', '<option>Edit</option>', '<option>-</option>', '<option>?</option>'];
-	var actionArr =['<option></option>', '<option>-</option>', '<option></option>', '<option>-</option>', '<option></option>', '<option></option>', '<option></option>', '<option>-</option>', '<option></option>', '<option>-</option>', '<option></option>', '<option>-</option>', '<option></option>'];
-	var actionCls =['<option></option>', '<option>-</option>', '<option>webgid-mapaction-info</option>', '<option>-</option>', '<option>webgis-mapaction-pan</option>', '<option></option>', '<option></option>', '<option>-</option>', '<option>webgis-mapaction-mline</option>', '<option>-</option>', '<option></option>', '<option>-</option>', '<option></option>'];
-	var actionGroup =['<option></option>', '<option>-</option>', '<option></option>', '<option>-</option>', '<option>map-action</option>', '<option>map-action</option>', '<option>map-action</option>', '<option>-</option>', '<option>map-action</option>', '<option>-</option>', '<option></option>', '<option>-</option>', '<option></option>'];
-	var actionText =['<option>Attributes Table</option>', '<option>-</option>', '<option>Enable Popup Bubbles</option>', '<option>-</option>', '<option>Move the Map</option>', '<option>Select a Feature</option>', '<option>Zoom to an Area</option>', '<option>-</option>', '<option>Measure</option>', '<option>-</option>', '<option>Editing Tools</option>', '<option>-</option>', '<option>?</option>'];
-	var actionHandler =['<option>tableload();</option>', '<option>-</option>', '<option>handleInfo();</option>', '<option>-</option>', '<option>navSwitch();</option>', '<option>selectTog(\'Select a Feature\', \'map-action\');</option>', '<option>zoomConSwitch();</option>', '<option>-</option>', '<option>MeasurementSwitch();</option>', '<option>-</option>', '<option>edMOst();</option>', '<option>-</option>', '<option>loadManual();</option>'];
+	var actionType =['<option>Button</option>\n', '<option>-</option>\n', '<option>Button</option>\n', '<option>-</option>\n', '<option>Button</option>\n', '<option>Button</option>\n', '<option>Button</option>\n', '<option>-</option>\n', '<option>Button</option>\n', '<option>-</option>\n', '<option>Button</option>\n', '<option>-</option>\n', '<option>Button</option>\n'];
+	var actionTitle =['<option>Table</option>\n', '<option>-</option>\n', '<option>Info</option>\n', '<option>-</option>\n', '<option>Pan</option>\n', '<option>Select</option>\n', '<option>Zoom</option>\n', '<option>-</option>\n', '<option>Measure</option>\n', '<option>-</option>\n', '<option>Edit</option>\n', '<option>-</option>\n', '<option>?</option>\n'];
+	var actionArr =['<option></option>\n', '<option>-</option>\n', '<option></option>\n', '<option>-</option>\n', '<option></option>\n', '<option></option>\n', '<option></option>\n', '<option>-</option>\n', '<option></option>\n', '<option>-</option>\n', '<option></option>\n', '<option>-</option>\n', '<option></option>\n'];
+	var actionCls =['<option></option>\n', '<option>-</option>\n', '<option>webgid-mapaction-info</option>\n', '<option>-</option>\n', '<option>webgis-mapaction-pan</option>\n', '<option></option>\n', '<option></option>\n', '<option>-</option>\n', '<option>webgis-mapaction-mline</option>\n', '<option>-</option>\n', '<option></option>\n', '<option>-</option>\n', '<option></option>\n'];
+	var actionGroup =['<option></option>\n', '<option>-</option>\n', '<option></option>\n', '<option>-</option>\n', '<option>map-action</option>\n', '<option>map-action</option>\n', '<option>map-action</option>\n', '<option>-</option>\n', '<option>map-action</option>\n', '<option>-</option>\n', '<option></option>\n', '<option>-</option>\n', '<option></option>\n'];
+	var actionText =['<option>Attributes Table</option>\n', '<option>-</option>\n', '<option>Enable Popup Bubbles</option>\n', '<option>-</option>\n', '<option>Move the Map</option>\n', '<option>Select a Feature</option>\n', '<option>Zoom to an Area</option>\n', '<option>-</option>\n', '<option>Measure</option>\n', '<option>-</option>\n', '<option>Editing Tools</option>\n', '<option>-</option>\n', '<option>?</option>\n'];
+	var actionHandler =['<option>tableload();</option>\n', '<option>-</option>\n', '<option>handleInfo();</option>\n', '<option>-</option>\n', '<option>navSwitch();</option>\n', '<option>selectTog(\'Select a Feature\', \'map-action\');</option>\n', '<option>zoomConSwitch();</option>\n', '<option>-</option>\n', '<option>MeasurementSwitch();</option>\n', '<option>-</option>\n', '<option>edMOst();</option>\n', '<option>-</option>\n', '<option>loadManual();</option>\n'];
 	var toolIn =['<option>4-', '<option>3-', '<option>5-', '<option>3-', '<option>4-', '<option>4-', '<option>4-', '<option>3-', '<option>4-', '<option>3-', '<option>4-', '<option>3-', '<option>4-'];
 	//Finally; construct the XML
-	oXML += '  <toolbar>';
-	oXML += '    <actionType>';
+	oXML += '  <toolbar>\n';
+	oXML += '    <actionType>\n';
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			oXML += '      ' + actionType[i];
 		}
 	}
-	oXML += '    </actionType>';
-	oXML += '    <actionTitle>';
+	oXML += '    </actionType>\n';
+	oXML += '    <actionTitle>\n';
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			oXML += '      ' + actionTitle[i];
 		}
 	}
-	oXML += '    </actionTitle>';
-	oXML += '    <actionArr>';
+	oXML += '    </actionTitle>\n';
+	oXML += '    <actionArr>\n';
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			oXML += '      ' + actionArr[i];
 		}
 	}
-	oXML += '    </actionArr>';
-	oXML += '    <actionCls>';
+	oXML += '    </actionArr>\n';
+	oXML += '    <actionCls>\n';
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			oXML += '      ' + actionCls[i];
 		}
 	}
-	oXML += '    </actionCls>';
-	oXML += '    <actionGroup>';
+	oXML += '    </actionCls>\n';
+	oXML += '    <actionGroup>\n';
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			oXML += '      ' + actionGroup[i];
 		}
 	}
-	oXML += '    </actionGroup>';
-	oXML += '    <actionText>';
+	oXML += '    </actionGroup>\n';
+	oXML += '    <actionText>\n';
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			oXML += '      ' + actionText[i];
 		}
 	}
-	oXML += '    </actionText>';
-	oXML += '    <actionHandler>';
+	oXML += '    </actionText>\n';
+	oXML += '    <actionHandler>\n';
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			oXML += '      ' + actionHandler[i];
 		}
 	}
-	oXML += '    </actionHandler>';
-	oXML += '    <toolIn>';
+	oXML += '    </actionHandler>\n';
+	oXML += '    <toolIn>\n';
 	var toolCount = 0;
 	for(i=0;i<tool.length;i++){
 		if(tool[i]===1 || tool[i]===2){
 			if (tool[i]===1){
 				toolCount = toolCount + 1;
 			}
-			if (toolCount===$('#aT').val()){
-				oXML += '      ' + toolIn[i] + '1</option>';
+			if (toolCount+1===parseInt($('#aTo').val())){
+				oXML += '      ' + toolIn[i] + '1</option>\n';
 			} else {
-				oXML += '      ' + toolIn[i] + '0</option>';
+				oXML += '      ' + toolIn[i] + '0</option>\n';
 			}
 		}
 	}
-	oXML += '    </toolIn>';
-	oXML += '  </toolbar>';
-	oXML += '  <!-- Other options start here -->';
-	oXML += '  <basemaps>';
-	oXML += '    <map>';
+	oXML += '    </toolIn>\n';
+	oXML += '  </toolbar>\n';
+	oXML += '  <!-- Other options start here -->\n';
+	oXML += '  <basemaps>\n';
+	oXML += '    <map>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pBase tr');
 	tmpNo = tmpArr.length;
@@ -909,184 +1897,510 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <mapURL>' + tmpVal + '</mapURL>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <mapURL>' + tmpVal + '</mapURL>\n';
 				} else if (tmpID.indexOf("c2")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <mapTitle>' + tmpVal + '</mapTitle>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <mapTitle>' + tmpVal + '</mapTitle>\n';
 				}
 			}
 		})
 	});
-	oXML += '    </map>';
-	oXML += '  </basemaps>';
-	oXML += '  <!--  Overlays in this map [The order specified is important] -->'; 
-	oXML += '  <wms>';
+	oXML += '    </map>\n';
+	oXML += '  </basemaps>\n';
+	oXML += '  <!--  Overlays in this map [The order specified is important] -->\n'; 
+	oXML += '  <wms>\n';
 	//Pickup the number of rows in the user table
 	var tmpTitles = [];
 	tmpArr = $('#pLayer tr');
 	tmpNo = tmpArr.length;
+	hM = 0; //We need skip the header row
 	tmpArr.each(function() {
-		//This is a new row
-		oXML += '    <overlay>';
-		$('td', this).each(function(){
-			tmpID = $(this).attr('id');
-			if (typeof tmpID !=='undefined'){
-				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <overlayAddress>' + tmpVal + '</overlayAddress>';
-				} else if (tmpID.indexOf("c2")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayPath>' + tmpVal + '</overlayPath>';
-				} else if (tmpID.indexOf("c3")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayTitle>' + tmpVal + '</overlayTitle>';
-					tmpTitles.push(tmpVal);
-				} else if (tmpID.indexOf("c4")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayDILS>' + tmpVal + '</overlayDILS>';
-				} else if (tmpID.indexOf("c5")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <onasdefault>' + tmpVal + '</onasdefault>';
-				} else if (tmpID.indexOf("c6")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlaySRS>' + tmpVal + '</overlaySRS>';
-				} else if (tmpID.indexOf("c7")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayDOME>' + tmpVal + '</overlayDOME>';
-				} else if (tmpID.indexOf("c8")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayDDtitle>' + tmpVal + '</overlayDDtitle>';
-				} else if (tmpID.indexOf("c9")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlaySTYLES>' + tmpVal + '</overlaySTYLES>';
-				} else if (tmpID.indexOf("c10")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayCache>' + tmpVal + '</overlayCache>';
-				} else if (tmpID.indexOf("c11")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayTRAN>' + tmpVal + '</overlayTRAN>';
-				} else if (tmpID.indexOf("c12")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayENV>' + tmpVal + '</overlayENV>';
+		if(hM===0){
+			hM = 1;
+		} else {
+			//This is a new row
+			oXML += '    <overlay>\n';
+			$('td', this).each(function(){
+				tmpID = $(this).attr('id');
+				if (typeof tmpID !=='undefined'){
+					//First two have been moved to the end to avoid c10 + picking up under c1 or c20 under c2
+					if (tmpID.indexOf("c3")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayTitle>' + tmpVal + '</overlayTitle>\n';
+						tmpTitles.push(tmpVal);
+					} else if (tmpID.indexOf("c4")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayDILS>' + tmpVal + '</overlayDILS>\n';
+					} else if (tmpID.indexOf("c5")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <onasdefault>' + tmpVal + '</onasdefault>\n';
+					} else if (tmpID.indexOf("c6")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlaySRS>' + tmpVal + '</overlaySRS>\n';
+					} else if (tmpID.indexOf("c7")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayDOME>' + tmpVal + '</overlayDOME>\n';
+					} else if (tmpID.indexOf("c8")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayDDtitle>' + tmpVal + '</overlayDDtitle>\n';
+					} else if (tmpID.indexOf("c9")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlaySTYLES>' + tmpVal + '</overlaySTYLES>\n';
+					} else if (tmpID.indexOf("c10")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayCache>' + tmpVal + '</overlayCache>\n';
+					} else if (tmpID.indexOf("c11")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayTRAN>' + tmpVal + '</overlayTRAN>\n';
+					} else if (tmpID.indexOf("c12")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayENV>' + tmpVal + '</overlayENV>\n';
+					} else if (tmpID.indexOf("c1")!==-1){
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayAddress>' + tmpVal + '</overlayAddress>\n';
+					} else if (tmpID.indexOf("c2")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayPath>' + tmpVal + '</overlayPath>\n';
+					} 
 				}
-			}
-		})
-		oXML += '      <overlayBuffer>1</overlayBuffer>';
-		oXML += '    </overlay>';
+			})
+			oXML += '      <overlayBuffer>1</overlayBuffer>\n';
+			oXML += '    </overlay>\n';
+		}
 	});
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pPopHov tr');
 	tmpNo = tmpArr.length;
+	hM = 0; //We need skip the header row
 	tmpArr.each(function() {
-		//This is a new row
-		oXML += '    <overlay2>';
-		$('td', this).each(function(){
-			tmpID = $(this).attr('id');
-			if (typeof tmpID !=='undefined'){
-				if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <overlayPopup>' + tmpVal + '</overlayPopup>';
-				} else if (tmpID.indexOf("c3")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayPopupTemp>' + tmpVal + '</overlayPopupTemp>';
-				} else if (tmpID.indexOf("c4")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayPopupWidth>' + tmpVal + '</overlayPopupWidth>';
-				} else if (tmpID.indexOf("c5")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayPopupHeight>' + tmpVal + '</overlayPopupHeight>';
-				} else if (tmpID.indexOf("c6")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayHoverTemp>' + tmpVal + '</overlayHoverTemp>';
-				} else if (tmpID.indexOf("c7")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayHoverWidth>' + tmpVal + '</overlayHoverWidth>';
-				} else if (tmpID.indexOf("c8")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayHoverHeight>' + tmpVal + '</overlayHoverHeight>';
-				} 
-			}
-		})
-		oXML += '    </overlay2>';
+		if(hM===0){
+			hM = 1;
+		} else {
+			//This is a new row
+			oXML += '    <overlay2>\n';
+			$('td', this).each(function(){
+				tmpID = $(this).attr('id');
+				if (typeof tmpID !=='undefined'){
+					if (tmpID.indexOf("c2")!==-1){
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayPopup>' + tmpVal + '</overlayPopup>\n';
+					} else if (tmpID.indexOf("c3")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayPopupTemp>' + tmpVal + '</overlayPopupTemp>\n';
+					} else if (tmpID.indexOf("c4")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayPopupWidth>' + tmpVal + '</overlayPopupWidth>\n';
+					} else if (tmpID.indexOf("c5")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayPopupHeight>' + tmpVal + '</overlayPopupHeight>\n';
+					} else if (tmpID.indexOf("c6")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayHoverTemp>' + tmpVal + '</overlayHoverTemp>\n';
+					} else if (tmpID.indexOf("c7")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayHoverWidth>' + tmpVal + '</overlayHoverWidth>\n';
+					} else if (tmpID.indexOf("c8")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayHoverHeight>' + tmpVal + '</overlayHoverHeight>\n';
+					} 
+				}
+			})
+			oXML += '    </overlay2>\n';
+		}
 	});
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pZoom tr');
 	tmpNo = tmpArr.length;
+	hM = 0; //We need skip the header row
 	tmpArr.each(function() {
-		//This is a new row
-		oXML += '    <overlay3>';
-		$('td', this).each(function(){
-			tmpID = $(this).attr('id');
-			if (typeof tmpID !=='undefined'){
-				if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <overlayZoom>' + tmpVal + '</overlayZoom>';
-				} else if (tmpID.indexOf("c3")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayZoomLevel>' + tmpVal + '</overlayZoomLevel>';
-				} else if (tmpID.indexOf("c4")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayZoomSelF>' + tmpVal + '</overlayZoomSelF>';
-				} else if (tmpID.indexOf("c5")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayZoomRepT>' + tmpVal + '</overlayZoomRepT>';
-				} else if (tmpID.indexOf("c6")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayZoomRepF>' + tmpVal + '</overlayZoomRepF>';
-				} 
-			}
-		})
-		oXML += '    </overlay3>';
+		if(hM===0){
+			hM = 1;
+		} else {
+			//This is a new row
+			oXML += '    <overlay3>\n';
+			$('td', this).each(function(){
+				tmpID = $(this).attr('id');
+				if (typeof tmpID !=='undefined'){
+					if (tmpID.indexOf("c2")!==-1){
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayZoom>' + tmpVal + '</overlayZoom>\n';
+					} else if (tmpID.indexOf("c3")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayZoomLevel>' + tmpVal + '</overlayZoomLevel>\n';
+					} else if (tmpID.indexOf("c4")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayZoomSelF>' + tmpVal + '</overlayZoomSelF>\n';
+					} else if (tmpID.indexOf("c5")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayZoomRepT>' + tmpVal + '</overlayZoomRepT>\n';
+					} else if (tmpID.indexOf("c6")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayZoomRepF>' + tmpVal + '</overlayZoomRepF>\n';
+					} 
+				}
+			})
+			oXML += '    </overlay3>\n';
+		}
 	}); 
-	oXML += '  </wms>';
-	oXML += '  <!--  WFS Overlays in this map [The order specified should match the WMS] -->'; 
-	oXML += '  <wfs>';
+	oXML += '  </wms>\n';
+	oXML += '  <!--  WFS Overlays in this map [The order specified should match the WMS] -->\n'; 
+	oXML += '  <wfs>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pWFS tr');
 	tmpNo = tmpArr.length;
 	i = 0;
+	hM = 0; //We need skip the header row
 	tmpArr.each(function() {
-		//This is a new row
-		oXML += '    <overlay>';
-		$('td', this).each(function(){
-			tmpID = $(this).attr('id');
-			if (typeof tmpID !=='undefined'){
-				if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <overlayType>' + tmpVal + '</overlayType>';
-				} else if (tmpID.indexOf("c3")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayTable>' + tmpVal + '</overlayTable>';
-				} else if (tmpID.indexOf("c4")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayfeatureType>' + tmpVal + '</overlayfeatureType>';
-				} else if (tmpID.indexOf("c5")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayPath>' + tmpVal + '</overlayPath>';
-				} else if (tmpID.indexOf("c6")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayDILS>' + tmpVal + '</overlayDILS>';
-				} else if (tmpID.indexOf("c7")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlaySRS>' + tmpVal + '</overlaySRS>';
-				} else if (tmpID.indexOf("c8")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlayfeatureNS>' + tmpVal + '</overlayfeatureNS>';
-				} else if (tmpID.indexOf("c9")!==-1) {
-					tmpVal = $(this).text();
-					oXML += '      <overlaygeometryName>' + tmpVal + '</overlaygeometryName>';
-				} 
-			}
-		})
-		oXML += '      <overlayTitle>' + tmpTitles[i] + '</overlayTitle>'; 
-		oXML += '    </overlay>';
+		if(hM===0){
+			hM = 1;
+		} else {
+			//This is a new row
+			oXML += '    <overlay>\n';
+			$('td', this).each(function(){
+				tmpID = $(this).attr('id');
+				if (typeof tmpID !=='undefined'){
+					if (tmpID.indexOf("c2")!==-1){
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayType>' + tmpVal + '</overlayType>\n';
+					} else if (tmpID.indexOf("c3")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayTable>' + tmpVal + '</overlayTable>\n';
+					} else if (tmpID.indexOf("c4")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayfeatureType>' + tmpVal + '</overlayfeatureType>\n';
+					} else if (tmpID.indexOf("c5")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayPath>' + tmpVal + '</overlayPath>\n';
+					} else if (tmpID.indexOf("c6")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayDILS>' + tmpVal + '</overlayDILS>\n';
+					} else if (tmpID.indexOf("c7")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlaySRS>' + tmpVal + '</overlaySRS>\n';
+					} else if (tmpID.indexOf("c8")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlayfeatureNS>' + tmpVal + '</overlayfeatureNS>\n';
+					} else if (tmpID.indexOf("c9")!==-1) {
+						tmpVal = $(this).html();
+						if(tmpVal.indexOf('select')!==-1){
+							//This is a select option, get the value
+							tmpVal = $(this).find('select').val();
+						} else {
+							tmpVal = $(this).text();
+							if (tmpVal==='Click to edit'){
+								tmpVal = '';
+							}
+						}
+						oXML += '      <overlaygeometryName>' + tmpVal + '</overlaygeometryName>\n';
+					} 
+				}
+			})
+			oXML += '      <overlayTitle>' + tmpTitles[i] + '</overlayTitle>\n'; 
+			oXML += '    </overlay>\n';
+		}
 		i = i + 1;
 	});
-	oXML += '  </wfs>';
-	oXML += '  <!--  Style Dropdown -->'; 
-	oXML += '  <styles>';
-	oXML += '    <style />'; 
+	oXML += '  </wfs>\n';
+	oXML += '  <!--  Style Dropdown -->\n'; 
+	oXML += '  <styles>\n'; 
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pStyle tr');
 	tmpNo = tmpArr.length;
@@ -1095,15 +2409,23 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <style>' + tmpVal + '</style>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <style>' + tmpVal + '</style>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </styles>';
-	oXML += '  <styleTitles>';
-	oXML += '    <sTitle>Default Style</sTitle>'; 
+	oXML += '  </styles>\n';
+	oXML += '  <styleTitles>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pStyle tr');
 	tmpNo = tmpArr.length;
@@ -1112,17 +2434,25 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c3")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <sTitle>' + tmpVal + '</sTitle>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <sTitle>' + tmpVal + '</sTitle>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </styleTitles>';
-	oXML += '  <!--  Which overlay where the first is overlay0 and the second overlay1 etc -->'; 
-	oXML += '  <defaultStyle>overlay0|</defaultStyle>'; 
-	oXML += '  <styleLayer>';
-	oXML += '    <sLayer>overlay0</sLayer>'; 
+	oXML += '  </styleTitles>\n';
+	oXML += '  <!--  Which overlay where the first is overlay0 and the second overlay1 etc -->\n'; 
+	oXML += '  <defaultStyle>overlay0|</defaultStyle>\n'; 
+	oXML += '  <styleLayer>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pStyle tr');
 	tmpNo = tmpArr.length;
@@ -1131,16 +2461,25 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <sLayer>' + tmpVal + '</sLayer>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <sLayer>' + tmpVal + '</sLayer>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </styleLayer>';
-	oXML += '  <!--  General Table Settings -->'; 
-	oXML += '  <lookups>';
-	oXML += '    <!--  Lookup means from one table to another (i.e. S = Saved in another table) -->'; 
+	oXML += '  </styleLayer>\n';
+	oXML += '  <!--  General Table Settings -->\n'; 
+	oXML += '  <lookups>\n';
+	oXML += '    <!--  Lookup means from one table to another (i.e. S = Saved in another table) -->\n'; 
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pLookup tr');
 	tmpNo = tmpArr.length;
@@ -1149,25 +2488,61 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <targetCol>' + tmpVal + '</targetCol>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <targetCol>' + tmpVal + '</targetCol>\n';
 				} else if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <targetTable>' + tmpVal + '</targetTable>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <targetTable>' + tmpVal + '</targetTable>\n';
 				} else if (tmpID.indexOf("c3")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <replaceCol>' + tmpVal + '</replaceCol>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <replaceCol>' + tmpVal + '</replaceCol>\n';
 				} else if (tmpID.indexOf("c4")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <replaceTable>' + tmpVal + '</replaceTable>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <replaceTable>' + tmpVal + '</replaceTable>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </lookups>';
-	oXML += '  <optionsList>';
-	oXML += '    <!--  Option lists create a list of options without a lookup -->'; 
-	oXML += '    <oList1>';
+	oXML += '  </lookups>\n';
+	oXML += '  <optionsList>\n';
+	oXML += '    <!--  Option lists create a list of options without a lookup -->\n'; 
+	oXML += '    <oList1>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pOption tr');
 	tmpNo = tmpArr.length;
@@ -1176,17 +2551,35 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '        <optionsListOp>' + tmpVal + '</optionsListOp>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '        <optionsListOp>' + tmpVal + '</optionsListOp>\n';
 				} else if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '        <optionListNo>' + tmpVal + '</optionListNo>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '        <optionListNo>' + tmpVal + '</optionListNo>\n';
 				}
 			}
 		})
 	});
-	oXML += '    </oList1>';
-	oXML += '    <oList2>';
+	oXML += '    </oList1>\n';
+	oXML += '    <oList2>\n';
 	tmpArr = $('#pOption tr');
 	tmpNo = tmpArr.length;
 	tmpArr.each(function() {
@@ -1194,22 +2587,40 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c3")!==-1){
-					tmpVal = $(this).text();
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
 					if (tmpVal!==''){
-						oXML += '        <optionsListCol>' + tmpVal + '</optionsListCol>';
+						oXML += '        <optionsListCol>' + tmpVal + '</optionsListCol>\n';
 					}
 				} else if (tmpID.indexOf("c4")!==-1){
-					tmpVal = $(this).text();
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
 					if (tmpVal!==''){
-						oXML += '        <optionsListColLoop>' + tmpVal + '</optionsListColLoop>';
+						oXML += '        <optionsListColLoop>' + tmpVal + '</optionsListColLoop>\n';
 					}
 				}
 			}
 		})
 	});
-	oXML += '    </oList2>';
-	oXML += '  </optionsList>';
-	oXML += '  <status>';
+	oXML += '    </oList2>\n';
+	oXML += '  </optionsList>\n';
+	oXML += '  <status>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pStatus tr');
 	tmpNo = tmpArr.length;
@@ -1218,27 +2629,72 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <statusValue>' + tmpVal + '</statusValue>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <statusValue>' + tmpVal + '</statusValue>\n';
 				} else if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <statusAvail>' + tmpVal + '</statusAvail>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <statusAvail>' + tmpVal + '</statusAvail>\n';
 				} else if (tmpID.indexOf("c3")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <statusText>' + tmpVal + '</statusText>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <statusText>' + tmpVal + '</statusText>\n';
 				} else if (tmpID.indexOf("c4")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <statusTable>' + tmpVal + '</statusTable>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <statusTable>' + tmpVal + '</statusTable>\n';
 				} else if (tmpID.indexOf("c5")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <statusField>' + tmpVal + '</statusField>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <statusField>' + tmpVal + '</statusField>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </status>';
-	oXML += '  <exclusions>';
-	oXML += '    <!--  Columns to exclude from the view table -->'; 
+	oXML += '  </status>\n';
+	oXML += '  <exclusions>\n';
+	oXML += '    <!--  Columns to exclude from the view table -->\n'; 
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pExclusion tr');
 	tmpNo = tmpArr.length;
@@ -1247,17 +2703,35 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <exclusion>' + tmpVal + '</exclusion>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <exclusion>' + tmpVal + '</exclusion>\n';
 				} else if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <exclusionT>' + tmpVal + '</exclusionT>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <exclusionT>' + tmpVal + '</exclusionT>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </exclusions>';
-	oXML += '  <disable>';
+	oXML += '  </exclusions>\n';
+	oXML += '  <disable>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pDiscol tr');
 	tmpNo = tmpArr.length;
@@ -1266,17 +2740,35 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <option>' + tmpVal + '</option>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <option>' + tmpVal + '</option>\n';
 				} else if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <optionT>' + tmpVal + '</optionT>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <optionT>' + tmpVal + '</optionT>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </disable>';
-	oXML += '  <tableLoops>';
+	oXML += '  </disable>\n';
+	oXML += '  <tableLoops>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pLoops tr');
 	tmpNo = tmpArr.length;
@@ -1285,19 +2777,37 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <tableName>' + tmpVal + '</tableName>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <tableName>' + tmpVal + '</tableName>\n';
 				} else if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <tableCondition>' + tmpVal + '</tableCondition>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <tableCondition>' + tmpVal + '</tableCondition>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </tableLoops>';
-	oXML += '  <!--  Tables to include -->'; 
-	oXML += '  <table>';
-	oXML += '    <!--  Loops of a single table -->'; 
+	oXML += '  </tableLoops>\n';
+	oXML += '  <!--  Tables to include -->\n'; 
+	oXML += '  <table>\n';
+	oXML += '    <!--  Loops of a single table -->\n'; 
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pOTable tr');
 	tmpNo = tmpArr.length;
@@ -1306,36 +2816,108 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <tableName>' + tmpVal + '</tableName>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <tableName>' + tmpVal + '</tableName>\n';
 				} else if (tmpID.indexOf("c2")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <tableGeom>' + tmpVal + '</tableGeom>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <tableGeom>' + tmpVal + '</tableGeom>\n';
 				} else if (tmpID.indexOf("c3")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <tableTitle>' + tmpVal + '</tableTitle>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <tableTitle>' + tmpVal + '</tableTitle>\n';
 				} else if (tmpID.indexOf("c4")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <selStyle>' + tmpVal + '</selStyle>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <selStyle>' + tmpVal + '</selStyle>\n';
 				} else if (tmpID.indexOf("c5")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <recNo>' + tmpVal + '</recNo>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <recNo>' + tmpVal + '</recNo>\n';
 				} else if (tmpID.indexOf("c6")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <lower>' + tmpVal + '</lower>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <lower>' + tmpVal + '</lower>\n';
 				} else if (tmpID.indexOf("c7")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <order_by>' + tmpVal + '</order_by>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <order_by>' + tmpVal + '</order_by>\n';
 				} else if (tmpID.indexOf("c8")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <geom_field>' + tmpVal + '</geom_field>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <geom_field>' + tmpVal + '</geom_field>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </table>';
-	oXML += '  <functions>';
-	oXML += '    <!--  Functions to exclude -->'; 
+	oXML += '  </table>\n';
+	oXML += '  <functions>\n';
+	oXML += '    <!--  Functions to exclude -->\n'; 
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pFExclusion tr');
 	tmpNo = tmpArr.length;
@@ -1344,17 +2926,24 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <functionEx>' + tmpVal + '</functionEx>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <functionEx>' + tmpVal + '</functionEx>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </functions>';
-	oXML += '  <!--  This set of entries is for predefined maps (pdm) -->'; 
-	oXML += '  <pdmArr>';
-	oXML += '    <!--  Array -->'; 
-	oXML += '    <option>Default</option>'; 
+	oXML += '  </functions>\n';
+	oXML += '  <!--  This set of entries is for predefined maps (pdm) -->\n'; 
+	oXML += '  <pdmArr>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pPredef tr');
 	tmpNo = tmpArr.length;
@@ -1363,13 +2952,22 @@ function saveConfig(){
 			tmpID = $(this).attr('id');
 			if (typeof tmpID !=='undefined'){
 				if (tmpID.indexOf("c1")!==-1){
-					tmpVal = $(this).text();
-					oXML += '      <option>' + tmpVal + '</option>';
+					tmpVal = $(this).html();
+					if(tmpVal.indexOf('select')!==-1){
+						//This is a select option, get the value
+						tmpVal = $(this).find('select').val();
+					} else {
+						tmpVal = $(this).text();
+						if (tmpVal==='Click to edit'){
+							tmpVal = '';
+						}
+					}
+					oXML += '      <option>' + tmpVal + '</option>\n';
 				} 
 			}
 		})
 	});
-	oXML += '  </pdmArr>';
+	oXML += '  </pdmArr>\n';
 	//Pickup the number of rows in the user table
 	tmpArr = $('#pPredef tr');
 	tmpNo = tmpArr.length;
@@ -1386,28 +2984,31 @@ function saveConfig(){
 	});
 	//Pre-defined maps are not so simple so we have loaded the values from the table into an array
 	//We can then manipulate the array to create the required XML values as follows:
-	oXML += '  <pdmFilter>';
-	oXML += '    <!--  Array -->'; 
-	oXML += '    <option />'; 
+	oXML += '  <pdmFilter>\n';
 	for(i=0;i<tmpVal.length;i++){
-		oXML += '    <option>' + tmpVal[i].replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</option>';
+		oXML += '    <option>' + tmpVal[i].replace(/</g, "&lt;").replace(/>/g, "&gt;") + '</option>\n';
 	}
-	oXML += '  </pdmFilter>';
-	oXML += '  <pdmUFilter>';
-	oXML += '    <!--  Array -->'; 
-	oXML += '    <option />'; 
+	oXML += '  </pdmFilter>\n';
+	oXML += '  <pdmUFilter>\n';
 	for(i=0;i<tmpVal.length;i++){
-		tmpVal[i] = tmpVal[i].replace(/|==|/g, "&#165;Equal&#165;to&#165;");
-		tmpVal[i] = tmpVal[i].replace(/|>=|/g, "&#165;Greater&#165;than&#165;or&#165;equal&#165;to&#165;");
-		tmpVal[i] = tmpVal[i].replace(/|<=|/g, "&#165;Less&#165;than&#165;or&#165;equal&#165;to&#165;");
-		tmpVal[i] = tmpVal[i].replace(/|<>|/g, "&#165;Not&#165;equal&#165;");
-		tmpVal[i] = tmpVal[i].replace(/|>|/g, "&#165;Greater&#165;than&#165;");
-		tmpVal[i] = tmpVal[i].replace(/|<|/g, "&#165;Less&#165;than&#165;");
-		tmpVal[i] = tmpVal[i].replace(/|..|/g, "&#165;Between&#165;");
-		oXML += '    <option>' + tmpVal[i] + '</option>';
+		try {
+			if(tmpVal[i].indexOf('|==|')!==-1){tmpVal[i] = tmpVal[i].replace("|==|", "&#165;Equal&#165;to&#165;");}
+			if(tmpVal[i].indexOf('|>=|')!==-1){tmpVal[i] = tmpVal[i].replace("|>=|", "&#165;Greater&#165;than&#165;or&#165;equal&#165;to&#165;");}
+			if(tmpVal[i].indexOf('|<=|')!==-1){tmpVal[i] = tmpVal[i].replace("|<=|", "&#165;Less&#165;than&#165;or&#165;equal&#165;to&#165;");}
+			if(tmpVal[i].indexOf('|<>|')!==-1){tmpVal[i] = tmpVal[i].replace("|<>|", "&#165;Not&#165;equal&#165;");}
+			if(tmpVal[i].indexOf('|!=|')!==-1){tmpVal[i] = tmpVal[i].replace("|!=|", "&#165;Not&#165;equal&#165;");}
+			if(tmpVal[i].indexOf('|>|')!==-1){tmpVal[i] = tmpVal[i].replace("|>|", "&#165;Greater&#165;than&#165;");}
+			if(tmpVal[i].indexOf('|<|')!==-1){tmpVal[i] = tmpVal[i].replace("|<|", "&#165;Less&#165;than&#165;");}
+			if(tmpVal[i].indexOf('|..|')!==-1){tmpVal[i] = tmpVal[i].replace("|..|", "&#165;Between&#165;");}
+		} catch(error){
+			tmpVal[i] = 'Out of Memory Issue!';
+		}
+		oXML += '    <option>' + tmpVal[i] + '</option>\n';
 	}
-	oXML += '  </pdmUFilter>';
+	oXML += '  </pdmUFilter>\n';
 	oXML += '</settings>';
+	oXML = oXML.replace(/Click to edit/g,"");
+	//alert(oXML);
 	tmpURL = "../../apps/admin_functions/configsetter.php";
 	$.post(tmpURL, {xml: oXML, loc: locStr})
 		.done(function() {
