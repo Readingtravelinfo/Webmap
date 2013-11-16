@@ -122,9 +122,9 @@ foreach ($xml->status->statusField as $opt){
 	";
 }
 
-print " 
-var appTitle = '" . $xml->other->appTitle . "';
-";
+print ' 
+var appTitle = "' . $xml->other->appTitle . '";
+';
 if ($xml->other->legendtree == "True") {
 	print "var legendtree = true;
 	";
@@ -250,7 +250,6 @@ foreach ($xml->wms->overlay as $opt) {
 	print "
 	overlayENV.push(\"" . $opt->overlayENV . "\");
 	overlayCache.push(\"" . $opt->overlayCache . "\");
-	overlayTable.push(\"" . $opt->overlayTable . "\");
 	";
 	if ($opt->overlayENV == ""){
 		//There is not a ENV switch for this layer
@@ -261,6 +260,10 @@ foreach ($xml->wms->overlay as $opt) {
 		print "overlayENVswitch.push(1);
 		";
 	}
+	$i = $i + 1;
+}
+$i = 0;
+foreach ($xml->wms->overlay2 as $opt) {
 	if ($opt->overlayPopup == 't' || $opt->overlayPopup == 'True'){
 		print "overlayPopup.push('True');
 		";
@@ -279,17 +282,21 @@ foreach ($xml->wms->overlay as $opt) {
 	overlayHover.push('" . $opt->overlayHoverTemp . "');
 	overlayHoverWidth.push('" . $opt->overlayHoverWidth . "');
 	overlayHoverHeight.push('" . $opt->overlayHoverHeight . "');
-	overlayZoom.push('" . $opt->overlayZoom . "');
-	overlayZoomLevel.push('" . intval($opt->overlayZoomLevel) . "');
-	overlayZoomSelF.push('" . $opt->overlayZoomSelF . "');
-	overlayZoomRepT.push('" . $opt->overlayZoomRepT . "');
-	overlayZoomRepF.push('" . $opt->overlayZoomRepF . "');
-	overlayType.push('" . $opt->overlayType . "');
 	";
+	$i = $i + 1;
+}
+$i = 0;
+foreach ($xml->wms->overlay3 as $opt) {
 	if ($opt->overlayHoverTemp != ''){
 		print "templateHoverReader(" .$i . ");
 		";
 	}
+	print "overlayZoom.push('" . $opt->overlayZoom . "');
+	overlayZoomLevel.push('" . intval($opt->overlayZoomLevel) . "');
+	overlayZoomSelF.push('" . $opt->overlayZoomSelF . "');
+	overlayZoomRepT.push('" . $opt->overlayZoomRepT . "');
+	overlayZoomRepF.push('" . $opt->overlayZoomRepF . "');
+	";
 	$i = $i + 1;
 }
 print "
@@ -315,6 +322,11 @@ var wfsFields = [];
 ";
 $i = 0;
 foreach ($xml->wfs->overlay as $opt){
+	print "
+	overlayTable.push(\"" . $opt->overlayTable . "\");
+	";
+	print "overlayType.push('" . $opt->overlayType . "');
+	";
 	print "var wfs" . $i . ";
 	var sH" . $i . ";
 	legendFilters.push({layer: 'wfs" . $i . "', filter: new OpenLayers.Filter.Comparison({type:'', property:'', value:''})});

@@ -38,9 +38,9 @@ foreach ($xml->userArray->option as $opt) {
 }
 print ");
 ";
-print " 
-var appTitle = '" . $xml->other->appTitle . "';
-";
+print ' 
+var appTitle = "' . $xml->other->appTitle . '";
+';
 print "
 Proj4js.defs[\"EPSG:27700\"] = \"+proj=tmerc +lat_0=49 +lon_0=-2 +k=0.9996012717 +x_0=400000 +y_0=-100000 +ellps=airy +datum=OSGB36 +units=m +no_defs\";
 Proj4js.defs[\"EPSG:4326\"] = \"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs\";
@@ -48,9 +48,22 @@ Proj4js.defs[\"EPSG:4326\"] = \"+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs
 var tableArray = [];
 var tableTitles = [];
 var tableGeomEdit = [];
+var tableHasView = [];
+var tableSelectStyle = [];
+var tableConstraints = [];
 var loadEdits = '" . $xml->other->edits . "';
 var Ppath = '" . $xml->other->projectPath . "';
 ";
+//This sets up an array to let the user specify if select should highlight the row or select it in an edit style window
+foreach($xml->table->selStyle as $opt){
+	if($opt!=''){
+		print "tableSelectStyle.push('" . $opt . "');
+		";
+	} else {
+		print "tableSelectStyle.push('Unknown');
+		";
+	}
+}
 
 //We may have variable status fields here so we need to read the variable status table into a javascript array
 //However, to save memory space we will only set up the variable here but get the values laters as an ajax call.

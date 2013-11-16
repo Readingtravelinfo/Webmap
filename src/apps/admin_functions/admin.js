@@ -8,6 +8,22 @@ var i, i2, i3, i4;
 var str = '';
 
 /*Create the blank row strings for each of the tables*/
+var pUsers = '<tr><td id="pUr£c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"pUr`c1\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pUr£\")")>&#x25BC;</a></td></tr>';
+var pBase = '<tr><td id="bMr£c1" class="ed"></td><td id="bMr£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"bMr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"bMr£\")")>&#x25BC;</a></td></tr>';
+var pFExclusion = '<tr><td id="fEr£c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"fEr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"fEr£\")")>&#x25BC;</a></td></tr>';
+var pPredef = '<tr><td id="pDmr£c1" class="ed"></td><td id="pDmr£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"pDmr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pDmr£\")")>&#x25BC;</a></td></tr>';
+var pStyle = '<tr><td id="sCr£c1"><select id="sCsel"></select></td><td id="sCr£c2" class="ed"></td><td id="sCr£c3" class="ed"></td><td><a onclick("moveRow(\"up\",\"sCr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"sCr£\")")>&#x25BC;</a></td></tr>';
+var pLayer = '<tr><td><a onclick("moveRow(\"up\",\"pLr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pLr£\")")>&#x25BC;</a></td><td id="pLr£c1" class="ed"></td><td id="pLr£c2" class="ed"></td><td id="pLr£c3" class="ed"></td><td id="pLr£c4"><select id="pLbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c5"><select id="pLbool2-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c6" class="ed"></td><td id="pLr£c7"><select id="pLbool3-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c8" class="ed"></td><td id="pLr£c9" class="ed"></td><td id="pLr£c10"><select id="pLbool4-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c11"><select id="pLbool5-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr£c12" class="ed"></td></tr>';
+var pPopHov = '<tr><td id="pUhr£c1"></td><td id="pUhr£c2"><select id="pUhbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pUhr£c3" class="ed"></td><td id="pUhr£c4" class="ed"></td><td id="pUhr£c5" class="ed"></td><td id="pUhr£c6" class="ed"></td><td id="pUhr£c7" class="ed"></td><td id="pUhr£c8" class="ed"></td></tr>';
+var pZoom = '<tr><td id="pZr£c1"></td><td id="pZr£c2"><select id="pZbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr£c3" class="ed"></td><td id="pZr£c4"><select id="pZbool2-£"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr£c5" class="ed"></td><td id="pZr£c6" class="ed"></td></tr>';
+var pWFS = '<tr><td id="pWFSr£c1"></td><td id="pWFSr£c2" class="ed"></td><td id="pWFSr£c3" class="ed"></td><td id="pWFSr£c4" class="ed"></td><td id="pWFSr£c5" class="ed"></td><td id="pWFSr£c6" class="ed"></td><td id="pWFSr£c7" class="ed"></td><td id="pWFSr£c8" class="ed"></td><td id="pWFSr£c9" class="ed"></td></tr>';
+var pLookup = '<tr><td id="tLr£c1" class="ed"></td><td id="tLr£c2" class="ed"></td><td id="tLr£c3" class="ed"></td><td id="tLr£c4" class="ed"></td><td><a onclick("moveRow(\"up\",\"tLr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tLr£\")")>&#x25BC;</a></td></tr>';
+var pOption = '<tr><td id="tOr£c1" class="ed"></td><td id="tOr£c2" class="ed"></td><td id="tOr£c3" class="ed"></td><td id="tOr£c4" class="ed"></td><td><a onclick("moveRow(\"up\",\"tOr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tOr£\")")>&#x25BC;</a></td></tr>';
+var pStatus = '<tr><td id="tSr£c1" class="ed"></td><td id="tSr£c2"><select id="pSbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="tSr£c3" class="ed"></td><td id="tSr£c4"><select id="tSsel"></select></td><td id="tSr£c5" class="ed"></td><td><a onclick("moveRow(\"up\",\"tSr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tSr£\")")>&#x25BC;</a></td></tr>';
+var pOTable = '<tr><td><a onclick("moveRow(\"up\",\"oTr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"oTr£\")")>&#x25BC;</a></td><td id="oTr£c1" class="ed"></td><td id="oTr£c2"><select id="oTbool1-£"><option value="True">True</option><option value="False">False</option></select></td><td id="oTr£c3" class="ed"></td><td id="oTr£c4" class="ed"></td><td id="oTr£c5" class="ed"></td><td id="oTr£c6" class="ed"></td><td id="oTr£c7" class="ed"></td><td id="oTr£c8" class="ed"></td></tr>';
+var pExclusion = '<tr><td id="tEr£c1" class="ed"></td><td id="tEr£c2"><select id="tEsel"></select></td><td><a onclick("moveRow(\"up\",\"tEr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tEr£\")")>&#x25BC;</a></td></tr>';
+var pDiscol = '<tr><td id="dCr£c1" class="ed"></td><td id="dCr£c2"><select id="dCsel"></select></td><td><a onclick("moveRow(\"up\",\"dCr£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"dCr£\")")>&#x25BC;</a></td></tr>';
+var pLoops = '<tr><td id="tLor£c1"><select id="tLosel"></select></td><td id="tLor£c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"tLor£\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tLor£\")")>&#x25BC;</a></td></tr>';
 var pUsers = '<tr><td id="pUr`c1" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pUsers\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pUsers\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'pUr`c1\')" /></td></tr>';
 var pBase = '<tr><td id="bMr`c1" class="ed"></td><td id="bMr`c2" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pBase\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pBase\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'bMr`c1\')" /></td></tr>';
 var pFExclusion = '<tr><td id="fEr`c1" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pFExclusion\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pFExclusion\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'fEr`c1\')" /></td></tr>';
@@ -40,1133 +56,1329 @@ var locStr = window.location.href.replace("https://geo.reading-travelinfo.co.uk/
 locStr = locStr.replace("https://64.5.1.218/","");
 locStr = locStr.replace(/\//g,"\\");
 locStr = locStr.replace("admin.html","");
-var eC, popi, tmpS, fieldL, element, arrayN;
+var eC, popi, tmpS, fieldL, element, arrayN, userArray;
 function pageSetup(){
-	//Variable definitions
-	var fH, fF, blankA, blankA2;
-	tmpURL = "../../apps/admin_functions/existinggrab.php";
-	eC = $.ajax({
+	//Authenticate the user here
+	
+	//Load the permitted users here
+	var loginDetails;
+	tmpURL = "../../apps/admin_functions/users.php";
+	var userArray2 = $.ajax({
 		type: 'POST',
 		url: tmpURL,
 		data: {loc: locStr},
 		async:false
 	}).responseText;
-	eC = $.parseJSON(eC);
-	//alert(eC.toSource());
-	//First we must find out if this is an already configured map
-	if (eC.configuredMap===''){
-		//This is a new form
-		
-		//Update the header section
-		ft = "Map Configuration Form - Create a New Map <span class='saveB'><input type='button' onclick='saveConfig()' value='Save Configuration' /></span>";
-		$('#pageHeader').html(ft);
-		
-	} else {
-		//This is a configured map
-		
-		//Update the header section
-		ft = "Map Configuration Form for " + eC.configuredMap + " <span class='saveB'><input type='button' onclick='saveConfig()' value='Save Configuration' /></span>";
-		$('#pageHeader').html(ft);
-		
-		//Setup the column array references
-		pUsersA = [
-			cols = [
-				"c1"
-			],
-			vals = [],
-			ref = "pU"
-		];
-		fieldL = [
-			"option"
-		];
-		element = 'userArray';
-		arrayN = 'pUsersA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pBaseA = [
-			cols = [
-				"c1",
-				"c2"
-			],
-			vals = [],
-			ref = "bM"
-		];
-		fieldL = [
-			"mapURL",
-			"mapTitle"
-		];
-		element = 'basemaps';
-		var element2 = 'map'; //Extra element for this one
-		arrayN = 'pBaseA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][element2][tmpS] === 'object'){
-					for (var key in eC["0"][element][element2][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pLayerA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4",
-				"c5",
-				"c6",
-				"c7",
-				"c8",
-				"c9",
-				"c10",
-				"c11",
-				"c12"
-			],
-			vals = [],
-			ref = "pL"
-		];
-		fieldL = [
-			"overlayAddress", 
-			"overlayPath", 
-			"overlayTitle", 
-			"overlayDILS", 
-			"onasdefault", 
-			"overlaySRS", 
-			"overlayDOME", 
-			"overlayDDtitle", 
-			"overlaySTYLES", 
-			"overlayCache", 
-			"overlayTRAN", 
-			"overlayENV"
-		];
-		element = 'wms';
-		element2 = 'overlay'; //Extra element for this one
-		arrayN = 'pLayerA';
-		blankA = 'overlayAddress'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			//for each column
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				//We use a try as sometimes the element is not present if not defined and this would cause an error (which we will ignore)
-				if(typeof eC["0"][element][element2][tmpS] === 'object'){
-					for (var key in eC["0"][element][element2][tmpS]) {
-						if(eC["0"][element][element2][blankA][key]!==''){
-							//This if means that if the blankA field is blank the row is ignored
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
-							}
-						}
-					}
-				} else {
-					//There is only one value but is it blank (indicating that we should ignore this value)
-					if(eC["0"][element][element2][blankA]!==''){
-						//This if means that if the blankA field is blank the row is ignored
-						window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pPopHovA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4",
-				"c5",
-				"c6",
-				"c7",
-				"c8"
-			],
-			vals = [],
-			ref = "pUh"
-		];
-		fieldL = [
-			"*",
-			"overlayPopup", 
-			"overlayPopupTemp", 
-			"overlayPopupWidth", 
-			"overlayPopupHeight", 
-			"overlayHoverTemp", 
-			"overlayHoverWidth", 
-			"overlayHoverHeight"
-		];
-		element = 'wms';
-		element2 = 'overlay2'; //Extra element for this one
-		arrayN = 'pPopHovA';
-		blankA = 'overlayPopupTemp'; //This field defines whether this is a valid record or not
-		blankA2 = 'overlayHoverTemp'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(tmpS==='*'){
-					if(typeof eC["0"]["wms"]["overlay"]["overlayAddress"] === 'object'){
-						for (var key in eC["0"]["wms"]["overlay"]["overlayAddress"]) {
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"][key]);
-							}
-						}
-					} else {
-						window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"]);
-					}
-				} else {
-					if(typeof eC["0"][element][element2][tmpS] === 'object'){
-						for (var key in eC["0"][element][element2][tmpS]) {
-							if(typeof eC["0"][element][element2][blankA][key]!=='undefined' || typeof eC["0"][element][element2][blankA2][key]!=='undefined'){
-								//This if means that if the blankA field is blank the row is ignored
-								if(key!=='remove'){
-									//Ignore last object (remove) as this is a function
-									window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
-								}
-							}
-						}
-					} else {
-						if(typeof eC["0"][element][element2][blankA]!=='undefined' || typeof eC["0"][element][element2][blankA2]!=='undefined'){
-							//This if means that if the blankA field is blank the row is ignored
-							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
-						}
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pZoomA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4",
-				"c5",
-				"c6"
-			],
-			vals = [],
-			ref = "pZ"
-		];
-		fieldL = [
-			"*",
-			"overlayZoom", 
-			"overlayZoomLevel", 
-			"overlayZoomSelF", 
-			"overlayZoomRepT", 
-			"overlayZoomRepF"
-		];
-		element = 'wms';
-		element2 = 'overlay3'; //Extra element for this one
-		arrayN = 'pZoomA';
-		blankA = 'overlayZoomLevel'; //This field defines whether this is a valid record or not
-		blankA2 = 'overlayZoomSelF'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(tmpS==='*'){
-					if(typeof eC["0"]["wms"]["overlay"]["overlayAddress"] === 'object'){
-						for (var key in eC["0"]["wms"]["overlay"]["overlayAddress"]) {
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"][key]);
-							}
-						}
-					} else {
-						window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"]);
-					}
-				} else {
-					if(typeof eC["0"][element][element2][tmpS] === 'object'){
-						for (var key in eC["0"][element][element2][tmpS]) {
-							if(typeof eC["0"][element][element2][blankA][key]!=='undefined' || typeof eC["0"][element][element2][blankA2][key]!=='undefined'){
-								//This if means that if the blankA field is blank the row is ignored
-								if(key!=='remove'){
-									//Ignore last object (remove) as this is a function
-									window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
-								}
-							}
-						}
-					} else {
-						if(typeof eC["0"][element][element2][blankA]!=='undefined' || typeof eC["0"][element][element2][blankA2]!=='undefined'){
-							//This if means that if the blankA field is blank the row is ignored
-							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
-						}
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pWFSA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4",
-				"c5",
-				"c6",
-				"c7",
-				"c8",
-				"c9",
-				"c10"
-			],
-			vals = [],
-			ref = "pWFS"
-		];
-		fieldL = [
-			"*",
-			"overlayType", 
-			"overlayTable", 
-			"overlayfeatureType", 
-			"overlayPath", 
-			"overlayDILS", 
-			"overlaySRS", 
-			"overlayfeatureNS", 
-			"overlaygeometryName", 
-			"overlayTitle"
-		];
-		element = 'wfs';
-		element2 = 'overlay'; //Extra element for this one
-		arrayN = 'pWFSA';
-		blankA = 'overlayTitle'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(tmpS==='*'){
-					if(typeof eC["0"]["wms"]["overlay"]["overlayAddress"] === 'object'){
-						for (var key in eC["0"]["wms"]["overlay"]["overlayAddress"]) {
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"][key]);
-							}
-						}
-					} else {
-						window[arrayN][1][popi].push(eC["0"]["wms"]["overlay"]["overlayAddress"]);
-					}
-				} else {
-					if(typeof eC["0"][element][element2][tmpS] === 'object'){
-						for (var key in eC["0"][element][element2][tmpS]) {
-							if(eC["0"][element][element2][blankA][key]!==''){
-								//This if means that if the blankA field is blank the row is ignored
-								if(key!=='remove'){
-									//Ignore last object (remove) as this is a function
-									window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
-								}
-							}
-						}
-					} else {
-						if(eC["0"][element][element2][blankA]!==''){
-							//This if means that if the blankA field is blank the row is ignored
-							window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
-						}
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-
-		pOTableA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4",
-				"c5",
-				"c6",
-				"c7",
-				"c8"
-			],
-			vals = [],
-			ref = "oT"
-		];
-		fieldL = [
-			"tableName", 
-			"tableGeom", 
-			"tableTitle", 
-			"selStyle", 
-			"recNo", 
-			"lower", 
-			"order_by", 
-			"geom_field"
-		];
-		element = 'table';
-		arrayN = 'pOTableA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pLoopsA = [
-			cols = [
-				"c1",
-				"c2"
-			],
-			vals = [],
-			ref = "tLo"
-		];
-		fieldL = [
-			"tableName", 
-			"tableCondition"
-		];
-		element = 'tableLoops';
-		arrayN = 'pLoopsA';
-		blankA = 'tableCondition'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(typeof eC["0"][element][blankA][key]!=='undefined'){
-							//This if means that if the blankA field is blank the row is ignored
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-							}
-						}
-					}
-				} else {
-					if(typeof eC["0"][element][blankA]!=='undefined'){
-						//This if means that if the blankA field is blank the row is ignored
-						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pLookupA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4"
-			],
-			vals = [],
-			ref = "tL"
-		];
-		fieldL = [
-			"targetCol", 
-			"targetTable",
-			"replaceCol",
-			"replaceTable"
-		];
-		element = 'lookups';
-		arrayN = 'pLookupA';
-		blankA = 'targetCol'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(typeof eC["0"][element][blankA][key]!=='undefined'){
-							//This if means that if the blankA field is blank the row is ignored
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-							}
-						}
-					}
-				} else {
-					if(typeof eC["0"][element][key]!=='undefined'){
-						//This if means that if the blankA field is blank the row is ignored
-						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pStatusA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4",
-				"c5"
-			],
-			vals = [],
-			ref = "tS"
-		];
-		fieldL = [
-			"statusValue", 
-			"statusAvail",
-			"statusText",
-			"statusTable",
-			"statusField"
-		];
-		element = 'status';
-		arrayN = 'pStatusA';
-		blankA = 'statusValue'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(typeof eC["0"][element][blankA][key]!=='undefined'){
-							//This if means that if the blankA field is blank the row is ignored
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-							}
-						}
-					}
-				} else {
-					if(typeof eC["0"][element][blankA]!=='undefined'){
-						//This if means that if the blankA field is blank the row is ignored
-						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pExclusionA = [
-			cols = [
-				"c1",
-				"c2"
-			],
-			vals = [],
-			ref = "tE"
-		];
-		fieldL = [
-			"exclusion", 
-			"exclusionT"
-		];
-		element = 'exclusions';
-		arrayN = 'pExclusionA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pDiscolA = [
-			cols = [
-				"c1",
-				"c2"
-			],
-			vals = [],
-			ref = "dC"
-		];
-		fieldL = [
-			"option", 
-			"optionT"
-		];
-		element = 'disable';
-		arrayN = 'pDiscolA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		//Special case as this table is populated by two arrays
-		pOptionA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3",
-				"c4"
-			],
-			vals = [],
-			ref = "tO"
-		];
-		//Get array 1
-		fieldL = [
-			"optionsListOp", 
-			"optionListNo",
-			"optionsListCol", 
-			"optionsListColLoop"
-		];
-		element = 'optionsList';
-		element2 = 'oList1'; //Extra element here
-		var element3 = 'oList2'; //Extra element here
-		arrayN = 'pOptionA';
-		blankA = 'optionsListOp'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length-2;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][element2][tmpS] === 'object'){
-					for (var key in eC["0"][element][element2][tmpS]) {
-						if(eC["0"][element][element2][blankA][key]!==''){
-							//This if means that if the blankA field is blank the row is ignored
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
-							}
-						}
-					}
-				} else {
-					if(eC["0"][element][element2][blankA]!==''){
-						//This if means that if the blankA field is blank the row is ignored
-						window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		for(popi=1;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][element3][tmpS] === 'object'){
-					for (var key in eC["0"][element][element3][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi].push(eC["0"][element][element3][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi].push(eC["0"][element][element3][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		pFExclusionA = [
-			cols = [
-				"c1"
-			],
-			vals = [],
-			ref = "fE"
-		];
-		fieldL = [
-			"functionEx"
-		];
-		element = 'functions';
-		arrayN = 'pFExclusionA';
-		blankA = 'functionEx'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(typeof eC["0"][element][blankA][key]!=='undefined'){
-							//This if means that if the blankA field is blank the row is ignored
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-							}
-						}
-					}
-				} else {
-					if(typeof eC["0"][element][blankA]!=='undefined'){
-						//This if means that if the blankA field is blank the row is ignored
-						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		
-		//This is a special case as we need to reconstruct the simpler syntax
-		pStyleA = [
-			cols = [
-				"c1",
-				"c2",
-				"c3"
-			],
-			vals = [],
-			ref = "sC"
-		];
-		//Get the first value 
-		fieldL = [
-			"style"
-		];
-		element = 'styles';
-		arrayN = 'pStyleA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		//Get the second value
-		fieldL = [
-			"sTitle"
-		];
-		element = 'styleTitles';
-		arrayN = 'pStyleA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi+1].push(eC["0"][element][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi+1].push(eC["0"][element][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi+1].push('');
-			}
-		}
-		//Get the third value
-		fieldL = [
-			"sLayer"
-		];
-		element = 'styleLayer';
-		arrayN = 'pStyleA';
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							//Ignore last object (remove) as this is a function
-							window[arrayN][1][popi+2].push(eC["0"][element][tmpS][key]); 
-						}
-					}
-				} else {
-					window[arrayN][1][popi+2].push(eC["0"][element][tmpS]);
-				}
-			} catch(error){
-				window[arrayN][1][popi+2].push('');
-			}
-		}
-		
-		
-		//This is a special case as we need to reconstruct the simpler syntax
-		pPredefA = [
-			cols = [
-				"c1",
-				"c2"
-			],
-			vals = [],
-			ref = "pDm"
-		];
-		//Get the first value (this will be the predefined map title
-		fieldL = [
-			"option"
-		];
-		element = 'pdmArr';
-		arrayN = 'pPredefA';
-		blankA = 'option'; //This field defines whether this is a valid record or not
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(typeof eC["0"][element][blankA][key]!=='undefined'){
-							//This if means that if the blankA field is blank the row is ignored
-							if(key!=='remove'){
-								//Ignore last object (remove) as this is a function
-								window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
-							}
-						}
-					}
-				} else {
-					if(typeof eC["0"][element][blankA]!=='undefined'){
-						//This if means that if the blankA field is blank the row is ignored
-						window[arrayN][1][popi].push(eC["0"][element][tmpS]);
-					}
-				}
-			} catch(error){
-				window[arrayN][1][popi].push('');
-			}
-		}
-		//Get and manipulate the second value
-		fieldL = [
-			"option"
-		];
-		element = 'pdmFilter';
-		arrayN = 'pPredefA';
-		var filterFix;
-		//Logic to check for single value or array
-		for(popi=0;popi<fieldL.length;popi++){
-			window[arrayN][1].push([]);
-			tmpS = fieldL[popi];
-			try {
-				if(typeof eC["0"][element][tmpS] === 'object'){
-					for (var key in eC["0"][element][tmpS]) {
-						if(key!=='remove'){
-							if(typeof eC["0"][element][tmpS][key] === 'object'){
-								//This will be a blank
-								window[arrayN][1][1].push('');
-							} else {
-								//Ignore last object (remove) as this is a function
-								filterFix = eC["0"][element][tmpS][key].replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-								window[arrayN][1][1].push(filterFix); 
-							}
-						}
-					}
-				} else {
-					filterFix = eC["0"][element][tmpS].replace(/&lt;/g, "<").replace(/&gt;/g, ">");
-					window[arrayN][1][1].push(filterFix);
-				}
-			} catch(error){
-				window[arrayN][1][1].push('');
-			}
-		}
+	userArray2 = $.parseJSON(userArray2);
+	userArray = [];
+	var key;
+	for (key in userArray2) {
+		userArray.push(userArray2[key]);
 	}
 	
-	/*In both situations we will set up the form as blank before filling it in with existing options*/
-	//Set up the form here
-	fH = "<form id='setupForm'>";
-	//General map options
-	fH += "<div class='Fgeneral'><h4>General Map Options</h4>";
-	fH += "<span class='optH'>Map title:</span><span class='opt'><input type='text' id='mT' /></span><br />";
-	fH += "<span class='optH'>Relative URL to the map:</span><span class='opt'><input type='text' id='rURL' /></span><br />";
-	fH += "<span class='optH'>Map projection:</span><span class='opt'><select id='mP'><option value='27700' checked='checked'>27700 (OS National Grid)</option><option value='4326'>4326 (WGS 84 - Lat/Long)</option></select></span><br />";
-	fH += "<span class='optH'>Reproject from:</span><span class='opt'><input type='text' id='rF' /></span><br />";
-	fH += "<span class='optH'>Pan map on popup:</span><span class='opt'><select id='pMoP'><option value='True' checked='checked'>True</option><option value='False'>False</option></select></span><br />";
-	fH += "<span class='optH'>Popup as default:</span><span class='opt'><select id='pD'><option value='True' checked='checked'>True</option><option value='False'>False</option></select></span><br />";
-	fH += "<span class='optH'>What type of legend do you require:</span><span class='opt'><select id='legendT'><option value='standard' checked='checked'>Standard Legend</option><option value='selectL'>Selectable Layers</option><option value='selectS'>Selectable Styles</option></select></span><br />";
-	fH += "<span class='optH'>Full data downloads:</span><span class='opt'><select id='fDd'><option value='True' checked='checked'>True</option><option value='False'>False</option></select></span><br />";
-	fH += "<span class='optH'>Licence Statement:</span><span class='opt'><input type='text' size='100' id='lS' value='&#169; Crown Copyright 100019672 {Year} | &#169; Reading Borough Council {Year}'/></span><br />";
-	fH += "<span class='optH'>Relative URL to the WFS editable layers:</span><span class='opt'><input type='text' id='rURLwfs' /></span><br />";
-	fH += "<span class='optH'>Relative URL to the WMS base:</span><span class='opt'><input type='text' id='rURLwms' /></span><br />";
-	fH += "<span class='optH'>Include a photo carousel:</span><span class='opt'><select id='pC'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
-	fH += "<span class='optH'>Carousel fieldname:</span><span class='opt'><input type='text' id='pCf' /></span><br />";
-	fH += "</div>";
-	//Toolbar options
-	fH += "<div class='Ftoolbar'><h4>Toolbar Options</h4>";
-	fH += "<span class='optH'>Include attributes table:</span><span class='opt'><select id='iAt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
-	fH += "<span class='optH'>Include popup bubble switch:</span><span class='opt'><select id='iPbS'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
-	fH += "<span class='optH'>Include selection tool:</span><span class='opt'><select id='iSt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
-	fH += "<span class='optH'>Include measurement tool:</span><span class='opt'><select id='iMt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
-	fH += "<span class='optH'>Include editing tools:</span><span class='opt'><select id='iEt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
-	fH += "<span class='optH'>Active Table (for Editing):</span><span class='opt'><input type='text' id='aT' /></span><br />";
-	fH += "<span class='optH'>Active tool:</span><span class='opt'><input type='text' id='aTo' value='3' /></span><br />";
-	fH += "</div>";
-	//Start of Multiple Option Area
-	//Overlays
-	fH += "<div class='Foverlay'><h4>Layers</h4>";
-	fH += "<table id='pLayer'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th><a onclick='addRow(\"pLayer\",\"pLr0\")'><span class='add'>+</span></a></th><th id='pLr0c1'>Layer Name</th><th id='pLr0c2'>Relative URL to WMS</th><th id='pLr0c3'>User Friendly Title</th><th id='pLr0c4'>Display in Layer Switcher</th><th id='pLr0c5'>Visible When Map Loads</th><th id='pLr0c6'>Projection</th><th id='pLr0c7'>Display Outside Maximum Extent</th><th id='pLr0c8'>User Friendly Title for Downloads</th><th id='pLr0c9'>Style Definition</th><th id='pLr0c10'>Cache Layer</th><th id='pLr0c11'>Transparent</th><th id='pLr0c12'>Environment Variable</th></tr></table>";
-	fH += "</div>";
-	//Popups and Hovers
-	fH += "<div class='Fpophov'><h4>Popups and Hover</h4>";
-	fH += "<table id='pPopHov'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='pUhr0c1'>Layer</th><th id='pUhr0c2'>Enable Popups</th><th id='pUhr0c3'>Relative URL to Popup Template</th><th id='pUhr0c4'>Popup Width</th><th id='pUhr0c5'>Popup Height</th><th id='pUhr0c6'>Relative URL to Hover Template</th><th id='pUhr0c7'>Hover Width</th><th id='pUhr0c8'>Hover Height</th></tr></table>";
-	fH += "</div>";
-	//Zoom on Click
-	fH += "<div class='Fzoom'><h4>Zoom on Click Settings</h4>";
-	fH += "<table id='pZoom'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='pZr0c1'>Layer</th><th id='pZr0c2'>Zoom on Click</th><th id='pZr0c3'>Zoom to Fixed Level</th><th id='pZr0c4'>Zoom to Selection Based On Field</th><th id='pZr0c5'>Table Containing Field</th><th id='pZr0c6'>Field Name</th></tr></table>";
-	fH += "</div>";
-	//WFS Settings
-	fH += "<div class='Fwfs'><h4>WFS Settings</h4>";
-	fH += "<table id='pWFS'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='pWFSr0c1'>Layer</th><th id='pWFSr0c2'>Layer Type</th><th id='pWFSr0c3'>Associated Database Table</th><th id='pWFSr0c4'>Associated WFS Layer Name</th><th id='pWFSr0c5'>Relative URL to WFS</th><th id='pWFSr0c6'>Display WFS in Layer Switcher</th><th id='pWFSr0c7'>Projection</th><th id='pWFSr0c8'>WFS Namespace</th><th id='pWFSr0c9'>Geometry Fieldname</th></tr></table>";
-	fH += "</div>";
-	//Table Options
-	fH += "<div class='Ftable'><h4>Table Options</h4>";
-	fH += "<table id='pOTable'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th><a onclick='addRow(\"pOTable\",\"oTr0\")'><span class='add'>+</span></a></th><th id='oTr0c1'>Table Name</th><th id='oTr0c2'>Is there a Geometry Field?</th><th id='oTr0c3'>User Friendly Name</th><th id='oTr0c4'>Selection Style</th><th id='oTr0c5'>Columns to Display</th><th id='oTr0c6'>Start at Row</th><th id='oTr0c7'>Order by Field</th><th id='oTr0c8'>Geometry Field</th></tr></table>";
-	fH += "</div>";
-	//Permitted Users
-	fH += "<div class='Fusers'><h4>Permitted Users</h4>";
-	fH += "<table id='pUsers'><col class='col1' /><col class='col2' /><tr><th id='pUr0c1'>Username</th><th><a onclick='addRow(\"pUsers\",\"pUr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Base Maps
-	fH += "<div class='Fbase'><h4>Base Maps</h4>";
-	fH += "<table id='pBase'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='bMr0c1'>Layer</th><th id='bMr0c2'>User Friendly Name</th><th><a onclick='addRow(\"pBase\",\"bMr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Function Exclusion
-	fH += "<div class='Ffexclusion'><h4>Function Exclusions</h4>";
-	fH += "<table id='pFExclusion'><col class='col1' /><col class='col2' /><tr><th id='fEr0c1'>Function Name</th><th><a onclick='addRow(\"pFExclusion\",\"fEr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Predefined Maps
-	fH += "<div class='Fpredef'><h4>Predefined Maps</h4>";
-	fH += "<table id='pPredef'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='pDmr0c1'>Option Title</th><th id='pDmr0c2'>Criteria String</th><th><a onclick='addRow(\"pPredef\",\"pDmr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Style Choices
-	fH += "<div class='Fstyle'><h4>Style Choices</h4>";
-	fH += "<table id='pStyle'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='sCr0c1'>Layer</th><th id='sCr0c2'>SLD Name</th><th id='sCr0c3'>User Friendly Name</th><th><a onclick='addRow(\"pStyle\",\"sCr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Lookup (from another table)
-	fH += "<div class='Flookup'><h4>Lookups (from another table)</h4>";
-	fH += "<table id='pLookup'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tLr0c1'>Column to Replace</th><th id='tLr0c2'>From Table</th><th id='tLr0c3'>Replace with Column</th><th id='tLr0c4'>From Table</th><th><a onclick='addRow(\"pLookup\",\"tLr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Option Lists
-	fH += "<div class='Foption'><h4>Option Lists</h4>";
-	fH += "<table id='pOption'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tOr0c1'>Options</th><th id='tOr0c2'>List Number</th><th id='tOr0c3'>Column Name</th><th id='tOr0c4'>List Number</th><th><a onclick='addRow(\"pOption\",\"tOr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Status Options
-	fH += "<div class='Fstatus'><h4>Status Options</h4>";
-	fH += "<table id='pStatus'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='tSr0c1'>Status Value</th><th id='tSr0c2'>Available?</th><th id='tSr0c3'>User Friendly Text</th><th id='tSr0c4'>Table to which this applies</th><th id='tSr0c5'>Status Field Name</th><th><a onclick='addRow(\"pStatus\",\"tSr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Table Exclusions
-	fH += "<div class='Ftexclusion'><h4>Table Exclusions</h4>";
-	fH += "<table id='pExclusion'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tEr0c1'>Field Name</th><th id='tEr0c2'>Table Name</th><th><a onclick='addRow(\"pExclusion\",\"tEr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Table Disabled Columns
-	fH += "<div class='Fdiscol'><h4>Table Disabled Columns</h4>";
-	fH += "<table id='pDiscol'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='dCr0c1'>Field Name</th><th id='dCr0c2'>Table Name</th><th><a onclick='addRow(\"pDiscol\",\"dCr0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	//Table Loops
-	fH += "<div class='Floops'><h4>Table Loops</h4>";
-	fH += "<table id='pLoops'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tLor0c1'>Table Name</th><th id='tLor0c2'>Condition</th><th><a onclick='addRow(\"pLoops\",\"tLor0\")'><span class='add'>+</span></a></th></tr></table>";
-	fH += "</div>";
-	fH += "</form>";
-	$('#configForm').html(fH);
+	//Now we call the authentication script
+	loginScript(2);
+}
+
+function pageSetup2(){
+	//Variable definitions
+	var fH, fF, blankA, blankA2, e, textStr;
 	
-	//Setup the form footer
-	fF = "Mapping tools designed by PBA LLP on Behalf of RBC <span class='saveB'><input type='button' onclick='saveConfig()' value='Save Configuration' /></span>";
-	$('#pageFooter').html(fF);
-	
-	//OK, if this is an already configured map we need to load the options
-	if (eC.configuredMap!==''){
-		//This is a configured map
-		
-		//OK we need to sort out a lookup array to let us parse the config object into the corresponding html elements on the form as these are 
-		//automatically generated id references based on the table in question.
-		oR = {"R" : [
-			//The R (Reference) section provides the key for each value
-			eC["0"].other.appTitle, 
-			eC["0"].other.projectPath, 
-			eC["0"].other.proj, 
-			eC["0"].other.projMap, 
-			eC["0"].other.reproject, 
-			eC["0"].other.projMap2, 
-			eC["0"].other.wfsedits, 
-			eC["0"].other.wmsbase, 
-			eC["0"].other.popupPan, 
-			eC["0"].other.popupDefault, 
-			eC["0"].other.attribute, 
-			eC["0"].other.edits, 
-			eC["0"].other.active_table, 
-			eC["0"].other.ddFull, 
-			eC["0"].other.photoscroll, 
-			eC["0"].other.photoscrollpath, 
-			eC["0"].other.licence, 
-			eC["0"].other.Gog, 
-			eC["0"].other.legendtree, 
-			eC["0"].other.selectlegendtree,
-			"ec.mD.users[*1*]",
-			"eC.tB.actionType[1]", 
-			"eC.tB.actionTitle[1]", 
-			"eC.tB.actionArr:[1]", 
-			"eC.tB.actionCls[1]", 
-			"eC.tB.actionGroup[1]", 
-			"eC.tB.actionText[1]", 
-			"eC.tB.actionHandler[1]", 
-			"eC.tB.toolIn[1]",
-			"eC.mL.basemaps[*2*]",
-			"eC.mL.overlay[*12*]",
-			"eC.mL.overlay2[*8*]",
-			"eC.mL.overlay3[*5*]",
-			"eC.mL.wfs[*9*]",
-			"eC.tD.table[*8*]",
-			"eC.tD.tableLoops[*2*]",
-			"eC.tD.lookup[*4*]",
-			"eC.tD.options.oList", 
-			"eC.tD.status[*5*]",
-			"eC.tD.exclusions[*2*]",
-			"eC.tD.discols[*2*]",
-			"eC.oS.styles", 
-			"eC.oS.funcEx[*1*]",
-			"eC.oS.pdm[*1*]",
-		],
-		"H" : [
-			//The H array provides the documentID in terms of HTML for each R item
-			//Where there is no field there will be a '-'
-			//In some cases there will be an add line function - Where the number represents the number of columns
-			"mT", 
-			"rURL", 
-			"mP", 
-			"-", 
-			"-", 
-			"rF", 
-			"rURLwfs", 
-			"rURLwms", 
-			"pMoP", 
-			"pD", 
-			"iAt", 
-			"iEt", 
-			"aT", 
-			"fDd", 
-			"pC", 
-			"pCf", 
-			"lS", 
-			"-",
-			"tooltypes|legendT|legend1",
-			"tooltypes|legendT|legend2",
-			"addLine|pUsers|1",
-			"-", 
-			"tooltypes|eC.tB.actionTitle|type", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"-", 
-			"tooltypes|eC.tB.toolIn|active",
-			"addLine|pBase|2",
-			"addLine|pLayer|12",
-			"addLine|pPopHov|8",
-			"addLine|pZoom|5",
-			"addLine|pWFS|9",
-			"addLine|pOTable|8",
-			"addLine|pLoops|2",
-			"addLine|pLookup|4",
-			"addLine|pOption|4", 
-			"addLine|pStatus|5",
-			"addLine|pExclusion|2",
-			"addLine|pDiscol|2",
-			"addLine|pStyle|3", 
-			"addLine|pFExclusion|1",
-			"addLine|pPredef|2"
-		]};
-		
-		//Loop through the object and run the required functions
-		var callLen = oR.R.length;
-		var rA, hA, hO, selOpt, funcRef;
-		for(i=0;i<callLen;i++){
-			rA = oR.R;
-			hA = oR.H;
-			if(hA[i].indexOf("|")!==-1){
-				//This is a function run
-				funcRef = hA[i].split("|");
-				if(funcRef[0]==='addLine'){
-					//This function call has two inputs
-					addLine(funcRef[1],parseInt(funcRef[2]));
-				} else if (funcRef[0]==='tooltypes') {
-					//This function call has two inputs
-					tooltypes(funcRef[1],funcRef[2]);
-				}
-			} else if (hA[i]!=='-'){
-				//This is a regular value update but is it an input or a select?
-				hO = document.getElementById(hA[i]);
-				if (hO !== null){
-					if (hO.type === 'select-one'){
-						//This is a select option so we need to work out which value to select
-						selOpt = '';
-						for(i2=0;i2<hO.options.length;i2++){
-							if(hO.options[i2].value === rA[i]){
-								selOpt = i2;
+	//If we still don't have a username then there is a problem - don't load the map!
+	var usertext = document.getElementById('username').value;
+	if (usertext==="") {
+		textStr = "<h3 align='center'>Log on Error</h3><p align='center'>If you believe this username should have access to this content please contact the GIS server management team.</p>";
+		document.getElementById("configForm").innerHTML = textStr;
+	} else {
+		//Check if the user is permitted to use this page
+		var okint = 0;
+		for (i=0;i<userArray.length;i++){
+			if (userArray[i]==usertext) {
+				okint = 1;
+			} else if (userArray[i]=='RBC'){
+				okint = 1; //RBC maps are available to all users
+			}
+		}
+		if (okint == 0) {
+			textStr = "<h3 align=\"center\">Log on Error</h3><p align=\"center\">User ";
+			textStr += usertext;
+			textStr += " is not authorised to view this content. <br /> If you have logged in as the wrong user you may log out using the button below and refresh the page to try again.</p><br /> <p align=\"center\"><input type='button' value='Logout' onclick='logItOut()' /></p><br /><p align=\"center\">If you believe this username should have access to this content please contact the GIS server management team.</p>";
+			document.getElementById("configForm").innerHTML = textStr;
+		} else {
+			tmpURL = "../../apps/admin_functions/existinggrab.php";
+			eC = $.ajax({
+				type: 'POST',
+				url: tmpURL,
+				data: {loc: locStr},
+				async:false
+			}).responseText;
+			eC = $.parseJSON(eC);
+			//alert(eC.toSource());
+			//First we must find out if this is an already configured map
+			if (eC.configuredMap===''){
+				//This is a new form
+				
+				//Update the header section
+				ft = "Map Configuration Form - Create a New Map <span class='saveB'><input type='button' onclick='saveConfig()' value='Save Configuration' /></span>";
+				$('#pageHeader').html(ft);
+				
+			} else {
+				//This is a configured map
+				
+				//Update the header section
+				ft = "Map Configuration Form for " + eC.configuredMap + " <span class='saveB'><input type='button' onclick='saveConfig()' value='Save Configuration' /></span>";
+				$('#pageHeader').html(ft);
+				
+				//Setup the column array references
+				pUsersA = [
+					cols = [
+						"c1"
+					],
+					vals = [],
+					ref = "pU"
+				];
+				fieldL = [
+					"option"
+				];
+				element = 'userArray';
+				arrayN = 'pUsersA';
+				blankA = 'option'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
 							}
 						}
-						if (selOpt!==''){
-							hO.selectedIndex = selOpt;
-						} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
-					} else if (hO.type === 'text'){
-						//This is a standard input text box so we can simply write in the value
-						if (typeof rA[i] === 'undefined'){
-							hO.value = '';
-						} else if (typeof rA[i] === 'object'){
-							hO.value = '';
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pBaseA = [
+					cols = [
+						"c1",
+						"c2"
+					],
+					vals = [],
+					ref = "bM"
+				];
+				fieldL = [
+					"mapURL",
+					"mapTitle"
+				];
+				element = 'basemaps';
+				var element2 = 'map'; //Extra element for this one
+				arrayN = 'pBaseA';
+				blankA = 'mapURL'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][element2][tmpS] === 'object'){
+							for (var key in eC["0"][element][element2][tmpS]) {
+								if(typeof eC["0"][element][element2][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+									}
+								}
+							}
 						} else {
-							hO.value = rA[i];
+							if(typeof eC["0"][element][element2][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pLayerA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4",
+						"c5",
+						"c6",
+						"c7",
+						"c8",
+						"c9",
+						"c10",
+						"c11",
+						"c12"
+					],
+					vals = [],
+					ref = "pL"
+				];
+				fieldL = [
+					"overlayAddress", 
+					"overlayPath", 
+					"overlayTitle", 
+					"overlayDILS", 
+					"onasdefault", 
+					"overlaySRS", 
+					"overlayDOME", 
+					"overlayDDtitle", 
+					"overlaySTYLES", 
+					"overlayCache", 
+					"overlayTRAN", 
+					"overlayENV"
+				];
+				element = 'wms';
+				element2 = 'overlay'; //Extra element for this one
+				arrayN = 'pLayerA';
+				blankA = 'overlayAddress'; //This field defines whether this is a valid record or not
+				//This definition is a bit odd with duplicate keys, we need to rearrange the object here
+				var oObj1 = {
+					"overlayAddress": [], 
+					"overlayPath": [], 
+					"overlayTitle": [], 
+					"overlayDILS": [], 
+					"onasdefault": [], 
+					"overlaySRS": [], 
+					"overlayDOME": [], 
+					"overlayBuffer": [],
+					"overlayDDtitle": [], 
+					"overlaySTYLES": [], 
+					"overlayCache": [], 
+					"overlayTRAN": [], 
+					"overlayENV": []
+				};
+				var tmp1 = eC["0"][element][element2];
+				for (var key in tmp1){
+					if(key!=='remove'){
+						for (var key2 in tmp1[key]){
+							if(key2!=='remove'){
+								oObj1[key2].push(tmp1[key][key2]);
+							}
 						}
 					}
 				}
-			} //If it is a '-' then we ignore it
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					//for each column
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						//We use a try as sometimes the element is not present if not defined and this would cause an error (which we will ignore)
+						if(typeof oObj1[tmpS] === 'object'){
+							for (var key in oObj1[tmpS]) {
+								if(typeof oObj1[blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(oObj1[tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							//There is only one value but is it blank (indicating that we should ignore this value)
+							if(typeof oObj1[blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(oObj1[tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pPopHovA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4",
+						"c5",
+						"c6",
+						"c7",
+						"c8"
+					],
+					vals = [],
+					ref = "pUh"
+				];
+				fieldL = [
+					"*",
+					"overlayPopup", 
+					"overlayPopupTemp", 
+					"overlayPopupWidth", 
+					"overlayPopupHeight", 
+					"overlayHoverTemp", 
+					"overlayHoverWidth", 
+					"overlayHoverHeight"
+				];
+				element = 'wms';
+				element2 = 'overlay2'; //Extra element for this one
+				arrayN = 'pPopHovA';
+				blankA = 'overlayPopupTemp'; //This field defines whether this is a valid record or not
+				blankA2 = 'overlayHoverTemp'; //This field defines whether this is a valid record or not
+				//This definition is a bit odd with duplicate keys, we need to rearrange the object here
+				var oObj = {
+					"overlayPopup":[], 
+					"overlayPopupTemp":[], 
+					"overlayPopupWidth":[], 
+					"overlayPopupHeight":[], 
+					"overlayHoverTemp":[], 
+					"overlayHoverWidth":[], 
+					"overlayHoverHeight":[]
+				};
+				var tmp1 = eC["0"][element][element2];
+				for (var key in tmp1){
+					if(key!=='remove'){
+						for (var key2 in tmp1[key]){
+							if(key2!=='remove'){
+								oObj[key2].push(tmp1[key][key2]);
+							}
+						}
+					}
+				}
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					//Logic to check for single value or array
+					for(popi=0;popi<fieldL.length;popi++){
+						//for each column
+						window[arrayN][1].push([]);
+						tmpS = fieldL[popi];
+						try {
+							if(tmpS==='*'){
+								if(typeof oObj1["overlayAddress"] === 'object'){
+									for (var key in oObj1["overlayAddress"]) {
+										if(key!=='remove'){
+											//Ignore last object (remove) as this is a function
+											window[arrayN][1][popi].push(oObj1["overlayAddress"][key]);
+										}
+									}
+								} else {
+									window[arrayN][1][popi].push(oObj1["overlayAddress"]);
+								}
+							} else {
+								//We use a try as sometimes the element is not present if not defined and this would cause an error (which we will ignore)
+								if(typeof oObj[tmpS] === 'object'){
+									for (var key in oObj[tmpS]) {
+										if(typeof oObj[blankA][key]!=='undefined' && typeof oObj[blankA2][key]!=='undefined'){
+											//This if means that if the blankA field is blank the row is ignored
+											if(key!=='remove'){
+												//Ignore last object (remove) as this is a function
+												window[arrayN][1][popi].push(oObj[tmpS][key]); 
+											}
+										}
+									}
+								} else {
+									//There is only one value but is it blank (indicating that we should ignore this value)
+									if(typeof oObj[blankA]!=='undefined' && typeof oObj[blankA2]!=='undefined'){
+										//This if means that if the blankA field is blank the row is ignored
+										window[arrayN][1][popi].push(oObj[tmpS]);
+									}
+								}
+							}
+						} catch(error){
+							e=error;
+						}
+					}
+				}
+				
+				pZoomA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4",
+						"c5",
+						"c6"
+					],
+					vals = [],
+					ref = "pZ"
+				];
+				fieldL = [
+					"*",
+					"overlayZoom", 
+					"overlayZoomLevel", 
+					"overlayZoomSelF", 
+					"overlayZoomRepT", 
+					"overlayZoomRepF"
+				];
+				element = 'wms';
+				element2 = 'overlay3'; //Extra element for this one
+				arrayN = 'pZoomA';
+				blankA = 'overlayZoomLevel'; //This field defines whether this is a valid record or not
+				blankA2 = 'overlayZoomSelF'; //This field defines whether this is a valid record or not
+				//This definition is a bit odd with duplicate keys, we need to rearrange the object here
+				var oObj = {
+					"overlayZoom":[], 
+					"overlayZoomLevel":[], 
+					"overlayZoomSelF":[], 
+					"overlayZoomRepT":[], 
+					"overlayZoomRepF":[]
+				};
+				var tmp1 = eC["0"][element][element2];
+				for (var key in tmp1){
+					if(key!=='remove'){
+						for (var key2 in tmp1[key]){
+							if(key2!=='remove'){
+								oObj[key2].push(tmp1[key][key2]);
+							}
+						}
+					}
+				}
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					//for each column
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(tmpS==='*'){
+							if(typeof oObj1["overlayAddress"] === 'object'){
+								for (var key in oObj1["overlayAddress"]) {
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(oObj1["overlayAddress"][key]);
+									}
+								}
+							} else {
+								window[arrayN][1][popi].push(oObj1["overlayAddress"]);
+							}
+						} else {
+							//We use a try as sometimes the element is not present if not defined and this would cause an error (which we will ignore)
+							if(typeof oObj[tmpS] === 'object'){
+								for (var key in oObj[tmpS]) {
+									if(typeof oObj[blankA][key]!=='undefined' && typeof oObj[blankA2][key]!=='undefined'){
+										//This if means that if the blankA field is blank the row is ignored
+										if(key!=='remove'){
+											//Ignore last object (remove) as this is a function
+											window[arrayN][1][popi].push(oObj[tmpS][key]); 
+										}
+									}
+								}
+							} else {
+								//There is only one value but is it blank (indicating that we should ignore this value)
+								if(typeof oObj[blankA]!=='undefined' && typeof oObj[blankA2]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									window[arrayN][1][popi].push(oObj[tmpS]);
+								}
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pWFSA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4",
+						"c5",
+						"c6",
+						"c7",
+						"c8",
+						"c9",
+						"c10"
+					],
+					vals = [],
+					ref = "pWFS"
+				];
+				fieldL = [
+					"*",
+					"overlayType", 
+					"overlayTable", 
+					"overlayfeatureType", 
+					"overlayPath", 
+					"overlayDILS", 
+					"overlaySRS", 
+					"overlayfeatureNS", 
+					"overlaygeometryName", 
+					"overlayTitle"
+				];
+				element = 'wfs';
+				element2 = 'overlay'; //Extra element for this one
+				arrayN = 'pWFSA';
+				blankA = 'overlayTitle'; //This field defines whether this is a valid record or not
+				//This definition is a bit odd with duplicate keys, we need to rearrange the object here
+				var oObj = {
+					"overlayType":[], 
+					"overlayTable":[], 
+					"overlayfeatureType":[], 
+					"overlayPath":[], 
+					"overlayDILS":[], 
+					"overlaySRS":[], 
+					"overlayfeatureNS":[], 
+					"overlaygeometryName":[], 
+					"overlayTitle":[]
+				};
+				var tmp = eC["0"][element][element2];
+				for (var key in tmp){
+					if(key!=='remove'){
+						for (var key2 in tmp[key]){
+							if(key2!=='remove'){
+								oObj[key2].push(tmp[key][key2]);
+							}
+						}
+					}
+				}
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					//for each column
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(tmpS==='*'){
+							if(typeof oObj1["overlayAddress"] === 'object'){
+								for (var key in oObj1["overlayAddress"]) {
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(oObj1["overlayAddress"][key]);
+									}
+								}
+							} else {
+								window[arrayN][1][popi].push(oObj1["overlayAddress"]);
+							}
+						} else {
+							//We use a try as sometimes the element is not present if not defined and this would cause an error (which we will ignore)
+							if(typeof oObj[tmpS] === 'object'){
+								for (var key in oObj[tmpS]) {
+									if(typeof oObj[blankA][key]!=='undefined'){
+										//This if means that if the blankA field is blank the row is ignored
+										if(key!=='remove'){
+											//Ignore last object (remove) as this is a function
+											window[arrayN][1][popi].push(oObj[tmpS][key]); 
+										}
+									}
+								}
+							} else {
+								//There is only one value but is it blank (indicating that we should ignore this value)
+								if(typeof oObj[blankA]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									window[arrayN][1][popi].push(oObj[tmpS]);
+								}
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+
+				pOTableA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4",
+						"c5",
+						"c6",
+						"c7",
+						"c8"
+					],
+					vals = [],
+					ref = "oT"
+				];
+				fieldL = [
+					"tableName", 
+					"tableGeom", 
+					"tableTitle", 
+					"selStyle", 
+					"recNo", 
+					"lower", 
+					"order_by", 
+					"geom_field"
+				];
+				element = 'table';
+				arrayN = 'pOTableA';
+				blankA = 'tableName'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pLoopsA = [
+					cols = [
+						"c1",
+						"c2"
+					],
+					vals = [],
+					ref = "tLo"
+				];
+				fieldL = [
+					"tableName", 
+					"tableCondition"
+				];
+				element = 'tableLoops';
+				arrayN = 'pLoopsA';
+				blankA = 'tableCondition'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pLookupA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4"
+					],
+					vals = [],
+					ref = "tL"
+				];
+				fieldL = [
+					"targetCol", 
+					"targetTable",
+					"replaceCol",
+					"replaceTable"
+				];
+				element = 'lookups';
+				arrayN = 'pLookupA';
+				blankA = 'targetCol'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pStatusA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4",
+						"c5"
+					],
+					vals = [],
+					ref = "tS"
+				];
+				fieldL = [
+					"statusValue", 
+					"statusAvail",
+					"statusText",
+					"statusTable",
+					"statusField"
+				];
+				element = 'status';
+				arrayN = 'pStatusA';
+				blankA = 'statusValue'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pExclusionA = [
+					cols = [
+						"c1",
+						"c2"
+					],
+					vals = [],
+					ref = "tE"
+				];
+				fieldL = [
+					"exclusion", 
+					"exclusionT"
+				];
+				element = 'exclusions';
+				arrayN = 'pExclusionA';
+				blankA = 'exclusions'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pDiscolA = [
+					cols = [
+						"c1",
+						"c2"
+					],
+					vals = [],
+					ref = "dC"
+				];
+				fieldL = [
+					"option", 
+					"optionT"
+				];
+				element = 'disable';
+				arrayN = 'pDiscolA';
+				blankA = 'disable'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				//Special case as this table is populated by two arrays
+				pOptionA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3",
+						"c4"
+					],
+					vals = [],
+					ref = "tO"
+				];
+				//Get array 1
+				fieldL = [
+					"optionsListOp", 
+					"optionListNo",
+					"optionsListCol", 
+					"optionsListColLoop"
+				];
+				element = 'optionsList';
+				element2 = 'oList1'; //Extra element here
+				var element3 = 'oList2'; //Extra element here
+				arrayN = 'pOptionA';
+				blankA = 'optionsListOp'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length-2;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][element2][tmpS] === 'object'){
+							for (var key in eC["0"][element][element2][tmpS]) {
+								if(typeof eC["0"][element][element2][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][element2][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][element2][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][element2][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				for(popi=1;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][element3][tmpS] === 'object'){
+							for (var key in eC["0"][element][element3][tmpS]) {
+								if(key!=='remove'){
+									//Ignore last object (remove) as this is a function
+									window[arrayN][1][popi].push(eC["0"][element][element3][tmpS][key]); 
+								}
+							}
+						} else {
+							window[arrayN][1][popi].push(eC["0"][element][element3][tmpS]);
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				pFExclusionA = [
+					cols = [
+						"c1"
+					],
+					vals = [],
+					ref = "fE"
+				];
+				fieldL = [
+					"functionEx"
+				];
+				element = 'functions';
+				arrayN = 'pFExclusionA';
+				blankA = 'functionEx'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				
+				//This is a special case as we need to reconstruct the simpler syntax
+				pStyleA = [
+					cols = [
+						"c1",
+						"c2",
+						"c3"
+					],
+					vals = [],
+					ref = "sC"
+				];
+				//Get the first value 
+				fieldL = [
+					"sLayer"
+				];
+				element = 'styleLayer';
+				arrayN = 'pStyleA';
+				blankA = 'styleTitles'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(key!=='remove'){
+									//Ignore last object (remove) as this is a function
+									window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+								}
+							}
+						} else {
+							window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				//Get the second value
+				fieldL = [
+					"style"
+				];
+				element = 'styles';
+				arrayN = 'pStyleA';
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(key!=='remove'){
+									//Ignore last object (remove) as this is a function
+									window[arrayN][1][popi+1].push(eC["0"][element][tmpS][key]); 
+								}
+							}
+						} else {
+							window[arrayN][1][popi+1].push(eC["0"][element][tmpS]);
+						}
+					} catch(error){
+						window[arrayN][1][popi+1].push('');
+					}
+				}
+				//Get the third value
+				fieldL = [
+					"sTitle"
+				];
+				element = 'styleTitles';
+				arrayN = 'pStyleA';
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi+2].push(eC["0"][element][tmpS][key]); 
+									}
+								} else {
+									//This is an odd case where we need to null the other values which may already exist
+									window[arrayN][1][popi].splice(window[arrayN][1][popi].length-1,1);
+									window[arrayN][1][popi+1].splice(window[arrayN][1][popi].length-1,1);
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi+2].push(eC["0"][element][tmpS]);
+							} else {
+								//This is an odd case where we need to null the other values which may already exist
+								window[arrayN][1][popi].splice(window[arrayN][1][popi].length-1,1);
+								window[arrayN][1][popi+1].splice(window[arrayN][1][popi].length-1,1);
+							}
+						}
+					} catch(error){
+						window[arrayN][1][popi+2].push('');
+					}
+				}
+				
+				//This is a special case as we need to reconstruct the simpler syntax
+				pPredefA = [
+					cols = [
+						"c1",
+						"c2"
+					],
+					vals = [],
+					ref = "pDm"
+				];
+				//Get the first value (this will be the predefined map title
+				fieldL = [
+					"option"
+				];
+				element = 'pdmArr';
+				arrayN = 'pPredefA';
+				blankA = 'option'; //This field defines whether this is a valid record or not
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(typeof eC["0"][element][blankA][key]!=='undefined'){
+									//This if means that if the blankA field is blank the row is ignored
+									if(key!=='remove'){
+										//Ignore last object (remove) as this is a function
+										window[arrayN][1][popi].push(eC["0"][element][tmpS][key]); 
+									}
+								}
+							}
+						} else {
+							if(typeof eC["0"][element][blankA]!=='undefined'){
+								//This if means that if the blankA field is blank the row is ignored
+								window[arrayN][1][popi].push(eC["0"][element][tmpS]);
+							}
+						}
+					} catch(error){
+						e=error;
+					}
+				}
+				//Get and manipulate the second value
+				fieldL = [
+					"option"
+				];
+				element = 'pdmFilter';
+				arrayN = 'pPredefA';
+				var filterFix;
+				//Logic to check for single value or array
+				for(popi=0;popi<fieldL.length;popi++){
+					window[arrayN][1].push([]);
+					tmpS = fieldL[popi];
+					try {
+						if(typeof eC["0"][element][tmpS] === 'object'){
+							for (var key in eC["0"][element][tmpS]) {
+								if(key!=='remove'){
+									if(typeof eC["0"][element][tmpS][key] === 'object'){
+										//This will be a blank
+										window[arrayN][1][1].push('');
+									} else {
+										//Ignore last object (remove) as this is a function
+										filterFix = eC["0"][element][tmpS][key].replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+										window[arrayN][1][1].push(filterFix); 
+									}
+								}
+							}
+						} else {
+							filterFix = eC["0"][element][tmpS].replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+							window[arrayN][1][1].push(filterFix);
+						}
+					} catch(error){
+						window[arrayN][1][1].push('');
+					}
+				}
+			}
+			
+			/*In both situations we will set up the form as blank before filling it in with existing options*/
+			//Set up the form here
+			fH = "<form id='setupForm'>";
+			//General map options
+			fH += "<div class='Fgeneral'><h4>General Map Options</h4>";
+			fH += "<span class='optH'>Map title:</span><span class='opt'><input type='text' id='mT' /></span><br />";
+			fH += "<span class='optH'>Relative URL to the map:</span><span class='opt'><input type='text' id='rURL' /></span><br />";
+			fH += "<span class='optH'>Map projection:</span><span class='opt'><select id='mP'><option value='27700' checked='checked'>27700 (OS National Grid)</option><option value='4326'>4326 (WGS 84 - Lat/Long)</option></select></span><br />";
+			fH += "<span class='optH'>Reproject from:</span><span class='opt'><input type='text' id='rF' /></span><br />";
+			fH += "<span class='optH'>Pan map on popup:</span><span class='opt'><select id='pMoP'><option value='True' checked='checked'>True</option><option value='False'>False</option></select></span><br />";
+			fH += "<span class='optH'>Popup as default:</span><span class='opt'><select id='pD'><option value='True' checked='checked'>True</option><option value='False'>False</option></select></span><br />";
+			fH += "<span class='optH'>What type of legend do you require:</span><span class='opt'><select id='legendT'><option value='standard' checked='checked'>Standard Legend</option><option value='selectL'>Selectable Layers</option><option value='selectS'>Selectable Styles</option></select></span><br />";
+			fH += "<span class='optH'>Full data downloads:</span><span class='opt'><select id='fDd'><option value='True' checked='checked'>True</option><option value='False'>False</option></select></span><br />";
+			fH += "<span class='optH'>Licence Statement:</span><span class='opt'><input type='text' size='100' id='lS' value='&#169; Crown Copyright 100019672 {Year} | &#169; Reading Borough Council {Year}'/></span><br />";
+			fH += "<span class='optH'>Relative URL to the WFS editable layers:</span><span class='opt'><input type='text' id='rURLwfs' /></span><br />";
+			fH += "<span class='optH'>Relative URL to the WMS base:</span><span class='opt'><input type='text' id='rURLwms' /></span><br />";
+			fH += "<span class='optH'>Include a photo carousel:</span><span class='opt'><select id='pC'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
+			fH += "<span class='optH'>Carousel fieldname:</span><span class='opt'><input type='text' id='pCf' /></span><br />";
+			fH += "</div>";
+			//Toolbar options
+			fH += "<div class='Ftoolbar'><h4>Toolbar Options</h4>";
+			fH += "<span class='optH'>Include attributes table:</span><span class='opt'><select id='iAt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
+			fH += "<span class='optH'>Include popup bubble switch:</span><span class='opt'><select id='iPbS'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
+			fH += "<span class='optH'>Include selection tool:</span><span class='opt'><select id='iSt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
+			fH += "<span class='optH'>Include measurement tool:</span><span class='opt'><select id='iMt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
+			fH += "<span class='optH'>Include editing tools:</span><span class='opt'><select id='iEt'><option value='True'>True</option><option value='False' checked='checked'>False</option></select></span><br />";
+			fH += "<span class='optH'>Active Table (for Editing):</span><span class='opt'><input type='text' id='aT' /></span><br />";
+			fH += "<span class='optH'>Active tool:</span><span class='opt'><input type='text' id='aTo' value='3' /></span><br />";
+			fH += "</div>";
+			//Start of Multiple Option Area
+			//Overlays
+			fH += "<div class='Foverlay'><h4>Layers</h4>";
+			fH += "<table id='pLayer'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th><a onclick='addRow(\"pLayer\",\"pLr0\")'><span class='add'>+</span></a></th><th id='pLr0c1'>Layer Name</th><th id='pLr0c2'>Relative URL to WMS</th><th id='pLr0c3'>User Friendly Title</th><th id='pLr0c4'>Display in Layer Switcher</th><th id='pLr0c5'>Visible When Map Loads</th><th id='pLr0c6'>Projection</th><th id='pLr0c7'>Display Outside Maximum Extent</th><th id='pLr0c8'>User Friendly Title for Downloads</th><th id='pLr0c9'>Style Definition</th><th id='pLr0c10'>Cache Layer</th><th id='pLr0c11'>Transparent</th><th id='pLr0c12'>Environment Variable</th></tr></table>";
+			fH += "</div>";
+			//Popups and Hovers
+			fH += "<div class='Fpophov'><h4>Popups and Hover</h4>";
+			fH += "<table id='pPopHov'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='pUhr0c1'>Layer</th><th id='pUhr0c2'>Enable Popups</th><th id='pUhr0c3'>Relative URL to Popup Template</th><th id='pUhr0c4'>Popup Width</th><th id='pUhr0c5'>Popup Height</th><th id='pUhr0c6'>Relative URL to Hover Template</th><th id='pUhr0c7'>Hover Width</th><th id='pUhr0c8'>Hover Height</th></tr></table>";
+			fH += "</div>";
+			//Zoom on Click
+			fH += "<div class='Fzoom'><h4>Zoom on Click Settings</h4>";
+			fH += "<table id='pZoom'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='pZr0c1'>Layer</th><th id='pZr0c2'>Zoom on Click</th><th id='pZr0c3'>Zoom to Fixed Level</th><th id='pZr0c4'>Zoom to Selection Based On Field</th><th id='pZr0c5'>Table Containing Field</th><th id='pZr0c6'>Field Name</th></tr></table>";
+			fH += "</div>";
+			//WFS Settings
+			fH += "<div class='Fwfs'><h4>WFS Settings</h4>";
+			fH += "<table id='pWFS'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='pWFSr0c1'>Layer</th><th id='pWFSr0c2'>Layer Type</th><th id='pWFSr0c3'>Associated Database Table</th><th id='pWFSr0c4'>Associated WFS Layer Name</th><th id='pWFSr0c5'>Relative URL to WFS</th><th id='pWFSr0c6'>Display WFS in Layer Switcher</th><th id='pWFSr0c7'>Projection</th><th id='pWFSr0c8'>WFS Namespace</th><th id='pWFSr0c9'>Geometry Fieldname</th></tr></table>";
+			fH += "</div>";
+			//Table Options
+			fH += "<div class='Ftable'><h4>Table Options</h4>";
+			fH += "<table id='pOTable'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th><a onclick='addRow(\"pOTable\",\"oTr0\")'><span class='add'>+</span></a></th><th id='oTr0c1'>Table Name</th><th id='oTr0c2'>Is there a Geometry Field?</th><th id='oTr0c3'>User Friendly Name</th><th id='oTr0c4'>Selection Style</th><th id='oTr0c5'>Columns to Display</th><th id='oTr0c6'>Start at Row</th><th id='oTr0c7'>Order by Field</th><th id='oTr0c8'>Geometry Field</th></tr></table>";
+			fH += "</div>";
+			//Permitted Users
+			fH += "<div class='Fusers'><h4>Permitted Users</h4>";
+			fH += "<table id='pUsers'><col class='col1' /><col class='col2' /><tr><th id='pUr0c1'>Username</th><th><a onclick='addRow(\"pUsers\",\"pUr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Base Maps
+			fH += "<div class='Fbase'><h4>Base Maps</h4>";
+			fH += "<table id='pBase'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='bMr0c1'>Layer</th><th id='bMr0c2'>User Friendly Name</th><th><a onclick='addRow(\"pBase\",\"bMr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Function Exclusion
+			fH += "<div class='Ffexclusion'><h4>Function Exclusions</h4>";
+			fH += "<table id='pFExclusion'><col class='col1' /><col class='col2' /><tr><th id='fEr0c1'>Function Name</th><th><a onclick='addRow(\"pFExclusion\",\"fEr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Predefined Maps
+			fH += "<div class='Fpredef'><h4>Predefined Maps</h4>";
+			fH += "<table id='pPredef'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='pDmr0c1'>Option Title</th><th id='pDmr0c2'>Criteria String</th><th><a onclick='addRow(\"pPredef\",\"pDmr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Style Choices
+			fH += "<div class='Fstyle'><h4>Style Choices</h4>";
+			fH += "<table id='pStyle'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='sCr0c1'>Layer</th><th id='sCr0c2'>SLD Name</th><th id='sCr0c3'>User Friendly Name</th><th><a onclick='addRow(\"pStyle\",\"sCr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Lookup (from another table)
+			fH += "<div class='Flookup'><h4>Lookups (from another table)</h4>";
+			fH += "<table id='pLookup'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tLr0c1'>Column to Replace</th><th id='tLr0c2'>From Table</th><th id='tLr0c3'>Replace with Column</th><th id='tLr0c4'>From Table</th><th><a onclick='addRow(\"pLookup\",\"tLr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Option Lists
+			fH += "<div class='Foption'><h4>Option Lists</h4>";
+			fH += "<table id='pOption'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tOr0c1'>Options</th><th id='tOr0c2'>List Number</th><th id='tOr0c3'>Column Name</th><th id='tOr0c4'>List Number</th><th><a onclick='addRow(\"pOption\",\"tOr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Status Options
+			fH += "<div class='Fstatus'><h4>Status Options</h4>";
+			fH += "<table id='pStatus'><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><col class='col1' /><col class='col2' /><tr><th id='tSr0c1'>Status Value</th><th id='tSr0c2'>Available?</th><th id='tSr0c3'>User Friendly Text</th><th id='tSr0c4'>Table to which this applies</th><th id='tSr0c5'>Status Field Name</th><th><a onclick='addRow(\"pStatus\",\"tSr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Table Exclusions
+			fH += "<div class='Ftexclusion'><h4>Table Exclusions</h4>";
+			fH += "<table id='pExclusion'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tEr0c1'>Field Name</th><th id='tEr0c2'>Table Name</th><th><a onclick='addRow(\"pExclusion\",\"tEr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Table Disabled Columns
+			fH += "<div class='Fdiscol'><h4>Table Disabled Columns</h4>";
+			fH += "<table id='pDiscol'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='dCr0c1'>Field Name</th><th id='dCr0c2'>Table Name</th><th><a onclick='addRow(\"pDiscol\",\"dCr0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			//Table Loops
+			fH += "<div class='Floops'><h4>Table Loops</h4>";
+			fH += "<table id='pLoops'><col class='col1' /><col class='col2' /><col class='col1' /><tr><th id='tLor0c1'>Table Name</th><th id='tLor0c2'>Condition</th><th><a onclick='addRow(\"pLoops\",\"tLor0\")'><span class='add'>+</span></a></th></tr></table>";
+			fH += "</div>";
+			fH += "</form>";
+			$('#configForm').html(fH);
+			
+			//Setup the form footer
+			fF = "Mapping tools designed by PBA LLP on Behalf of RBC <span class='saveB'><input type='button' onclick='saveConfig()' value='Save Configuration' /></span>";
+			$('#pageFooter').html(fF);
+			
+			//OK, if this is an already configured map we need to load the options
+			if (eC.configuredMap!==''){
+				//This is a configured map
+				
+				//OK we need to sort out a lookup array to let us parse the config object into the corresponding html elements on the form as these are 
+				//automatically generated id references based on the table in question.
+				oR = {"R" : [
+					//The R (Reference) section provides the key for each value
+					eC["0"].other.appTitle, 
+					eC["0"].other.projectPath, 
+					eC["0"].other.proj, 
+					eC["0"].other.projMap, 
+					eC["0"].other.reproject, 
+					eC["0"].other.projMap2, 
+					eC["0"].other.wfsedits, 
+					eC["0"].other.wmsbase, 
+					eC["0"].other.popupPan, 
+					eC["0"].other.popupDefault, 
+					eC["0"].other.attribute, 
+					eC["0"].other.edits, 
+					eC["0"].other.active_table, 
+					eC["0"].other.ddFull, 
+					eC["0"].other.photoscroll, 
+					eC["0"].other.photoscrollpath, 
+					eC["0"].other.licence, 
+					eC["0"].other.Gog, 
+					eC["0"].other.legendtree, 
+					eC["0"].other.selectlegendtree,
+					"ec.mD.users[*1*]",
+					"eC.tB.actionType[1]", 
+					"eC.tB.actionTitle[1]", 
+					"eC.tB.actionArr:[1]", 
+					"eC.tB.actionCls[1]", 
+					"eC.tB.actionGroup[1]", 
+					"eC.tB.actionText[1]", 
+					"eC.tB.actionHandler[1]", 
+					"eC.tB.toolIn[1]",
+					"eC.mL.basemaps[*2*]",
+					"eC.mL.overlay[*12*]",
+					"eC.mL.overlay2[*8*]",
+					"eC.mL.overlay3[*5*]",
+					"eC.mL.wfs[*9*]",
+					"eC.tD.table[*8*]",
+					"eC.tD.tableLoops[*2*]",
+					"eC.tD.lookup[*4*]",
+					"eC.tD.options.oList", 
+					"eC.tD.status[*5*]",
+					"eC.tD.exclusions[*2*]",
+					"eC.tD.discols[*2*]",
+					"eC.oS.styles", 
+					"eC.oS.funcEx[*1*]",
+					"eC.oS.pdm[*1*]",
+				],
+				"H" : [
+					//The H array provides the documentID in terms of HTML for each R item
+					//Where there is no field there will be a '-'
+					//In some cases there will be an add line function - Where the number represents the number of columns
+					"mT", 
+					"rURL", 
+					"mP", 
+					"-", 
+					"-", 
+					"rF", 
+					"rURLwfs", 
+					"rURLwms", 
+					"pMoP", 
+					"pD", 
+					"iAt", 
+					"iEt", 
+					"aT", 
+					"fDd", 
+					"pC", 
+					"pCf", 
+					"lS", 
+					"-",
+					"tooltypes|legendT|legend1",
+					"tooltypes|legendT|legend2",
+					"addLine|pUsers|1",
+					"-", 
+					"tooltypes|eC.tB.actionTitle|type", 
+					"-", 
+					"-", 
+					"-", 
+					"-", 
+					"-", 
+					"tooltypes|eC.tB.toolIn|active",
+					"addLine|pBase|2",
+					"addLine|pLayer|12",
+					"addLine|pPopHov|8",
+					"addLine|pZoom|5",
+					"addLine|pWFS|9",
+					"addLine|pOTable|8",
+					"addLine|pLoops|2",
+					"addLine|pLookup|4",
+					"addLine|pOption|4", 
+					"addLine|pStatus|5",
+					"addLine|pExclusion|2",
+					"addLine|pDiscol|2",
+					"addLine|pStyle|3", 
+					"addLine|pFExclusion|1",
+					"addLine|pPredef|2"
+				]};
+				
+				//Loop through the object and run the required functions
+				var callLen = oR.R.length;
+				var rA, hA, hO, selOpt, funcRef;
+				for(i=0;i<callLen;i++){
+					rA = oR.R;
+					hA = oR.H;
+					if(hA[i].indexOf("|")!==-1){
+						//This is a function run
+						funcRef = hA[i].split("|");
+						if(funcRef[0]==='addLine'){
+							//This function call has two inputs
+							addLine(funcRef[1],parseInt(funcRef[2]));
+						} else if (funcRef[0]==='tooltypes') {
+							//This function call has two inputs
+							tooltypes(funcRef[1],funcRef[2]);
+						}
+					} else if (hA[i]!=='-'){
+						//This is a regular value update but is it an input or a select?
+						hO = document.getElementById(hA[i]);
+						if (hO !== null){
+							if (hO.type === 'select-one'){
+								//This is a select option so we need to work out which value to select
+								selOpt = '';
+								for(i2=0;i2<hO.options.length;i2++){
+									if(hO.options[i2].value === rA[i]){
+										selOpt = i2;
+									}
+								}
+								if (selOpt!==''){
+									hO.selectedIndex = selOpt;
+								} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
+							} else if (hO.type === 'text'){
+								//This is a standard input text box so we can simply write in the value
+								if (typeof rA[i] === 'undefined'){
+									hO.value = '';
+								} else if (typeof rA[i] === 'object'){
+									hO.value = '';
+								} else {
+									hO.value = rA[i];
+								}
+							}
+						}
+					} //If it is a '-' then we ignore it
+				}
+			}
 		}
 	}
 }
@@ -1514,11 +1726,19 @@ function addRow(table, currRow){
 			$(updateTab).after(window[table].replace(/`/g,TabNo));
 			
 			//Update the first record
-			$('#sCr1c1').text('overlay0');
+			if($('#pLr1c1').length!==1){
+				$('#sCr1c1').html('<select id="sCsel-1"><option value="overlay0" selected="selected">ERROR, Please add a layer first!</option></select>');
+			} else {
+				$('#sCr1c1').html('<select id="sCsel-1"><option value="overlay0" selected="selected">' + $('#pLr1c1').text() + '</option></select>');
+			}
 			$('#sCr1c2').text('');
 			$('#sCr1c3').text('Default Style');
 		}
 	}
+	//We may have added a row so we need to reset the row numbers here (no change should result in the same values)
+	updateTab = '#'+ table + ' tr:last';
+	TabNo = '#' + table + ' tr';
+	TabNo = $(TabNo).length;
 	
 	//We then add a new row to the table in form style
 	$(updateTab).after(window[table].replace(/`/g,TabNo));
@@ -1584,7 +1804,7 @@ function addRow(table, currRow){
 	});
 }
 
-var l1, l2, l3;
+var l1, l2, l3, l4, l5;
 function layerHandle(val, id){
 	var handle = ['pUhsel', 'pZsel', 'pWFSsel', 'sCsel'];
 	var handleP1 = ['pUhr', 'pZr', 'pWFSr', 'sCr'];
@@ -1593,47 +1813,49 @@ function layerHandle(val, id){
 	}
 	var tableHandle = ['#pPopHov tr', '#pZoom tr', '#pWFS tr', '#pStyle tr'];
 	var handleType = ['v','v','v','s'];
-	var tdHandle, v, t, layerSelHTML, TabNo, id2, selectId;
+	var tdHandle, v, t, layerSelHTML, TabNo, id2, selectId, selObj, selVal, tmpVal, selInd;
 	for (l1=0;l1<handle.length;l1++){
 		TabNo = $(tableHandle[l1]).length;
 		id2 = handleP1[l1] + id;
 		for (l2=0;l2<TabNo;l2++){
 			if(l2!==0){
 				if(handleType[l1]==='s'){
-					/*tdHandle = handleP1[l1] + l2 + 'c1';
-					selectId = handle[l1] + "-" + l2;
-					layerSelHTML = '<select id="' + selectId + '">';
-					if (conLayers.length===0){
-						layerSelHTML += '<option value"">Please Add Layers First</option>'; 
-					} else {
-						selOpt = document.getElementById(window[selectId]).options.selectedIndex;
-						if(selOpt===-1){
-							v = "";
-							t = "";
-						} else {
-							sv = document.getElementById(window[selectId]).options[selOpt].value;
-							st = document.getElementById(window[selectId]).options[selOpt].text;
-							if (st==='Please Add Layers First' || st===''){
-								v = "";
-								t = "";
-							} else {
-								v = sv;
-								t = st;
+					//Loop through rows in Style Choice table
+					l5 = 0;
+					$('#pStyle tr').each(function() {
+						if (l5!==0){
+							//Pickup the existing select option and get the selected value
+							selectId = handle[l1] + "-" + l5;
+							selObj = $('#' + selectId);
+							selVal = selObj.text()
+							
+							//Recreate the select based layers table
+							layerSelHTML = '<select id="' + selectId + '">';
+							for(l4=0;l4<($('#pLayer tr').length-1);l4++){
+								tmpVal = $('#pLr'+(l4+1)+'c1').text();
+								layerSelHTML += '<option value="overlay' + l4 + '">' + tmpVal + '</option>';
 							}
-						}
-						for(l3=0;l3<conLayers.length;l3++){
-							if(conLayers[l3]!=='Click to edit' || conLayers[l3]!=='Save'){
-								//Add this option
-								if (conLayers[l3]===v){
-									layerSelHTML += '<option value"' + v + '" selected="selected">' + t + '</option>';
-								} else {
-									layerSelHTML += '<option value"' + conLayers[l3] + '">' + conLayersT[l3] + '</option>'; 
+							layerSelHTML += '</select>';
+							tdHandle = handleP1[l1] + l5 + 'c1';
+							tdHandle = $('#' + tdHandle);
+							tdHandle.html(layerSelHTML);
+							
+							//Pickup the new select options loop through and reselect as required
+							selObj = $('#' + selectId);
+							selInd = '';
+							l4 = 0;
+							selObj.each(function() {
+								if(this.text===selVal){
+									selInd = l4;
 								}
-							}
-						}
-					}
-					layerSelHTML += '</select>';
-					document.getElementById(tdHandle).innerHTML = layerSelHTML; */
+								l4 = l4 + 1;
+							});
+							if (selInd!==''){
+								selObj.prop('selectedIndex', selInd);
+							} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
+						} //Skip over the header row
+						l5 = l5 + 1;
+					});
 				} else {
 					if (typeof val!=='undefined'){
 						tdHandle = handleP1[l1] + l2 + 'c1';
@@ -1876,9 +2098,11 @@ function saveConfig(){
 		if(tool[i]===1 || tool[i]===2){
 			if (tool[i]===1){
 				toolCount = toolCount + 1;
-			}
-			if (toolCount+1===parseInt($('#aTo').val())){
-				oXML += '      ' + toolIn[i] + '1</option>\n';
+				if (toolCount===parseInt($('#aTo').val())){
+					oXML += '      ' + toolIn[i] + '1</option>\n';
+				} else {
+					oXML += '      ' + toolIn[i] + '0</option>\n';
+				}
 			} else {
 				oXML += '      ' + toolIn[i] + '0</option>\n';
 			}

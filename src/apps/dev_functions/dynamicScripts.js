@@ -2010,92 +2010,94 @@ function updateFilters(filterstr,layerNam){
 function pdmF(iteration) {
 	//Filter name is stored in pdmArr, CQL filter is stored in pdmFilter and the URL filter in pdmUFilter
 	var filterstr, filterArr;
-	filterArr = pdmFilter[iteration].split('|');
-	var loopLess = 0;
-	var logicT = '';
-	if (filterArr[0]=='AND'){
-		//AND
-		logicT = '&&';
-		loopLess = 1;
-	} else if (filterArr[0]=='NOT') {
-		//NOT
-		logicT = '!';
-		loopLess = 1;
-	} else if (filterArr[0]=='OR') {
-		//OR
-		logicT = '||';
-		loopLess = 1;
-	}
-	if (loopLess!=0){
-		//This is a multiple filter
-		filterstr = new OpenLayers.Filter.Logical({
-			type: logicT,
-			filters: []
-		});
+	if(typeof pdmFilter[iteration]!=='undefined'){
+		filterArr = pdmFilter[iteration].split('|');
+		var loopLess = 0;
+		var logicT = '';
+		if (filterArr[0]=='AND'){
+			//AND
+			logicT = '&&';
+			loopLess = 1;
+		} else if (filterArr[0]=='NOT') {
+			//NOT
+			logicT = '!';
+			loopLess = 1;
+		} else if (filterArr[0]=='OR') {
+			//OR
+			logicT = '||';
+			loopLess = 1;
+		}
+		if (loopLess!=0){
+			//This is a multiple filter
+			filterstr = new OpenLayers.Filter.Logical({
+				type: logicT,
+				filters: []
+			});
 
-		//OK we have now set up the logical, we now need to loop through the rest
-		i = loopLess;
-		while (i<filterArr.length){
+			//OK we have now set up the logical, we now need to loop through the rest
+			i = loopLess;
+			while (i<filterArr.length){
+				//What type of filter?
+				if (filterArr[i+1]=='..'){
+					//Between
+					var tmpObj = new OpenLayers.Filter.Comparison({
+						type:filterArr[i+1],
+						property:filterArr[i],
+						lowerBoundary:filterArr[i+2],
+						upperBoundary:filterArr[i+3]
+					});
+					filterstr.filters.push(tmpObj);
+					i = i+4;
+				} else {
+					//Value
+					var tmpObj = new OpenLayers.Filter.Comparison({
+						type:filterArr[i+1],
+						property:filterArr[i],
+						value:filterArr[i+2]
+					});
+					filterstr.filters.push(tmpObj);
+					i = i+3;
+				}
+			}
+		} else {
 			//What type of filter?
-			if (filterArr[i+1]=='..'){
+			if (filterArr[1]=='..'){
 				//Between
-				var tmpObj = new OpenLayers.Filter.Comparison({
-					type:filterArr[i+1],
-					property:filterArr[i],
-					lowerBoundary:filterArr[i+2],
-					upperBoundary:filterArr[i+3]
+				filterstr = new OpenLayers.Filter.Comparison({
+					type:filterArr[1],
+					property:filterArr[0],
+					lowerBoundary:filterArr[2],
+					upperBoundary:filterArr[3]
 				});
-				filterstr.filters.push(tmpObj);
-				i = i+4;
 			} else {
-				//Value
-				var tmpObj = new OpenLayers.Filter.Comparison({
-					type:filterArr[i+1],
-					property:filterArr[i],
-					value:filterArr[i+2]
+				//This is a single filter
+				filterstr = new OpenLayers.Filter.Comparison({
+					type:filterArr[1],
+					property:filterArr[0],
+					value:filterArr[2]
 				});
-				filterstr.filters.push(tmpObj);
-				i = i+3;
 			}
 		}
-	} else {
-		//What type of filter?
-		if (filterArr[1]=='..'){
-			//Between
-			filterstr = new OpenLayers.Filter.Comparison({
-				type:filterArr[1],
-				property:filterArr[0],
-				lowerBoundary:filterArr[2],
-				upperBoundary:filterArr[3]
-			});
+
+		if (OpenLayers.String.trim(pdmFilter[iteration]) != "") {
+			// merge the new filter definitions
+			updateFilters(filterstr,'all');
+			//mergeNewParams(filterParams, '', 'all');
 		} else {
-			//This is a single filter
-			filterstr = new OpenLayers.Filter.Comparison({
-				type:filterArr[1],
-				property:filterArr[0],
-				value:filterArr[2]
-			});
+			// remove filters
+			filterstr = new OpenLayers.Filter.Comparison({type: '', property:'', value:''});
+			updateFilters(filterstr,'all');
+			//mergeNewParams(filterParams, '', 'all');
 		}
-	}
 
-	if (OpenLayers.String.trim(pdmFilter[iteration]) != "") {
-		// merge the new filter definitions
-		updateFilters(filterstr,'all');
-		//mergeNewParams(filterParams, '', 'all');
-	} else {
-		// remove filters
-		filterstr = new OpenLayers.Filter.Comparison({type: '', property:'', value:''});
-		updateFilters(filterstr,'all');
-		//mergeNewParams(filterParams, '', 'all');
-	}
-
-	//Then we apply it to the table
-	if (pdmUFilter[iteration] == ""){
-		document.getElementById('filterS').value = "";
-		updateTable();
-	} else {
-		document.getElementById('filterS').value = pdmUFilter[iteration] ;
-		updateTable();
+		//Then we apply it to the table
+		if (pdmUFilter[iteration] == ""){
+			document.getElementById('filterS').value = "";
+			updateTable();
+		} else {
+			document.getElementById('filterS').value = pdmUFilter[iteration] ;
+			updateTable();
+		}
 	}
 
 	searchRecStyle(table);
