@@ -1,0 +1,160 @@
+/*This stylesheet controls the look and feel of the map administration pages
+  - # is by id and . is by class  */
+#header{
+	background-color: #BEAEFF;
+	padding:10px;
+}
+
+#pageHeader{
+	background-color: #3300FF;
+	color: white;
+	padding:10px;
+}
+
+.saveB{
+	float: right;
+}
+
+body{
+	background-color: #CCCCFF;
+}
+
+.Fgeneral {
+	position: relative;
+	float: left;
+	padding:10px;
+	width: 65%;
+	margin: 1px;
+	height: 300px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+	background-color: #A8D3FF;
+	/*background-color: #C4E1FF;*/
+	border: 2px solid;
+	border-color: #3366FF;
+}
+
+.Ftoolbar{
+	position: relative;
+	float: left;
+	margin: 1px;
+	width: 25%;
+	height: 300px;
+	padding:10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+	background-color: #A8D3FF;
+	/*background-color: #C4E1FF;*/
+	border: 2px solid;
+	border-color: #3366FF;
+}
+
+table {
+	width: 98%;
+	border: 1px solid;
+	border-color: #3366FF;
+}
+
+table th{
+	border: 1px dotted;
+	border-color: #3366FF;
+	font-weight: bold;
+	white-space: nowrap;
+	padding: 2px;
+}
+
+table td{
+	border: 1px dotted;
+	border-color: #3366FF;
+	white-space: nowrap;
+	padding: 2px;
+}
+
+.col1{
+	background-color: #D7E1FF;
+}
+
+.col2{
+	background-color: #BFCFFF;
+}
+
+.Foverlay{
+	clear:both;
+	padding:10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+	background-color: #95AFFF;
+	border: 2px solid;
+	border-color: #3366FF;
+	margin: 1px;
+}
+
+.Fusers{
+	clear:both;
+	padding:10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+	background-color: #95AFFF;
+	border: 2px solid;
+	border-color: #3366FF;
+	margin: 1px;
+}
+
+.Flookup{
+	clear:both;
+	padding:10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+	background-color: #95AFFF;
+	border: 2px solid;
+	border-color: #3366FF;
+	margin: 1px;
+}
+
+.Fusers, .Fstatus, .Ftexclusion, .Floops, .Fpredef, .Fbase, .Fstyle, .Foption, .Ftable, .Fdiscol, .Ffexclusion, .Fpophov, .Fzoom, .Fwfs {
+	position: relative;
+	float: left;
+	padding:10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+	background-color: #95AFFF;
+	border: 2px solid;
+	border-color: #3366FF;
+	margin: 1px;
+}
+
+.add{
+	text-align: center;
+	background-color: #33CC66;
+	border: 1px solid;
+	border-color: #009966;
+	margin: 1px;
+	display: block;
+}
+
+.add:hover{
+	text-align: center;
+	background-color: #339966;
+	border: 1px solid;
+	border-color: #33CC66;
+	margin: 1px;
+	display: block;
+}
+
+#pageFooter{
+	clear: both;
+	background-color: #BEAEFF;
+	padding:10px;
+}

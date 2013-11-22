@@ -62,7 +62,7 @@ function pageSetup(){
 	
 	//Load the permitted users here
 	var loginDetails;
-	tmpURL = "../../apps/admin_functions/users.php";
+	tmpURL = "../../apps/dev_admin_functions/users.php";
 	var userArray2 = $.ajax({
 		type: 'POST',
 		url: tmpURL,
@@ -105,7 +105,7 @@ function pageSetup2(){
 			textStr += " is not authorised to view this content. <br /> If you have logged in as the wrong user you may log out using the button below and refresh the page to try again.</p><br /> <p align=\"center\"><input type='button' value='Logout' onclick='logItOut()' /></p><br /><p align=\"center\">If you believe this username should have access to this content please contact the GIS server management team.</p>";
 			document.getElementById("configForm").innerHTML = textStr;
 		} else {
-			tmpURL = "../../apps/admin_functions/existinggrab.php";
+			tmpURL = "../../apps/dev_admin_functions/existinggrab.php";
 			eC = $.ajax({
 				type: 'POST',
 				url: tmpURL,
@@ -3260,7 +3260,7 @@ function saveConfig(){
 	oXML += '</settings>';
 	oXML = oXML.replace(/Click to edit/g,"");
 	//alert(oXML);
-	tmpURL = "../../apps/admin_functions/configsetter.php";
+	tmpURL = "../../apps/dev_admin_functions/configsetter.php";
 	$.post(tmpURL, {xml: oXML, loc: locStr})
 		.done(function() {
 			alert( "Config File Created, to return to the admin page you need to type admin.html in the map URL");

@@ -45,6 +45,238 @@ function dynaScriptToggleCols(dir, colNo, maxCol, tableNo) {
 	SetUpToggleCols(dir, colNo, maxCol, tableNo);
 }
 
+function tableAction(headID){
+	//This function controls the image rollover
+		//The currCls may look like T0back and will contain -dis for a disabled tool
+		//The headID may look like T0colH1
+	var currCls = headID.attr("class");
+	if (currCls.indexOf("-dis")===-1){
+		//If not disabled, we run the rollover
+		//We need the table number
+		var tbNum = currCls.substring(0,2);
+		//We also need the current image
+		currCls = headID.css( "background-image" ); //This is now the image url
+		
+		//Now we can reset the css
+		if (currCls.indexOf("left-edge2")!==-1){
+			//The class is left-edge2
+			currCls = currCls.replace("left-edge2","left-edge");
+			$("td." + tbNum + "back").css( "background-image", currCls );
+		} else if (currCls.indexOf("left-edge")!==-1){
+			//The class is left-edge
+			currCls = currCls.replace("left-edge","left-edge2");
+			$("td." + tbNum + "back").css( "background-image", currCls );
+		} else if (currCls.indexOf("right-edge2")!==-1){
+			//The class is right-edge2
+			currCls = currCls.replace("right-edge2","right-edge");
+			$("td." + tbNum + "forward").css( "background-image", currCls );
+		} else if (currCls.indexOf("right-edge")!==-1){
+			//The class is right-edge
+			currCls = currCls.replace("right-edge","right-edge2");
+			$("td." + tbNum + "forward").css( "background-image", currCls );
+		}
+	}
+}
+
+//This is an array which determines the active tools where zero is not active and one is active
+var eTAdefault = {"21": 1, "22": 1, "23": 1, "24": 1, "30": 1, "31": 0, "32": 0, "33": 0, "34": 0, "35": 0, "36": 0, "37": 0, "38": 0, "29": 0, "210": 0, "saveEdits": 0};
+var eTAon = {"21": 1, "22": 1, "23": 1, "24": 1, "30": 1, "31": 1, "32": 1, "33": 0, "34": 0, "35": 0, "36": 0, "37": 0, "38": 0, "29": 0, "210": 0, "saveEdits": 0};
+var eTApoint = {"21": 1, "22": 1, "23": 1, "24": 1, "30": 1, "31": 1, "32": 1, "33": 0, "34": 1, "35": 0, "36": 0, "37": 0, "38": 1, "29": 0, "210": 0, "saveEdits": 1};
+var eTAline = {"21": 1, "22": 1, "23": 1, "24": 1, "30": 1, "31": 1, "32": 1, "33": 0, "34": 1, "35": 1, "36": 0, "37": 0, "38": 1, "29": 0, "210": 0, "saveEdits": 1};
+var eTApolygon = {"21": 1, "22": 1, "23": 1, "24": 1, "30": 1, "31": 1, "32": 1, "33": 0, "34": 1, "35": 1, "36": 1, "37": 1, "38": 1, "29": 1, "210": 1, "saveEdits": 1};
+var eTA = eTAdefault;
+var eTAtype = ''; 
+function rollover(element, type){
+	//This function controls general image button roll-overs
+	
+	//Sometimes we have a JQuery element rather than a DOM element, check here
+	var srcStr;
+	if (element === 'JQ-NONE') {
+		//Switch off the previous selection
+		var oldSelection = $('img[src*="a3."]');
+		if (oldSelection.length>0){
+			oldSelection = $('img[src*="a3."]').attr('src');
+			$('img[src*="a3."]').attr('src', oldSelection.replace("a3.","a1."));
+		}
+				
+		//Toggle No Tool option
+		if ($('img[src*="none-a1."]').length!==0){
+			srcStr = $('img[src*="none-a1."]').attr('src', $('img[src*="none-a1."]').attr('src').replace("a1.","a3."));
+		} else if ($('img[src*="none-a2."]').length!==0) {
+			srcStr = $('img[src*="none-a2."]').attr('src', $('img[src*="none-a2."]').attr('src').replace("a2.","a3."));
+		}
+	} else {
+		srcStr = element.src;
+		if (type==='roll'){
+			if (srcStr.indexOf("-a1.")!==-1){
+				//We have an A1 image
+				element.src = srcStr.replace("a1.","a2.");
+			} else if (srcStr.indexOf("-a2.")!==-1){
+				//We have an A2 image
+				element.src = srcStr.replace("a2.","a1.");	
+			} //If the image is A3 we do nothing as only click events change this image button type
+			//We also don't do a roll over for B1 images as these are disabled buttons
+		} else if (type==='sticky'){
+			//This simply runs a hover effect
+			if (srcStr.indexOf("-c1.")!==-1){
+				element.src = srcStr.replace("c1.","c2.");
+			} else if (srcStr.indexOf("-c2.")!==-1){
+				element.src = srcStr.replace("c2.","c1.");
+			} else if (srcStr.indexOf("-c3.")!==-1){
+				element.src = srcStr.replace("c3.","c4.");
+			} else if (srcStr.indexOf("-c4.")!==-1){
+				element.src = srcStr.replace("c4.","c3.");
+			}
+		} else if (type==='sticky-click'){
+			//This switches between C1&2 and C3&4
+			if (srcStr.indexOf("-c1.")!==-1){
+				element.src = srcStr.replace("c1.","c3.");
+			} else if (srcStr.indexOf("-c2.")!==-1){
+				element.src = srcStr.replace("c2.","c3.");
+			} else if (srcStr.indexOf("-c3.")!==-1){
+				element.src = srcStr.replace("c3.","c1.");
+			} else if (srcStr.indexOf("-c4.")!==-1){
+				element.src = srcStr.replace("c4.","c1.");
+			}
+		} else if (type==='type'){
+			//This simply runs a hover effect for the type selectors
+			if (srcStr.indexOf("-d1.")!==-1){
+				element.src = srcStr.replace("d1.","d2.");
+			} else if (srcStr.indexOf("-d2.")!==-1){
+				element.src = srcStr.replace("d2.","d1.");
+			} else if (srcStr.indexOf("-d3.")!==-1){
+				element.src = srcStr.replace("d3.","d4.");
+			} else if (srcStr.indexOf("-d4.")!==-1){
+				element.src = srcStr.replace("d4.","d3.");
+			}
+		} else if (type==='type-click'){
+			//We need to unselect the mode then reselect
+			var oldSelection = $('img[src*="d3."]');
+			//Switch off the previous selection
+			if (oldSelection.length!==0){
+				$('img[src*="d3."]').attr('src', oldSelection.attr('src').replace("d3.","d1."));
+			} //If not found; there is no currently selected record to remove
+
+			oldSelection = $('img[src*="d4."]');
+			if (oldSelection.length!==0){
+				$('img[src*="d4."]').attr('src', oldSelection.attr('src').replace("d4.","d1."));
+			} //If not found; there is no currently selected record to remove
+				
+			//This switches between D1&2 and D3&4
+			if (srcStr.indexOf("-d1.")!==-1){
+				element.src = srcStr.replace("d1.","d3.");
+			} else if (srcStr.indexOf("-d2.")!==-1){
+				element.src = srcStr.replace("d2.","d3.");
+			} else if (srcStr.indexOf("-d3.")!==-1){
+				element.src = srcStr.replace("d3.","d1.");
+			} else if (srcStr.indexOf("-d4.")!==-1){
+				element.src = srcStr.replace("d4.","d1.");
+			}
+		} else {
+			//This is associated with another function such as a click event so we activate the selected tool
+			if(srcStr.indexOf("-b1.")===-1 && srcStr.indexOf("-b2.")===-1){
+				//Unless this is a B image in which case we should do nothing; this is not a B case
+				var oldSelection = $('img[src*="a3."]');
+				//Switch off the previous selection
+				if (oldSelection.length!==0){
+					$('img[src*="a3."]').attr('src', oldSelection.attr('src').replace("a3.","a1."));
+				} //If not found; there is no currently selected record to remove
+
+				if(srcStr.indexOf("-a1.")!==-1){
+					//We have an A1 image
+					element.src = srcStr.replace("a1.","a3.");
+				} else if (srcStr.indexOf("-a2.")!==-1){
+					//We have an A2 image
+					element.src = srcStr.replace("a2.","a3.");
+				} 
+			}
+		}
+	}
+	
+	//We need to update the active tools here
+	if (type!=='roll' && type!=='sticky' && type!=='sticky-click' && type!=='type'){
+		if (rollActiveType==='21'){
+			eTAtype = 'POINT'; 
+		} else if (rollActiveType==='22') {
+			eTAtype = 'LINE';
+		} else if (rollActiveType==='23' || rollActiveType==='24') {
+			eTAtype = 'POLYGON';
+		}
+		
+		//Determine if this geometry is permitted for the layer currently being edited
+		var edConstrained=1;
+		var edConCount=0;
+		for(i=0;i<tableConstraints.length;i++){
+			if(tableConstraints[i].tableref===table.replace("_view","") && tableConstraints[i].conname.indexOf("_enforce_geotype")!==-1){
+				if(tableConstraints[i].constr.search(eTAtype)!==-1){
+					//Geometry type exists for this type so allow this edit session
+					edConstrained = 0;
+				}
+				edConCount = edConCount + 1;
+			}
+		}
+		if(edConCount===0){
+			//Table has no geometry constraints so allow this edit session
+			edConstrained = 0;
+		}
+		eTAtype = eTAtype.toLowerCase();
+		
+		//Here we set the available functions and then reset the buttons to disable any tools which should not be active
+		//Set the avaialble functions
+		var editFno = pointLayer.features.length + lineLayer.features.length + polygonLayer.features.length + simplePolygonLayer.features.length;
+		if (edConstrained!==1) {
+			//The geometry type check above has passed successfully
+			if (editFno!==0) {
+				//Features are present
+				eTA = window['eTA' + eTAtype];
+			} else {
+				//No features in layers yet
+				eTA = eTAon; 
+			}
+		} else {
+			//The layer is not of the correct type
+			eTA = eTAdefault;
+		}
+		
+		//Finally we may need to disable some tools
+		var toolReference='';
+		var toolwasactive = 0;
+		for(key in eTA){
+			if (key==='saveEdits'){
+				toolReference = key;
+			} else {
+				toolReference = 'edMO(' + key.substring(0,1) + ',' + key.substring(1) + ',this)';
+			}
+			if(toolReference==='edMO(2,10,this)'){
+				toolReference = toolReference.replace(",this","");
+			}
+			jtool = $('img[onclick*="' + toolReference + '"]');
+			if (jtool.length!==0){
+				if(eTA[key]===0){
+					//This tool is not available but is it active?
+					if (jtool.attr('src').indexOf('-a3')!==-1){
+						toolwasactive = 1;
+						jtool.attr('src', jtool.attr('src').replace('-a3','-b1'));
+					} else if (jtool.attr('src').indexOf('-a1')!==-1){
+						jtool.attr('src', jtool.attr('src').replace('-a1','-b1'));
+					} else if (jtool.attr('src').indexOf('-a2')!==-1){
+						jtool.attr('src', jtool.attr('src').replace('-a2','-b1'));
+					}
+				} else {
+					//This tool is available
+					if (jtool.attr('src').indexOf('-b1')!==-1){
+						jtool.attr('src', jtool.attr('src').replace('-b1','-a1'));
+					}
+				}
+			}
+		}
+		if (toolwasactive===1){
+			//A now disabled tool was active so we need to call the function again to set the tools to none
+			edMO(3,0,'JQ-NONE');
+		}
+	}
+}
+
 function viewswitch(table, type){
 	//We have a selection, lets check the table variables
 	tableNo = -1; 
@@ -1806,92 +2038,94 @@ function updateFilters(filterstr,layerNam){
 function pdmF(iteration) {
 	//Filter name is stored in pdmArr, CQL filter is stored in pdmFilter and the URL filter in pdmUFilter
 	var filterstr, filterArr;
-	filterArr = pdmFilter[iteration].split('|');
-	var loopLess = 0;
-	var logicT = '';
-	if (filterArr[0]=='AND'){
-		//AND
-		logicT = '&&';
-		loopLess = 1;
-	} else if (filterArr[0]=='NOT') {
-		//NOT
-		logicT = '!';
-		loopLess = 1;
-	} else if (filterArr[0]=='OR') {
-		//OR
-		logicT = '||';
-		loopLess = 1;
-	}
-	if (loopLess!=0){
-		//This is a multiple filter
-		filterstr = new OpenLayers.Filter.Logical({
-			type: logicT,
-			filters: []
-		});
+	if(typeof pdmFilter[iteration]!=='undefined'){
+		filterArr = pdmFilter[iteration].split('|');
+		var loopLess = 0;
+		var logicT = '';
+		if (filterArr[0]=='AND'){
+			//AND
+			logicT = '&&';
+			loopLess = 1;
+		} else if (filterArr[0]=='NOT') {
+			//NOT
+			logicT = '!';
+			loopLess = 1;
+		} else if (filterArr[0]=='OR') {
+			//OR
+			logicT = '||';
+			loopLess = 1;
+		}
+		if (loopLess!=0){
+			//This is a multiple filter
+			filterstr = new OpenLayers.Filter.Logical({
+				type: logicT,
+				filters: []
+			});
 
-		//OK we have now set up the logical, we now need to loop through the rest
-		i = loopLess;
-		while (i<filterArr.length){
+			//OK we have now set up the logical, we now need to loop through the rest
+			i = loopLess;
+			while (i<filterArr.length){
+				//What type of filter?
+				if (filterArr[i+1]=='..'){
+					//Between
+					var tmpObj = new OpenLayers.Filter.Comparison({
+						type:filterArr[i+1],
+						property:filterArr[i],
+						lowerBoundary:filterArr[i+2],
+						upperBoundary:filterArr[i+3]
+					});
+					filterstr.filters.push(tmpObj);
+					i = i+4;
+				} else {
+					//Value
+					var tmpObj = new OpenLayers.Filter.Comparison({
+						type:filterArr[i+1],
+						property:filterArr[i],
+						value:filterArr[i+2]
+					});
+					filterstr.filters.push(tmpObj);
+					i = i+3;
+				}
+			}
+		} else {
 			//What type of filter?
-			if (filterArr[i+1]=='..'){
+			if (filterArr[1]=='..'){
 				//Between
-				var tmpObj = new OpenLayers.Filter.Comparison({
-					type:filterArr[i+1],
-					property:filterArr[i],
-					lowerBoundary:filterArr[i+2],
-					upperBoundary:filterArr[i+3]
+				filterstr = new OpenLayers.Filter.Comparison({
+					type:filterArr[1],
+					property:filterArr[0],
+					lowerBoundary:filterArr[2],
+					upperBoundary:filterArr[3]
 				});
-				filterstr.filters.push(tmpObj);
-				i = i+4;
 			} else {
-				//Value
-				var tmpObj = new OpenLayers.Filter.Comparison({
-					type:filterArr[i+1],
-					property:filterArr[i],
-					value:filterArr[i+2]
+				//This is a single filter
+				filterstr = new OpenLayers.Filter.Comparison({
+					type:filterArr[1],
+					property:filterArr[0],
+					value:filterArr[2]
 				});
-				filterstr.filters.push(tmpObj);
-				i = i+3;
 			}
 		}
-	} else {
-		//What type of filter?
-		if (filterArr[1]=='..'){
-			//Between
-			filterstr = new OpenLayers.Filter.Comparison({
-				type:filterArr[1],
-				property:filterArr[0],
-				lowerBoundary:filterArr[2],
-				upperBoundary:filterArr[3]
-			});
+
+		if (OpenLayers.String.trim(pdmFilter[iteration]) != "") {
+			// merge the new filter definitions
+			updateFilters(filterstr,'all');
+			//mergeNewParams(filterParams, '', 'all');
 		} else {
-			//This is a single filter
-			filterstr = new OpenLayers.Filter.Comparison({
-				type:filterArr[1],
-				property:filterArr[0],
-				value:filterArr[2]
-			});
+			// remove filters
+			filterstr = new OpenLayers.Filter.Comparison({type: '', property:'', value:''});
+			updateFilters(filterstr,'all');
+			//mergeNewParams(filterParams, '', 'all');
 		}
-	}
 
-	if (OpenLayers.String.trim(pdmFilter[iteration]) != "") {
-		// merge the new filter definitions
-		updateFilters(filterstr,'all');
-		//mergeNewParams(filterParams, '', 'all');
-	} else {
-		// remove filters
-		filterstr = new OpenLayers.Filter.Comparison({type: '', property:'', value:''});
-		updateFilters(filterstr,'all');
-		//mergeNewParams(filterParams, '', 'all');
-	}
-
-	//Then we apply it to the table
-	if (pdmUFilter[iteration] == ""){
-		document.getElementById('filterS').value = "";
-		updateTable();
-	} else {
-		document.getElementById('filterS').value = pdmUFilter[iteration] ;
-		updateTable();
+		//Then we apply it to the table
+		if (pdmUFilter[iteration] == ""){
+			document.getElementById('filterS').value = "";
+			updateTable();
+		} else {
+			document.getElementById('filterS').value = pdmUFilter[iteration] ;
+			updateTable();
+		}
 	}
 
 	searchRecStyle(table);
@@ -1923,6 +2157,7 @@ function saveEdits() {
 
 function editOver() {
 	//This function resets after a geometry edit session
+	rollover();
 	updateTable();
 	mapPanel.expand();
 }
@@ -3369,8 +3604,10 @@ function edtoggleControl2(element, element2) {
 	}
 	if (infoS == "off") {
 		//Switch the info tools off if turned on
-		for (i=0;i<infoSwitch.length;i++){
-			window[infoSwitch[i]].deactivate();
+		if(element!=='none'){
+			for (i=0;i<infoSwitch.length;i++){
+				window[infoSwitch[i]].deactivate();
+			}
 		}
 	} else {
 		//Switch the info tools back on if turned off
@@ -3513,230 +3750,366 @@ function edMOst() {
 	accordion.items.itemAt(5).expand();
 	//Toggle the main tools to nav to avoid annoyance
 	edtoggleControl('none');
-	edMO(3, ET3);
+	if (ET3===0){
+		edMO(3,ET3,'JQ-NONE');
+	} else {
+		edMO(3,ET3);
+	}
 }
 
 function isNumber(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-function edMO(type, number) {
-	if (type == 1){
-		//Rollover
-		var imageURL = "../../apps/functions/drawingtypes" + number + ".png";
-		document.getElementById('edMOimg').src = imageURL;
-		if (number == 1) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Point</font></b>";
-		} else if (number == 2) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Line</font></b>";
-		} else if (number == 3) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Polygon</font></b>";
-		} else if (number == 4) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Shape</font></b>";
+var rollActive = '30';
+var rollActiveType = '21';
+function edMO(type, number, imageButton) {
+	rollActive = type + "" + number;
+	if (rollActive==='21' || rollActive==='22' || rollActive==='23' || rollActive==='24'){
+		rollActiveType = rollActive; //This tells the rollOver script which geometry type is active
+	}
+	if(typeof eTA[rollActive]!=='undefined'){
+		if(eTA[rollActive]===1){
+			rollOn = 1;
+		} else {
+			rollOn = 0;
 		}
-
-	} else if(type == 2) {
-		//Rollover with selection
-		if (number == 0) {
-			number = ET2;
-		}
-		if (number == 1) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Point</font></b>";
-			document.getElementById('shapeoptions').style.display = "none";
-			document.getElementById('shapeoptions').style.visibility = "hidden";
-			document.getElementById('shapesides').style.display = "none";
-			document.getElementById('shapesides').style.visibility = "hidden";
-			ET = 1;
-			ET2 = 1;
-			edMO(3, ET3);
-		}
-		if (number == 2) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Line</font></b>";
-			document.getElementById('shapeoptions').style.display = "none";
-			document.getElementById('shapeoptions').style.visibility = "hidden";
-			document.getElementById('shapesides').style.display = "none";
-			document.getElementById('shapesides').style.visibility = "hidden";
-			ET = 2;
-			ET2 = 2;
-			edMO(3, ET3);
-		}
-		if (number == 3) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Polygon</font></b>";
-			document.getElementById('shapeoptions').style.display = "none";
-			document.getElementById('shapeoptions').style.visibility = "hidden";
-			document.getElementById('shapesides').style.display = "none";
-			document.getElementById('shapesides').style.visibility = "hidden";
-			ET = 3;
-			ET2 = 3;
-			edMO(3, ET3);
-		}
-		if (number == 4) {
-			document.getElementById('currentMode').innerHTML = "<b><font size=\"6\" color=\"#000080\">Shape</font></b>";
-			document.getElementById('shapeoptions').style.display = "block";
-			document.getElementById('shapeoptions').style.visibility = "visible";
-			document.getElementById('shapesides').style.display = "block";
-			document.getElementById('shapesides').style.visibility = "visible";
-			controls.draw4.handler.sides = 3;
-			ET = 4;
-			ET2 = 4;
-			edMO(3, ET3);
-		}
-		if (number == 9){
-			//This is a special option to toggle the irregular option
-			if (controls.draw4.handler.irregular == true) {
-				controls.draw4.handler.irregular = false;
-			} else {
-				controls.draw4.handler.irregular = true;
-			}
-		}
-		if (number == 10){
-			//This is a special option to change the number of sides
-			var sideNo = document.getElementById('sideNoInput').value;
-			if (isNumber(sideNo) == true) {
-				controls.draw4.handler.sides = sideNo;
-			} else {
-				alert('Please specify the number of sides as an number');
-			}
-		}
-
-		//Now do the rollover
-		var imageURL = "../../apps/functions/drawingtypes" + ET2 + ".png";
-		document.getElementById('edMOimg').src = imageURL;
 	} else {
-		//This type of call means we are looking to toggle the tools
-		var toolName, tn2;
-		var tn1 = [];
-		tn1.push('');
-		tn1.push('Point');
-		tn1.push('Line');
-		tn1.push('Polygon');
-		tn1.push('Shape');
-
-		if (number == 0) {
-			//This is the blank option (default) - This option is used by the None option!
-			ET4 = 0;
-			tn2 = "Edit Tools";
-			handleTog(tn2, 'none');
-			//Switch off the edit tools
-			edMO(3,100);
-			ET3 = 0;
-			var elements = document.getElementsByName('edfunc');
-			var len = elements.length;
-
-			for (i=0; i<len; ++i){
-				if (elements[i].value == 'none'){
-					elements[i].checked = true;
+		rollOn = 1;
+	}
+	if (rollOn===1){
+		if (type == 1){
+			//Rollovers now done in a separate function called rollover()
+		} else if(type == 2) {
+			if (typeof imageButton !== 'undefined'){
+				rollover(imageButton, 'type-click');
+			}
+			//Rollover with selection
+			if (number == 0) {
+				number = ET2;
+			}
+			if (number == 1) {
+				document.getElementById('shapeoptions').style.display = "none";
+				document.getElementById('shapeoptions').style.visibility = "hidden";
+				document.getElementById('shapesides').style.display = "none";
+				document.getElementById('shapesides').style.visibility = "hidden";
+				document.getElementById('polyshape').innerHTML = "Shape Type: Point";
+				ET = 1;
+				ET2 = 1;
+				edMO(3, ET3);
+			}
+			if (number == 2) {
+				document.getElementById('shapeoptions').style.display = "none";
+				document.getElementById('shapeoptions').style.visibility = "hidden";
+				document.getElementById('shapesides').style.display = "none";
+				document.getElementById('shapesides').style.visibility = "hidden";
+				document.getElementById('polyshape').innerHTML = "Shape Type: Line";
+				ET = 2;
+				ET2 = 2;
+				edMO(3, ET3);
+			}
+			if (number == 3) {
+				//This has been merged with the shape option (4) and is no longer used
+			}
+			if (number == 4) {
+				document.getElementById('shapeoptions').style.display = "block";
+				document.getElementById('shapeoptions').style.visibility = "visible";
+				document.getElementById('shapesides').style.display = "block";
+				document.getElementById('shapesides').style.visibility = "visible";
+				document.getElementById('polyshape').innerHTML = "Shape Type: Polygon";
+				controls.draw4.handler.sides = 3;
+				controls.draw4.handler.irregular = false;
+				ET = 3; //Default is to draw a polygon
+				ET2 = 3; //Default is to draw a polygon
+				edMO(3, ET3);
+			}
+			if (number == 9){
+				//This is a special option to toggle the irregular option
+				var currentVal = document.getElementById('polyshape').innerHTML;
+				if (controls.draw4.handler.irregular == true) {
+					controls.draw4.handler.irregular = false;
+					if (currentVal==="Shape Type: Rectangle"){
+						document.getElementById('polyshape').innerHTML = "Shape Type: Square";
+					} else if (currentVal==="Shape Type: Oval") {
+						document.getElementById('polyshape').innerHTML = "Shape Type: Circle";
+					} else {
+						document.getElementById('polyshape').innerHTML = currentVal.replace("Shape Type: Irregular ", "Shape Type: ");
+					}
 				} else {
-					elements[i].checked = false;
+					controls.draw4.handler.irregular = true;
+					if (currentVal==="Shape Type: Square"){
+						document.getElementById('polyshape').innerHTML = "Shape Type: Rectangle";
+					} else if (currentVal==="Shape Type: Circle") {
+						document.getElementById('polyshape').innerHTML = "Shape Type: Oval";
+					} else {
+						document.getElementById('polyshape').innerHTML = currentVal.replace("Shape Type: ","Shape Type: Irregular ");
+					}
 				}
 			}
-		}
-		if (number == 1) {
-			ET4 = 0;
-			edMO(3,100);
-			toolName = "draw" + ET;
-			edtoggleControl(toolName);
-			tn2 = "Add a " + tn1[ET];
-			handleTog(tn2, 'none');
-			ET3 = 1;
-		}
-		if (number == 2) {
-			ET4 = 1;
-			edMO(3,100);
-			//Turn on highlight before select
-			edtoggleControl3("highlight");
-			edtoggleControl2('sC','select');
-			//Update the text at the bottom
-			tn2 = "Transfer an existing record to the edits";
-			handleTog(tn2, 'none');
-			ET3 = 2;
-		}
-		//There is no need to select a record to edit, you have to do this anyway
-		/*if (number == 3) {
-		}*/
-		if (number == 5) {
-			ET4 = 0;
-			edMO(3,100);
-			toolName = "edit_reshape" + ET;
-			edtoggleControl(toolName);
-			tn2 = "Reshape a " + tn1[ET];
-			handleTog(tn2, 'none');
-			ET3 = 5;
-		}
-		if (number == 7) {
-			ET4 = 0;
-			edMO(3,100);
-			toolName = "edit_resize" + ET;
-			edtoggleControl(toolName);
-			tn2 = "Resize a " + tn1[ET];
-			handleTog(tn2, 'none');
-			ET3 = 7;
-		}
-		if (number == 4) {
-			ET4 = 0;
-			edMO(3,100);
-			toolName = "edit_drag" + ET;
-			edtoggleControl(toolName);
-			tn2 = "Move a " + tn1[ET];
-			handleTog(tn2, 'none');
-			ET3 = 4;
-		}
-		if (number == 6) {
-			ET4 = 0;
-			edMO(3,100);
-			toolName = "edit_rotate" + ET;
-			edtoggleControl(toolName);
-			tn2 = "Rotate a " + tn1[ET];
-			handleTog(tn2, 'none');
-			ET3 = 6;
-		}
-		if (number == 8) {
-			ET4 = 0;
-			edMO(3,100);
-			toolName = "del" + ET;
-			edtoggleControl(toolName);
-			tn2 = "Delete a " + tn1[ET];
-			handleTog(tn2, 'none');
-			ET3 = 8;
-		}
-		/*if (number == 99) {
-			//This toggles the highlighter
-			ET4 = 0;
-			toolName = "highlight";
-			edtoggleControl3(toolName);
-			//edtoggleControl2('sC','select');
-			tn2 = "Select a Feature";
-			handleTog(tn2, 'none');
-		}*/
-		if (number == 100) {
-			//Switch off the tools the edit, select and highlight tools
-			edtoggleControl('none');
-			edtoggleControl2('none','select');
-			edtoggleControl3('none');
-			ET3 = 0;
-		}
-		if (number == 101) {
-			//Switch off the selection tools
-			edtoggleControl2('none','select');
-			//Switch off the hover tools
-			edtoggleControl3('none');
-		}
-		if (number == 102) {
-			//Switch off the edit tools
-			edMOstActive = 0;
-			edtoggleControl('none');
-			edtoggleControl2('none','select');
-			edtoggleControl3('none');
-			ET3 = 0;
-			//Mark the edit tools as deactive
-			var elements = document.getElementsByName('edfunc');
-			var len = elements.length;
-
-			for (i=0; i<len; ++i){
-				if (elements[i].value == 'none'){
-					elements[i].checked = true;
+			if (number == 10){
+				//This is a special option to change the number of sides
+				var sideNo = document.getElementById('sideNoInput').value;
+				if (isNumber(sideNo) == true) {
+					controls.draw4.handler.sides = sideNo;
+					if (sideNo===0){
+						//A zero entry means we want to draw a polygon (old option 3) so we set that the option here!
+						document.getElementById('polyshape').innerHTML = "Shape Type: Polygon";
+					} else {
+						ET = 4;
+						ET2 = 4;
+						if (sideNo==1) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: ERROR! Use Point";
+							ET = 3;
+							ET2 = 3;
+						} else if (sideNo==2) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: ERROR! Use Line";
+							ET = 3;
+							ET2 = 3;
+						} else if (sideNo==3) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Triangle";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==4) {
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = "Shape Type: Rectangle";
+							} else {
+								document.getElementById('polyshape').innerHTML = "Shape Type: Square";
+							}
+						} else if (sideNo==5) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Pentagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==6) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Hexagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==7) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Heptagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==8) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Octagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==9) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Nonagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==10) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Decagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==11) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Hendecagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo==12) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Dodecagon";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo>12 && sideNo<99) {
+							document.getElementById('polyshape').innerHTML = "Shape Type: Low Resolution Circle";
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = document.getElementById('polyshape').innerHTML.replace("Shape Type: ","Shape Type: Irregular ");
+							}
+						} else if (sideNo>99) {
+							if (controls.draw4.handler.irregular === true){
+								document.getElementById('polyshape').innerHTML = "Shape Type: Oval";
+							} else {
+								document.getElementById('polyshape').innerHTML = "Shape Type: Circle";
+							}
+						}
+					}
 				} else {
-					elements[i].checked = false;
+					//A blank entry means we want to draw a polygon (old option 3) so we set that the option here!
+					document.getElementById('polyshape').innerHTML = "Shape Type: Polygon";
+					ET = 3;
+					ET2 = 3;
+				}
+			}
+		} else {
+			if (typeof imageButton !== 'undefined'){
+				rollover(imageButton, 'click');
+			}
+			//This type of call means we are looking to toggle the tools
+			var toolName, tn2;
+			var tn1 = [];
+			tn1.push('');
+			tn1.push('Point');
+			tn1.push('Line');
+			tn1.push('Polygon');
+			tn1.push('Shape');
+
+			if (number == 0) {
+				//This is the blank option (default) - This option is used by the None option!
+				ET4 = 0;
+				tn2 = "Edit Tools";
+				handleTog(tn2, 'none');
+				//Switch off the edit tools
+				edMO(3,100);
+				ET3 = 0;
+				var elements = document.getElementsByName('edfunc');
+				var len = elements.length;
+
+				for (i=0; i<len; ++i){
+					if (elements[i].value == 'none'){
+						elements[i].checked = true;
+					} else {
+						elements[i].checked = false;
+					}
+				}
+			}
+			if (number == 1) {
+				ET4 = 0;
+				edMO(3,100);
+				toolName = "draw" + ET;
+				edtoggleControl(toolName);
+				tn2 = "Add a " + tn1[ET];
+				handleTog(tn2, 'none');
+				ET3 = 1;
+			}
+			if (number == 2) {
+				ET4 = 1;
+				edMO(3,100);
+				//Turn on highlight before select
+				edtoggleControl3("highlight");
+				edtoggleControl2('sC','select');
+				//Update the text at the bottom
+				tn2 = "Transfer an existing record to the edits";
+				handleTog(tn2, 'none');
+				ET3 = 2;
+			}
+			//There is no need to select a record to edit, you have to do this anyway
+			/*if (number == 3) {
+			}*/
+			if (number == 5) {
+				ET4 = 0;
+				edMO(3,100);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 5;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_reshape" + ET;
+					edtoggleControl(toolName);
+				}
+				tn2 = "Reshape a " + tn1[ET];
+				handleTog(tn2, 'none');
+				ET3 = 5;
+			}
+			if (number == 7) {
+				ET4 = 0;
+				edMO(3,100);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 7;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_resize" + ET;
+					edtoggleControl(toolName);
+				}
+				tn2 = "Resize a " + tn1[ET];
+				handleTog(tn2, 'none');
+				ET3 = 7;
+			}
+			if (number == 4) {
+				ET4 = 0;
+				edMO(3,100);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 4;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_drag" + ET;
+					edtoggleControl(toolName);
+				}
+				tn2 = "Move a " + tn1[ET];
+				handleTog(tn2, 'none');
+				ET3 = 4;
+			}
+			if (number == 6) {
+				ET4 = 0;
+				edMO(3,100);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 6;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_rotate" + ET;
+					edtoggleControl(toolName);
+				}
+				tn2 = "Rotate a " + tn1[ET];
+				handleTog(tn2, 'none');
+				ET3 = 6;
+			}
+			if (number == 8) {
+				ET4 = 0;
+				edMO(3,100);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 8;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "del" + ET;
+					edtoggleControl(toolName);
+				}
+				tn2 = "Delete a " + tn1[ET];
+				handleTog(tn2, 'none');
+				ET3 = 8;
+			}
+			/*if (number == 99) {
+				//This toggles the highlighter
+				ET4 = 0;
+				toolName = "highlight";
+				edtoggleControl3(toolName);
+				//edtoggleControl2('sC','select');
+				tn2 = "Select a Feature";
+				handleTog(tn2, 'none');
+			}*/
+			if (number == 100) {
+				//Switch off the tools the edit, select and highlight tools
+				edtoggleControl('none');
+				edtoggleControl2('none','select');
+				edtoggleControl3('none');
+				ET3 = 0;
+			}
+			if (number == 101) {
+				//Switch off the selection tools
+				edtoggleControl2('none','select');
+				//Switch off the hover tools
+				edtoggleControl3('none');
+			}
+			if (number == 102) {
+				//Switch off the edit tools
+				edMOstActive = 0;
+				edtoggleControl('none');
+				edtoggleControl2('none','select');
+				edtoggleControl3('none');
+				ET3 = 0;
+				//Mark the edit tools as deactive
+				var elements = document.getElementsByName('edfunc');
+				var len = elements.length;
+
+				for (i=0; i<len; ++i){
+					if (elements[i].value == 'none'){
+						elements[i].checked = true;
+					} else {
+						elements[i].checked = false;
+					}
 				}
 			}
 		}
@@ -3839,15 +4212,16 @@ function changeActTable(tableName){
 	table = tableName;
 }
 
-function thissticks() {
+function thissticks(element) {
+	if (typeof element!=='undefined'){
+		rollover(element, 'sticky-click');
+	}
     //This stops the system defaulting to node after each edit
     if (stickyvalue != 0) {
         //Sticky mode is on so we turn it off
-        document.getElementById('stickymode').value = 'Sticky Mode On';
         stickyvalue = 0;
     } else {
         //Sticky mode is off so we turn it on
-        document.getElementById('stickymode').value = 'Sticky Mode Off';
         stickyvalue = 1;
     }
 }

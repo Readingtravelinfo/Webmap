@@ -26,7 +26,7 @@ table.mainRow{
 
 #mainRow td {
 	padding: 5px;
-	background: #e8edff;
+	background-color: #e8edff;
 	color: #669;
 	border-bottom: thin solid #00008B;
 	border-top: 1px solid transparent;
@@ -35,7 +35,7 @@ table.mainRow{
 }
 
 #mainRow tr:hover td{
-	background: #d0dafd;
+	background-color: #d0dafd;
 	color: #339;
 }
 
@@ -54,106 +54,106 @@ tr.selectedRow:hover td{
 /* Left / Right Classes - Upto 5 tables*/
 /* Table 1 */
 td.T0back-dis{
-	background-image: url(../img/left-edge-dis.png) !important;
+	background-image: url(../img/left-edge-dis.png);
 	width: 12px;
 }
 
 td.T0back{
-	background-image: url(../img/left-edge.png) !important;
+	background-image: url(../img/left-edge.png);
 	width: 12px;
 }
 
 td.T0forward-dis{
-	background-image: url(../img/right-edge-dis.png) !important;
+	background-image: url(../img/right-edge-dis.png);
 	width: 12px;
 }
 
 td.T0forward{
-	background-image: url(../img/arrow_r.png) !important;
+	background-image: url(../img/right-edge.png);
 	width: 12px;
 }
 
 /* Table 2 */
 td.T1back-dis{
-	background-image: url(../img/left-edge-dis.png) !important;
+	background-image: url(../img/left-edge-dis.png);
 	width: 12px;
 }
 
 td.T1back{
-	background-image: url(../img/left-edge.png) !important;
+	background-image: url(../img/left-edge.png);
 	width: 12px;
 }
 
 td.T1forward-dis{
-	background-image: url(../img/right-edge-dis.png) !important;
+	background-image: url(../img/right-edge-dis.png);
 	width: 12px;
 }
 
 td.T1forward{
-	background-image: url(../img/arrow_r.png) !important;
+	background-image: url(../img/right-edge.png);
 	width: 12px;
 }
 
 /* Table 3 */
 td.T2back-dis{
-	background-image: url(../img/left-edge-dis.png) !important;
+	background-image: url(../img/left-edge-dis.png);
 	width: 12px;
 }
 
 td.T2back{
-	background-image: url(../img/left-edge.png) !important;
+	background-image: url(../img/left-edge.png);
 	width: 12px;
 }
 
 td.T2forward-dis{
-	background-image: url(../img/right-edge-dis.png) !important;
+	background-image: url(../img/right-edge-dis.png);
 	width: 12px;
 }
 
 td.T2forward{
-	background-image: url(../img/arrow_r.png) !important;
+	background-image: url(../img/right-edge.png);
 	width: 12px;
 }
 
 /* Table 4 */
 td.T3back-dis{
-	background-image: url(../img/left-edge-dis.png) !important;
+	background-image: url(../img/left-edge-dis.png);
 	width: 12px;
 }
 
 td.T3back{
-	background-image: url(../img/left-edge.png) !important;
+	background-image: url(../img/left-edge.png);
 	width: 12px;
 }
 
 td.T3forward-dis{
-	background-image: url(../img/right-edge-dis.png) !important;
+	background-image: url(../img/right-edge-dis.png);
 	width: 12px;
 }
 
 td.T3forward{
-	background-image: url(../img/arrow_r.png) !important;
+	background-image: url(../img/right-edge.png);
 	width: 12px;
 }
 
 /* Table 5 */
 td.T4back-dis{
-	background-image: url(../img/left-edge-dis.png) !important;
+	background-image: url(../img/left-edge-dis.png);
 	width: 12px;
 }
 
 td.T4back{
-	background-image: url(../img/left-edge.png) !important;
+	background-image: url(../img/left-edge.png);
 	width: 12px;
 }
 
 td.T4forward-dis{
-	background-image: url(../img/right-edge-dis.png) !important;
+	background-image: url(../img/right-edge-dis.png);
 	width: 12px;
 }
 
 td.T4forward{
-	background-image: url(../img/arrow_r.png) !important;
+	background-image: url(../img/right-edge.png);
 	width: 12px;
 }
 

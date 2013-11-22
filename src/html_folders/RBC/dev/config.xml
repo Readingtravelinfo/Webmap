@@ -29,10 +29,7 @@
     <wmsbase>RBC/wms</wmsbase>
     <photoscroll>True</photoscroll>
     <photoscrollpath>photopath</photoscrollpath>
-    <recNo>15</recNo>
-    <lower>0</lower>
-    <order_by>gid</order_by>
-    <geom_field>the_geom</geom_field>
+       <geom_field>the_geom</geom_field>
     <active_table>trafficsites_view</active_table>
     <attribute>True</attribute>
     <edits>True</edits>
@@ -165,6 +162,8 @@
       <overlayCache>True</overlayCache>
       <overlayTRAN>True</overlayTRAN>
       <overlayENV></overlayENV>
+	</overlay>
+	<overlay2>
       <overlayPopup>f</overlayPopup>
       <overlayPopupTemp></overlayPopupTemp>
       <overlayPopupWidth></overlayPopupWidth>
@@ -172,14 +171,15 @@
       <overlayHoverTemp></overlayHoverTemp>
       <overlayHoverWidth></overlayHoverWidth>
       <overlayHoverHeight></overlayHoverHeight>
+	  </overlay2>
+	  <overlay3>
       <overlayZoom>False</overlayZoom>
       <overlayZoomLevel></overlayZoomLevel>
       <overlayZoomSelF></overlayZoomSelF>
       <overlayZoomRepT></overlayZoomRepT>
       <overlayZoomRepF></overlayZoomRepF>
-      <overlayType>Shapefile</overlayType>
-      <overlayTable></overlayTable>
-    </overlay>
+
+    </overlay3>
     <overlay>
       <overlayAddress>RBC:trafficsitesother</overlayAddress>
       <overlayPath>RBC/wms</overlayPath>
@@ -194,6 +194,8 @@
       <overlayCache>True</overlayCache>
       <overlayTRAN>True</overlayTRAN>
       <overlayENV></overlayENV>
+	  </overlay>
+	<overlay2>
       <overlayPopup>t</overlayPopup>
       <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
       <overlayPopupWidth>320px</overlayPopupWidth>
@@ -201,14 +203,15 @@
       <overlayHoverTemp></overlayHoverTemp>
       <overlayHoverWidth></overlayHoverWidth>
       <overlayHoverHeight></overlayHoverHeight>
+	  </overlay2>
+	  <overlay3>
       <overlayZoom>False</overlayZoom>
       <overlayZoomLevel></overlayZoomLevel>
       <overlayZoomSelF></overlayZoomSelF>
       <overlayZoomRepT></overlayZoomRepT>
       <overlayZoomRepF></overlayZoomRepF>
-      <overlayType>Postgis</overlayType>
-      <overlayTable>trafficsites_view</overlayTable>
-    </overlay>
+      
+    </overlay3>
     <overlay>
       <overlayAddress>RBC:trafficsitesped</overlayAddress>
       <overlayPath>RBC/wms</overlayPath>
@@ -223,6 +226,8 @@
       <overlayCache>True</overlayCache>
       <overlayTRAN>True</overlayTRAN>
       <overlayENV></overlayENV>
+	  </overlay>
+	<overlay2>
       <overlayPopup>t</overlayPopup>
       <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
       <overlayPopupWidth>320px</overlayPopupWidth>
@@ -230,14 +235,15 @@
       <overlayHoverTemp></overlayHoverTemp>
       <overlayHoverWidth></overlayHoverWidth>
       <overlayHoverHeight></overlayHoverHeight>
+	 </overlay2>
+	 <overlay3>
       <overlayZoom>False</overlayZoom>
       <overlayZoomLevel></overlayZoomLevel>
       <overlayZoomSelF></overlayZoomSelF>
       <overlayZoomRepT></overlayZoomRepT>
       <overlayZoomRepF></overlayZoomRepF>
-      <overlayType>Postgis</overlayType>
-      <overlayTable>trafficsites_view</overlayTable>
-    </overlay>
+     
+    </overlay3>
     <overlay>
       <overlayAddress>RBC:trafficsites</overlayAddress>
       <overlayPath>RBC/wms</overlayPath>
@@ -252,6 +258,8 @@
       <overlayCache>True</overlayCache>
       <overlayTRAN>True</overlayTRAN>
       <overlayENV></overlayENV>
+	  </overlay>
+	<overlay2>
       <overlayPopup>t</overlayPopup>
       <overlayPopupTemp>/popuptemplate1.txt</overlayPopupTemp>
       <overlayPopupWidth>320px</overlayPopupWidth>
@@ -259,14 +267,15 @@
       <overlayHoverTemp></overlayHoverTemp>
       <overlayHoverWidth></overlayHoverWidth>
       <overlayHoverHeight></overlayHoverHeight>
+	  </overlay2>
+	  <overlay3>
       <overlayZoom>False</overlayZoom>
       <overlayZoomLevel></overlayZoomLevel>
       <overlayZoomSelF></overlayZoomSelF>
       <overlayZoomRepT></overlayZoomRepT>
       <overlayZoomRepF></overlayZoomRepF>
-      <overlayType>Postgis</overlayType>
-      <overlayTable>trafficsites_view</overlayTable>
-    </overlay>
+     
+    </overlay3>
   </wms>
   <wfs>
     <overlay>
@@ -277,6 +286,8 @@
       <overlaySRS>EPSG:27700</overlaySRS>
       <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
       <overlaygeometryName>the_geom</overlaygeometryName>
+	        <overlayType>Shapefile</overlayType>
+      <overlayTable></overlayTable>
     </overlay>
     <overlay>
       <overlayfeatureType>trafficsitesother</overlayfeatureType>
@@ -286,6 +297,8 @@
       <overlaySRS>EPSG:27700</overlaySRS>
       <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
       <overlaygeometryName>the_geom</overlaygeometryName>
+	  <overlayType>Postgis</overlayType>
+      <overlayTable>trafficsites_view</overlayTable>
     </overlay>
     <overlay>
       <overlayfeatureType>trafficsitesped</overlayfeatureType>
@@ -295,6 +308,8 @@
       <overlaySRS>EPSG:27700</overlaySRS>
       <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
       <overlaygeometryName>the_geom</overlaygeometryName>
+	   <overlayType>Postgis</overlayType>
+      <overlayTable>trafficsites_view</overlayTable>
     </overlay>
     <overlay>
       <overlayfeatureType>trafficsites</overlayfeatureType>
@@ -304,6 +319,8 @@
       <overlaySRS>EPSG:27700</overlaySRS>
       <overlayfeatureNS>https://geo.reading-travelinfo.co.uk/rbc</overlayfeatureNS>
       <overlaygeometryName>the_geom</overlaygeometryName>
+	   <overlayType>Postgis</overlayType>
+      <overlayTable>trafficsites_view</overlayTable>
     </overlay>
   </wfs>
     <styleOptions>
@@ -399,6 +416,10 @@
       <tableName>trafficsites_view</tableName>
       <tableGeom>True</tableGeom>
       <tableTitle>Traffic Sites Table</tableTitle>
+      <selStyle>view-edit</selStyle>
+	   <recNo>15</recNo>
+    <lower>0</lower>
+    <order_by>gid</order_by>
     </table>
     <tableLoops>
     </tableLoops>
@@ -414,6 +435,10 @@
       <option>Broadband Sites (Planned)</option>
       <option>Bluetooth Sites (Planned)</option>
       <option>CCTV Sites (Planned)</option>
+      <option>All VMS Sites</option>
+      <option>All Broadband Sites</option>
+      <option>All Bluetooth Sites</option>
+      <option>All CCTV Sites</option>
     </pdmArr>
     <pdmFilter>
       <option></option>
@@ -425,6 +450,10 @@
       <option>broadband|==|Planned</option>
       <option>bluetooth|==|Planned</option>
       <option>cctv|==|Planned</option>
+      <option>vms|!=|NO</option>
+      <option>broadband|!=|NO</option>
+      <option>bluetooth|!=|NO</option>
+      <option>cctv|!=|NO</option>
     </pdmFilter>
     <pdmUFilter>
       <option></option>
@@ -436,5 +465,9 @@
       <option>broadband&#165;Equal&#165;to&#165;Planned</option>
       <option>bluetooth&#165;Equal&#165;to&#165;Planned</option>
       <option>cctv&#165;Equal&#165;to&#165;Planned</option>
+      <option>vms|!=|NO</option>
+      <option>broadband|!=|NO</option>
+      <option>bluetooth|!=|NO</option>
+      <option>cctv|!=|NO</option>
     </pdmUFilter>
 </settings>

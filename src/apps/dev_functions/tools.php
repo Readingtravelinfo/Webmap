@@ -283,16 +283,22 @@ foreach ($xml->wms->overlay2 as $opt) {
 	overlayHoverWidth.push('" . $opt->overlayHoverWidth . "');
 	overlayHoverHeight.push('" . $opt->overlayHoverHeight . "');
 	";
-	$i = $i + 1;
-}
-$i = 0;
-foreach ($xml->wms->overlay3 as $opt) {
 	if ($opt->overlayHoverTemp != ''){
 		print "templateHoverReader(" .$i . ");
 		";
 	}
-	print "overlayZoom.push('" . $opt->overlayZoom . "');
-	overlayZoomLevel.push('" . intval($opt->overlayZoomLevel) . "');
+	$i = $i + 1;
+}
+$i = 0;
+foreach ($xml->wms->overlay3 as $opt) {
+	if($opt->overlayZoom=="True"){
+		print "overlayZoom.push('True');
+		";
+	} else {
+		print "overlayZoom.push('False');
+		";
+	}
+	print "overlayZoomLevel.push('" . intval($opt->overlayZoomLevel) . "');
 	overlayZoomSelF.push('" . $opt->overlayZoomSelF . "');
 	overlayZoomRepT.push('" . $opt->overlayZoomRepT . "');
 	overlayZoomRepF.push('" . $opt->overlayZoomRepF . "');

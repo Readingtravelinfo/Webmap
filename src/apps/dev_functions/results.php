@@ -1947,7 +1947,7 @@ switch($function):
 				}
 
 				//We are now having scrolling tables rather than wrapped tables
-				print "<td headers=\"T" . $tb . "colH1\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "back-dis\" onmouseover=\"tableAction('back')\" onclick=\"dynaScriptToggleCols('back', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>";
+				print "<td headers=\"T" . $tb . "colH1\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "back-dis\" onmouseout=\"$(this).hover(function(){tableAction($(this))})\" onmouseover=\"$(this).hover(function(){tableAction($(this))})\" onclick=\"dynaScriptToggleCols('back', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>";
 				
 				//This works out the number of excluded columns
 				$ex = 0;
@@ -2006,7 +2006,7 @@ switch($function):
 				} while ($j < $colNo);
 			
 				//Finally we add the forward buttons
-				print "<td headers=\"T" . $tb . "colH2\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "forward\" onmouseover=\"tableAction('forward')\" onclick=\"dynaScriptToggleCols('forward', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>
+				print "<td headers=\"T" . $tb . "colH2\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "forward\" onmouseout=\"$(this).hover(function(){tableAction($(this))})\" onmouseover=\"$(this).hover(function(){tableAction($(this))})\" onclick=\"dynaScriptToggleCols('forward', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>
 				</tr>
 				";
 			}

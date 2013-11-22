@@ -229,7 +229,6 @@ $functionExno = count($functionEx);
 
 //Other settings
 //$default_ex = $xml->other->default_ex;
-$order_by = $xml->other->order_by;
 $proj = intval($xml->other->proj);
 $maxCol = 0; //We no longer use this value
 
@@ -259,7 +258,7 @@ if($geom_field==''){
 		array_push($geom_names, $opt->overlaygeometryName);
 	}
 	$table_names = array();
-	foreach ($xml->wms->overlay as $opt){
+	foreach ($xml->wfs->overlay as $opt){
 		array_push($table_names, $opt->overlayTable);
 	}
 	$table_less_view = str_replace("_view","",$table);
@@ -270,52 +269,19 @@ if($geom_field==''){
 	}
 }
 
-//Get the recNo and lower or set default
-if (empty($recNo) || $recNo == '' || $recNo == 'NaN') {
-    $recNo = $xml->other->recNo;
-}
-if (empty($lower) || $lower == '' || $lower == 'NaN') {
-    $lower = $xml->other->lower;
-}
-
 //We may now have multiple lower and recNo values to we are calculating an array splitting the values at each |
 $recNos = array();
 $lowers = array();
-if ($tableLoopsno == 0) {
-	array_push($recNos, $recNo);
-	array_push($lowers, $lower);
-} else {
-	$nextIt1 = 0;
-	$nextIt2 = 0;
-	for ($ti=0;$ti<$tableLoopsno;$ti++){
-		//recNo
-		if ($nextIt1 > 0){
-			//We need to skip over the previous |
-			$nextIt1 = $nextIt1 + 1;
-		}
-		$nextIt3 = strpos($recNo,"|",$nextIt1);
-		$nextItLen1 = $nextIt3 - $nextIt1;
-		if ($nextIt3 != "") {
-			array_push($recNos, intval(substr($recNo,$nextIt1,$nextItLen1)));
-		} else {
-			array_push($recNos, intval(substr($recNo,$nextIt1)));
-		}
-		$nextIt1 = $nextIt3;
-		
-		//Now for lower
-		if ($nextIt2 > 0){
-			//We need to skip over the previous |
-			$nextIt2 = $nextIt2 + 1;
-		}
-		$nextIt4 = strpos($lower,"|",$nextIt2);
-		$nextItLen2 = $nextIt4 - $nextIt2;
-		if ($nextIt3 != "") {
-			array_push($lowers, intval(substr($lower,$nextIt2,$nextItLen2)));
-		} else {
-			array_push($lowers, intval(substr($lower,$nextIt2)));
-		}
-		$nextIt2 = $nextIt4;
-	}
+$order_bys = array();
+foreach ($xml->table as $opt){
+	array_push($recNos, $opt->recNo);
+	array_push($lowers, $opt->lower);
+	array_push($order_bys, $opt->order_by);
+}
+if($multiTable === 0){
+	//Single table so first records
+	$recNo = $recNos[0];
+	$lower = $lowers[0];
 }
 
 $nofilter = 0;
@@ -1981,7 +1947,7 @@ switch($function):
 				}
 
 				//We are now having scrolling tables rather than wrapped tables
-				print "<td headers=\"T" . $tb . "colH1\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "back-dis\" onmouseover=\"dynaScriptToggleCols('back', " . $colNo . ", " . $maxCol . ", " . $tb . ")\" onclick=\"dynaScriptToggleCols('back', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>";
+				print "<td headers=\"T" . $tb . "colH1\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "back-dis\" onmouseout=\"$(this).hover(function(){tableAction($(this))})\" onmouseover=\"$(this).hover(function(){tableAction($(this))})\" onclick=\"dynaScriptToggleCols('back', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>";
 				
 				//This works out the number of excluded columns
 				$ex = 0;
@@ -2040,7 +2006,7 @@ switch($function):
 				} while ($j < $colNo);
 			
 				//Finally we add the forward buttons
-				print "<td headers=\"T" . $tb . "colH2\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "forward\" onmouseover=\"dynaScriptToggleCols('forward', " . $colNo . ", " . $maxCol . ", " . $tb . ")\" onclick=\"dynaScriptToggleCols('forward', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>
+				print "<td headers=\"T" . $tb . "colH2\" style=\"height:100px; max-height:100px; padding:5px;\" class=\"T" . $tb . "forward\" onmouseout=\"$(this).hover(function(){tableAction($(this))})\" onmouseover=\"$(this).hover(function(){tableAction($(this))})\" onclick=\"dynaScriptToggleCols('forward', " . $colNo . ", " . $maxCol . ", " . $tb . ")\"></td>
 				</tr>
 				";
 			}

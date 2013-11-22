@@ -9,7 +9,7 @@ var htmlText, dir, colNo, maxCol, toolbarItems, actions, actionArr, groupIn, act
 var zoomLev, Curvefactor, Scalefactor, curve, curPower1, curPower, Distfactor, SetNo, currLev, splitSize; //Curve variables
 var nav, zoomCon, zoomCon2, selectCtrl, measureline, measurepolygon, draw1, draw2, draw3, draw4, save;
 var ET, ET2, ET3, ET4, edit_reshape1, edit_drag1, edit_resize1, edit_rotate1, del1, edit_reshape2, edit_drag2, edit_resize2, edit_rotate2, del2, edit_reshape3, edit_drag3, edit_resize3, edit_rotate3, del3;
-var edit_reshape4, edit_drag4, edit_resize4, edit_rotate4, del4, edit_reshape, edit_drag, edit_resize, edit_rotate, del;
+var edit_reshape4, edit_drag4, edit_resize4, edit_rotate4, del4, edit_reshape, edit_drag, edit_resize, edit_rotate, del, edit_select, edit_select_no;
 var ETpoint, ETpath, ETpolygon, ETbox, draw;
 var doPopup, doZoom, doSelect;
 var copywriteTxt, copywriteTxt2;
@@ -1512,7 +1512,10 @@ function loadmap() {
 					}
 				}
 				if (stickyvalue == 0){
-					edMO(3,0);
+					edMO(3,0,'JQ-NONE');
+					//Turn off the polygon select handler as required
+					toolName = "edit_select";
+					window[toolName].deactivate();
 				}
 			});
 
@@ -1555,7 +1558,10 @@ function loadmap() {
 					}
 				}
 				if (stickyvalue == 0){
-					edMO(3,0);
+					edMO(3,0,'JQ-NONE');
+					//Turn off the polygon select handler as required
+					toolName = "edit_select";
+					window[toolName].deactivate();
 				}
 			});
 
@@ -1598,7 +1604,10 @@ function loadmap() {
 					}
 				}
 				if (stickyvalue == 0){
-					edMO(3,0);
+					edMO(3,0,'JQ-NONE');
+					//Turn off the polygon select handler as required
+					toolName = "edit_select";
+					window[toolName].deactivate();
 				}
 			});
 
@@ -1641,7 +1650,10 @@ function loadmap() {
 					}
 				}
 				if (stickyvalue == 0){
-					edMO(3,0);
+					edMO(3,0,'JQ-NONE');
+					//Turn off the polygon select handler as required
+					toolName = "edit_select";
+					window[toolName].deactivate();
 				}
 			});
 
@@ -1840,6 +1852,9 @@ function loadmap() {
 				// ******************
 			};
 
+			//**
+			edit_select = new OpenLayers.Control.SelectFeature([polygonLayer, simplePolygonLayer]);
+
 			//We are adding the tools associated with moving the map, selecting a feature and zoomTo to the 2nd control group
 			controls2 = {
 				nav: new OpenLayers.Control.Navigation(),
@@ -1898,6 +1913,7 @@ function loadmap() {
 				window[tmpON].events.register("hoverfeature", this, function(e) {
 					hoverHandle(e);
 				});
+				
 				map.addControl(window[tmpON]);
 				window[tmpON].activate();
 				window[tmpON].deactivate();
@@ -1987,6 +2003,13 @@ function loadmap() {
             for(key in controls) {
                 map.addControl(controls[key]);
             }
+			polygonLayer.events.on({
+				'featureselected': selectEditHandle
+			});
+			simplePolygonLayer.events.on({
+				'featureselected': selectEditHandle
+			});
+			map.addControl(edit_select);
 
 			for(key in controls2) {
                 map.addControl(controls2[key]);
@@ -2190,7 +2213,7 @@ function loadmap() {
 						displayClass: 'olControlGetFeatureInfo',
 						type: OpenLayers.Control.TYPE_TOGGLE,
 						queryVisible: true,
-						vendorParams: { 'CQL_FILTER':'' },
+						vendorParams: { 'CQL_FILTER':null },
 						hover: true,
 						layers: [window[overlayArray[i]]],
 						format: new OpenLayers.Format.GML(),   // Used to parse the feature info response
@@ -2310,7 +2333,7 @@ function loadmap() {
 						type: OpenLayers.Control.TYPE_TOGGLE,
 						queryVisible: true,
 						layers: [window[overlayArray[i]]],
-						vendorParams: { 'CQL_FILTER':'' },
+						vendorParams: { 'CQL_FILTER':null },
 						format: new OpenLayers.Format.GML(),   // Used to parse the feature info response
 						infoFormat: 'application/vnd.ogc.gml', // Used to require the GML format to the WMS server
 						eventListeners: {
@@ -2329,7 +2352,7 @@ function loadmap() {
 										}
 									}
 									//The layer number is now stored in diamOpts
-									tmpZL = overlayZoomLevel[diamOpts];
+									tmpZL = parseInt(overlayZoomLevel[diamOpts]);
 									tmpSF = overlayZoomSelF[diamOpts];
 									tmpRT = overlayZoomRepT[diamOpts];
 									tmpRF = overlayZoomRepF[diamOpts];
@@ -2847,20 +2870,12 @@ function loadmap() {
 				html: mthtml
 			});
 
-			var eohtml = "<b><u>Adding New Features</u></b><br />";
-			eohtml += "<b>Mode: </b> <br />";
-			eohtml += "<img src=\"../../apps/functions/drawingtypes1.png\" width=\"200\" height=\"52\" id=\"edMOimg\" alt=\"Edit Types\" usemap=\"#editmap\" /><br /><br />";
-			eohtml += "";
-			eohtml += "<map name=\"editmap\">";
-			eohtml += "  <area shape=\"circle\" coords=\"25,25,20\" alt=\"Point\" onmouseover=\"edMO(1,1)\" onclick=\"edMO(2,1)\" onmouseout=\"edMO(2,0)\">";
-			eohtml += "  <area shape=\"circle\" coords=\"65,25,20\" alt=\"Line\" onmouseover=\"edMO(1,2)\" onclick=\"edMO(2,2)\" onmouseout=\"edMO(2,0)\">";
-			eohtml += "  <area shape=\"circle\" coords=\"120,25,20\" alt=\"Polygon\" onmouseover=\"edMO(1,3)\" onclick=\"edMO(2,3)\" onmouseout=\"edMO(2,0)\">";
-			eohtml += "  <area shape=\"circle\" coords=\"170,25,20\" alt=\"Shape\" onmouseover=\"edMO(1,4)\" onclick=\"edMO(2,4)\" onmouseout=\"edMO(2,0)\">";
-			eohtml += "</map>";
-			eohtml += "";
-			eohtml += "<div id=\"currentMode\"><b><font size=\"6\" color=\"#000080\">Point</font></b></div><br /><br />";
-			eohtml += "";
-			eohtml += "<b>Table to Edit: </b><br />";
+			var eohtml = "";
+			eohtml += "<h3>Edit Mode</h3>";
+			eohtml += "<img src=\"../../apps/img/edit/point-d3.png\" onmouseover=\"rollover(this, 'type')\" onmouseout=\"rollover(this, 'type')\" onclick=\"edMO(2,1,this)\" />";
+			eohtml += "<img src=\"../../apps/img/edit/line-d1.png\" onmouseover=\"rollover(this, 'type')\" onmouseout=\"rollover(this, 'type')\" onclick=\"edMO(2,2,this)\" />";
+			eohtml += "<img src=\"../../apps/img/edit/shape-d1.png\" onmouseover=\"rollover(this, 'type')\" onmouseout=\"rollover(this, 'type')\" onclick=\"edMO(2,4,this)\" /><br /><span id=\"polyshape\"></span><br />";
+			eohtml += "<h3>Table Selection</h3>";
 			eohtml += "<select id='eo1' name='eo1' onchange='changeActTable(this.value)'>";
 			for (i=0;i<tableArray.length;i++){
                 if (tableGeomEdit[i] == 'Yes' || tableGeomEdit[i] == 'YES' || tableGeomEdit[i] == 'True' || tableGeomEdit[i] == 'TRUE' ) {
@@ -2874,27 +2889,25 @@ function loadmap() {
                 }
 			}
 			eohtml += "</select><br />";
-			eohtml += "<b>Function: </b> <input type=\"button\" id=\"stickymode\" value=\"Sticky Mode On\" onclick=\"thissticks()\" /><br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"none\" checked=\"checked\" onclick=\"edMO(3,0)\" />None<br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"add\" onclick=\"edMO(3,1)\" />Add Feature<br /><br />";
+			eohtml += "<h3>Drawing Tools<img src=\"../../apps/img/edit/sticky-c1.png\" onmouseover=\"rollover(this, 'sticky')\" onmouseout=\"rollover(this, 'sticky')\" onclick=\"thissticks(this)\" /></h3>";
+			eohtml += "<img src=\"../../apps/img/edit/none-a3.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,0,this)\" /><br />";
+			eohtml += "<img src=\"../../apps/img/edit/add-a1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,1,this)\" /><br />";
+			eohtml += "<img src=\"../../apps/img/edit/existing-a1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,2,this)\" /><br />";
 			eohtml += "";
 			eohtml += "<div id=\"shapeoptions\" style=\"display:none;visibility:hidden;\">";
-			eohtml += "<b>Extra Options: </b><br />";
-			eohtml += "<div id=\"shapesides\" style=\"display:none;visibility:hidden;\">Number of Sides: <input name=\"sides\" id=\"sideNoInput\" value=\"3\" size=\"5\" onkeyup=\"edMO(2, 10);\" /><br /></div>";
-			eohtml += "Irregular Shape? <input type=\"checkbox\" name=\"ireg\" checked=\"checked\" onchange=\"edMO(2, 9);\" />  <br /><br />";
+			eohtml += "<b>Create Geometric Shape</b><br />";
+			eohtml += "<div id=\"shapesides\" style=\"display:none;visibility:hidden;\">Number of Sides: <input name=\"sides\" id=\"sideNoInput\" value=\"\" size=\"5\" /><br />";
+			eohtml += "Irregular Shape? <input type=\"checkbox\" name=\"ireg\" onchange=\"edMO(2,9);\" /><br />";
+			eohtml += "<img src=\"../../apps/img/edit/update_geom-a1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(2,10)\" /></div><br />";
 			eohtml += "</div>";
+			eohtml += "<h3>Editing Tools</h3>";
+			eohtml += "<img src=\"../../apps/img/edit/move-b1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,4,this)\" /><br />";
+			eohtml += "<img src=\"../../apps/img/edit/edit-b1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,5,this)\" /><br />";
+			eohtml += "<img src=\"../../apps/img/edit/rotate-b1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,6,this)\" /><br />";
+			eohtml += "<img src=\"../../apps/img/edit/resize-b1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,7,this)\" /><br />";
+			eohtml += "<img src=\"../../apps/img/edit/delete-b1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"edMO(3,8,this)\" /><br /><br />";
 			eohtml += "";
-			eohtml += "<b><u>Edit Tools</u></b><br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"selEx\" onclick=\"edMO(3,2)\" />Switch feature to editable Layer<br />";
-			eohtml += "";
-			eohtml += "<b>Tools: </b><br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"move\" onclick=\"edMO(3,4)\" />Move Feature<br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"edit\" onclick=\"edMO(3,5)\" />Edit Feature<br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"rotate\" onclick=\"edMO(3,6)\" />Rotate Feature<br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"resize\" onclick=\"edMO(3,7)\" />Resize Feature<br />";
-			eohtml += "<input type=\"radio\" name=\"edfunc\" value=\"del\" onclick=\"edMO(3,8)\" />Delete Feature<br /><br />";
-			eohtml += "";
-			eohtml += "<input type=\"button\" name=\"save\" value=\"Save Edits\" onclick=\"saveEdits()\" />";
+			eohtml += "<img src=\"../../apps/img/edit/save-b1.png\" onmouseover=\"rollover(this, 'roll')\" onmouseout=\"rollover(this, 'roll')\" onclick=\"saveEdits()\" />";
 			//eohtml += "</div></div></div>";
 
 			east6 = new Ext.Panel({
@@ -3229,6 +3242,29 @@ function handleInfo(){
 	} else {
 		popupDefault = true;
 	}
+}
+
+function selectEditHandle(){
+	//We need to determine the polygon type and enable the correct tool
+	var toolTog;
+	if(edit_select_no===4){
+		toolTog = 'edit_drag';
+	} else if (edit_select_no===5) {
+		toolTog = 'edit_reshape';
+	} else if (edit_select_no===6) {
+		toolTog = 'edit_rotate';
+	} else if (edit_select_no===7) {
+		toolTog = 'edit_resize';
+	} else if (edit_select_no===8) {
+		toolTog = 'del';
+	}
+	if(simplePolygonLayer.selectedFeatures.length>0){
+		toolTog += '4';
+		controls[toolTog].activate();
+	} else if (polygonLayer.selectedFeatures.length>0) {
+		toolTog += '3';
+		controls[toolTog].activate();
+	}//If neither are selected then don't bother
 }
 
 function selectHandle(feature){

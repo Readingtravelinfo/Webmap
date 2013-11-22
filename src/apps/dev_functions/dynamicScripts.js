@@ -45,9 +45,37 @@ function dynaScriptToggleCols(dir, colNo, maxCol, tableNo) {
 	SetUpToggleCols(dir, colNo, maxCol, tableNo);
 }
 
-function tableAction(direction){
+function tableAction(headID){
 	//This function controls the image rollover
-	
+		//The currCls may look like T0back and will contain -dis for a disabled tool
+		//The headID may look like T0colH1
+	var currCls = headID.attr("class");
+	if (currCls.indexOf("-dis")===-1){
+		//If not disabled, we run the rollover
+		//We need the table number
+		var tbNum = currCls.substring(0,2);
+		//We also need the current image
+		currCls = headID.css( "background-image" ); //This is now the image url
+		
+		//Now we can reset the css
+		if (currCls.indexOf("left-edge2")!==-1){
+			//The class is left-edge2
+			currCls = currCls.replace("left-edge2","left-edge");
+			$("td." + tbNum + "back").css( "background-image", currCls );
+		} else if (currCls.indexOf("left-edge")!==-1){
+			//The class is left-edge
+			currCls = currCls.replace("left-edge","left-edge2");
+			$("td." + tbNum + "back").css( "background-image", currCls );
+		} else if (currCls.indexOf("right-edge2")!==-1){
+			//The class is right-edge2
+			currCls = currCls.replace("right-edge2","right-edge");
+			$("td." + tbNum + "forward").css( "background-image", currCls );
+		} else if (currCls.indexOf("right-edge")!==-1){
+			//The class is right-edge
+			currCls = currCls.replace("right-edge","right-edge2");
+			$("td." + tbNum + "forward").css( "background-image", currCls );
+		}
+	}
 }
 
 //This is an array which determines the active tools where zero is not active and one is active
@@ -3576,8 +3604,10 @@ function edtoggleControl2(element, element2) {
 	}
 	if (infoS == "off") {
 		//Switch the info tools off if turned on
-		for (i=0;i<infoSwitch.length;i++){
-			window[infoSwitch[i]].deactivate();
+		if(element!=='none'){
+			for (i=0;i<infoSwitch.length;i++){
+				window[infoSwitch[i]].deactivate();
+			}
 		}
 	} else {
 		//Switch the info tools back on if turned off
@@ -3964,8 +3994,15 @@ function edMO(type, number, imageButton) {
 			if (number == 5) {
 				ET4 = 0;
 				edMO(3,100);
-				toolName = "edit_reshape" + ET;
-				edtoggleControl(toolName);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 5;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_reshape" + ET;
+					edtoggleControl(toolName);
+				}
 				tn2 = "Reshape a " + tn1[ET];
 				handleTog(tn2, 'none');
 				ET3 = 5;
@@ -3973,8 +4010,15 @@ function edMO(type, number, imageButton) {
 			if (number == 7) {
 				ET4 = 0;
 				edMO(3,100);
-				toolName = "edit_resize" + ET;
-				edtoggleControl(toolName);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 7;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_resize" + ET;
+					edtoggleControl(toolName);
+				}
 				tn2 = "Resize a " + tn1[ET];
 				handleTog(tn2, 'none');
 				ET3 = 7;
@@ -3982,8 +4026,15 @@ function edMO(type, number, imageButton) {
 			if (number == 4) {
 				ET4 = 0;
 				edMO(3,100);
-				toolName = "edit_drag" + ET;
-				edtoggleControl(toolName);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 4;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_drag" + ET;
+					edtoggleControl(toolName);
+				}
 				tn2 = "Move a " + tn1[ET];
 				handleTog(tn2, 'none');
 				ET3 = 4;
@@ -3991,8 +4042,15 @@ function edMO(type, number, imageButton) {
 			if (number == 6) {
 				ET4 = 0;
 				edMO(3,100);
-				toolName = "edit_rotate" + ET;
-				edtoggleControl(toolName);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 6;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "edit_rotate" + ET;
+					edtoggleControl(toolName);
+				}
 				tn2 = "Rotate a " + tn1[ET];
 				handleTog(tn2, 'none');
 				ET3 = 6;
@@ -4000,8 +4058,15 @@ function edMO(type, number, imageButton) {
 			if (number == 8) {
 				ET4 = 0;
 				edMO(3,100);
-				toolName = "del" + ET;
-				edtoggleControl(toolName);
+				if(ET===3 || ET===4){
+					//This is the polygon case and we want to activate two edit layers
+					edit_select_no = 8;
+					toolName = "edit_select";
+					window[toolName].activate();
+				} else {
+					toolName = "del" + ET;
+					edtoggleControl(toolName);
+				}
 				tn2 = "Delete a " + tn1[ET];
 				handleTog(tn2, 'none');
 				ET3 = 8;

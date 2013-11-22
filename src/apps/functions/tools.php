@@ -122,9 +122,9 @@ foreach ($xml->status->statusField as $opt){
 	";
 }
 
-print " 
-var appTitle = '" . $xml->other->appTitle . "';
-";
+print ' 
+var appTitle = "' . $xml->other->appTitle . '";
+';
 if ($xml->other->legendtree == "True") {
 	print "var legendtree = true;
 	";
@@ -250,7 +250,6 @@ foreach ($xml->wms->overlay as $opt) {
 	print "
 	overlayENV.push(\"" . $opt->overlayENV . "\");
 	overlayCache.push(\"" . $opt->overlayCache . "\");
-	overlayTable.push(\"" . $opt->overlayTable . "\");
 	";
 	if ($opt->overlayENV == ""){
 		//There is not a ENV switch for this layer
@@ -261,6 +260,10 @@ foreach ($xml->wms->overlay as $opt) {
 		print "overlayENVswitch.push(1);
 		";
 	}
+	$i = $i + 1;
+}
+$i = 0;
+foreach ($xml->wms->overlay2 as $opt) {
 	if ($opt->overlayPopup == 't' || $opt->overlayPopup == 'True'){
 		print "overlayPopup.push('True');
 		";
@@ -279,17 +282,27 @@ foreach ($xml->wms->overlay as $opt) {
 	overlayHover.push('" . $opt->overlayHoverTemp . "');
 	overlayHoverWidth.push('" . $opt->overlayHoverWidth . "');
 	overlayHoverHeight.push('" . $opt->overlayHoverHeight . "');
-	overlayZoom.push('" . $opt->overlayZoom . "');
-	overlayZoomLevel.push('" . intval($opt->overlayZoomLevel) . "');
-	overlayZoomSelF.push('" . $opt->overlayZoomSelF . "');
-	overlayZoomRepT.push('" . $opt->overlayZoomRepT . "');
-	overlayZoomRepF.push('" . $opt->overlayZoomRepF . "');
-	overlayType.push('" . $opt->overlayType . "');
 	";
 	if ($opt->overlayHoverTemp != ''){
 		print "templateHoverReader(" .$i . ");
 		";
 	}
+	$i = $i + 1;
+}
+$i = 0;
+foreach ($xml->wms->overlay3 as $opt) {
+	if($opt->overlayZoom=="True"){
+		print "overlayZoom.push('True');
+		";
+	} else {
+		print "overlayZoom.push('False');
+		";
+	}
+	print "overlayZoomLevel.push('" . intval($opt->overlayZoomLevel) . "');
+	overlayZoomSelF.push('" . $opt->overlayZoomSelF . "');
+	overlayZoomRepT.push('" . $opt->overlayZoomRepT . "');
+	overlayZoomRepF.push('" . $opt->overlayZoomRepF . "');
+	";
 	$i = $i + 1;
 }
 print "
@@ -315,6 +328,11 @@ var wfsFields = [];
 ";
 $i = 0;
 foreach ($xml->wfs->overlay as $opt){
+	print "
+	overlayTable.push(\"" . $opt->overlayTable . "\");
+	";
+	print "overlayType.push('" . $opt->overlayType . "');
+	";
 	print "var wfs" . $i . ";
 	var sH" . $i . ";
 	legendFilters.push({layer: 'wfs" . $i . "', filter: new OpenLayers.Filter.Comparison({type:'', property:'', value:''})});
@@ -399,6 +417,7 @@ var tableTitles = [];
 var tableGeomEdit = [];
 var tableHasView = [];
 var tableSelectStyle = [];
+var tableConstraints = [];
 ';
 //This sets up an array to let the user specify if select should highlight the row or select it in an edit style window
 foreach($xml->table->selStyle as $opt){
@@ -412,12 +431,34 @@ foreach($xml->table->selStyle as $opt){
 }
 //Other table settings
 $i = 0;
+print "var tmpConObj = {};
+";
+$tableconn = pg_connect($conn_string) or die('connection failed' . pg_last_error());
 foreach ($xml->table->tableName as $opt) {
+	if (strrpos($opt, "_view")!=false){
+		$tableConstr = 'select * from information_schema.table_constraints t1 LEFT JOIN information_schema.check_constraints t2 ON (t2.constraint_name = t1.constraint_name) WHERE table_name = \'' . substr($opt,0,strrpos($opt, "_view")) . '\';'; //The constraints we are after are table based so we convert views to tables
+	} else {
+		$tableConstr = 'select * from information_schema.table_constraints t1 LEFT JOIN information_schema.check_constraints t2 ON (t2.constraint_name = t1.constraint_name) WHERE table_name = \'' . $opt . '\';';
+	}
+	$tableres = pg_query($tableconn, $tableConstr) or die('Query failed: ' . pg_last_error());
+	print "// " . $tableConstr . " returns " . pg_num_rows($tableres) . " rows";
+	for ($i=0;$i<pg_num_rows($tableres);$i++) {
+		print "
+		tmpConObj = {
+			\"tableref\" : \"" . pg_fetch_result($tableres,$i,5)  . "\",
+			\"conname\" : \"" . pg_fetch_result($tableres,$i,2) . "\",
+			\"contype\" : \"" . pg_fetch_result($tableres,$i,6) . "\",
+			\"constr\" : \"" . pg_fetch_result($tableres,$i,12) . "\"
+		};
+		tableConstraints.push(tmpConObj);
+		";
+	}
 	if(strrpos($opt, "_view")!=false){
 		print "
 		tableArray.push('" . $opt . "');
-		tableHasView.push('IS');
-		tableArray.push('" .substr($opt,0,strrpos($opt, "_view")) . "');
+		";
+		print "tableHasView.push('IS');
+		tableArray.push('" . substr($opt,0,strrpos($opt, "_view")) . "');
 		tableHasView.push('Y');
 		";
 	} else {
