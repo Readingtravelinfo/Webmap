@@ -14,6 +14,19 @@ if (strpos($_SERVER['HTTP_REFERER'],"index.html?") != -1){
 	";
 }
 
+//We may now have multiple lower and recNo values
+print "var lowers = [];
+var recNos = [];
+";
+foreach ($xml->table->lower as $opt){
+	print "	lowers.push(" . $opt . ");
+	";
+}
+foreach ($xml->table->recNo as $opt){
+	print "recNos.push(" . $opt . ");
+	";
+}
+
 if (substr($projectPath, 0, 9)=="https://g") {
 	//External address 
 	$projectPath = substr($projectPath,36);

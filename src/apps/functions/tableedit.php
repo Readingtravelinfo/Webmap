@@ -25,8 +25,6 @@ if (file_exists($projectPath)) {
 $table = $_POST['table'];
 $function = $_POST['function'];
 $filter = $_POST['filter'];
-$recNo = $_POST['recNo'];
-$lower = $_POST['lower'];
 $status = $_POST['status'];
 $gid = $_POST['gid'];
 $sid = $_POST['sid'];
@@ -58,6 +56,10 @@ foreach ($popF as $item){
 		$i = 0;
 	}	
 }
+
+//We only have one value here so lets set lower and recNo here
+$recNo = $_POST['recNo'];
+$lower = $_POST['lower'];
 
 //Set up the width values
 //One value should be passed
@@ -351,19 +353,10 @@ $geom_field = $xml->other->geom_field;
 $proj = intval($xml->other->proj);
 $maxCol = 0; //We no longer use this value
 
-//We may now have multiple lower and recNo values to we are calculating an array splitting the values at each |
-$recNos = array();
-$lowers = array();
+//Setup the order_bys
 $order_bys = array();
-foreach ($xml->table as $opt){
-	array_push($recNos, $opt->recNo);
-	array_push($lowers, $opt->lower);
-	array_push($order_bys, $opt->order_by);
-}
-if($multiTable === 0){
-	//Single table so first records
-	$recNo = $recNos[0];
-	$lower = $lowers[0];
+foreach ($xml->table->order_by as $opt){
+	array_push($order_bys, $opt);
 }
 
 $nofilter = 0;
@@ -1396,8 +1389,6 @@ switch($function):
             }
         }
 
-		//This sets the lowerS and recNoS values
-		print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"lowerSet( '" . $recNo . "', '" . $lower . "')\" />";
 		$colNoStr = "";
 		
 		if ($nofilter != 1) {
@@ -1428,7 +1419,7 @@ switch($function):
 			} else {
 				$query = 'SELECT * FROM ' . $table . ' WHERE ' . $tabFilter . ' ORDER BY gid ASC;';
 			}
-			$res = pg_query($dbconn, $query) or header( print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"resetView('" . $table . "', " . $recNos[$tb] . ", " . $lowers[$tb] . ", 0)\" />");
+			$res = pg_query($dbconn, $query) or header( print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"resetView('" . $table . "', " . $tb . ", 0)\" />");
 			$tabRows = pg_num_rows($res);
 			
 			//Generate a GID array
@@ -1444,17 +1435,17 @@ switch($function):
 			
 			if ($tabFilter ==''){
 				if ($nofilter == 0) {
-					$query = 'SELECT * FROM ' . $table . ' WHERE ' . $filter . ' ORDER BY gid ASC limit ' . $recNos[$tb] . ' offset ' . $lowers[$tb] . ';';
+					$query = 'SELECT * FROM ' . $table . ' WHERE ' . $filter . ' ORDER BY gid ASC limit ' . $recNo . ' offset ' . $lower . ';';
 				} else {
 					// Query
 					if ($tableLooper == 0){
-						$query = 'SELECT * FROM ' . $table . ' ORDER BY gid ASC limit ' . $recNos[$tb] . ' offset ' . $lowers[$tb] . ';';
+						$query = 'SELECT * FROM ' . $table . ' ORDER BY gid ASC limit ' . $recNo . ' offset ' . $lower . ';';
 					} else {
-						$query = 'SELECT * FROM ' . $table . ' WHERE ' . $tableLoops[$tb] . ' ORDER BY gid ASC limit ' . $recNos[$tb] . ' offset ' . $lowers[$tb] . ';';
+						$query = 'SELECT * FROM ' . $table . ' WHERE ' . $tableLoops[$tb] . ' ORDER BY gid ASC limit ' . $recNo . ' offset ' . $lower . ';';
 					}
 				}
 			} else {
-				$query = 'SELECT * FROM ' . $table . ' WHERE ' . $tabFilter . ' ORDER BY gid ASC limit ' . $recNos[$tb] . ' offset ' . $lowers[$tb] . ';';
+				$query = 'SELECT * FROM ' . $table . ' WHERE ' . $tabFilter . ' ORDER BY gid ASC limit ' . $recNo . ' offset ' . $lower . ';';
 			}
 			$res = pg_query($dbconn, $query) or die('Query failed: ' . pg_last_error());
 
@@ -1521,7 +1512,7 @@ switch($function):
 			//We need to set up the filter tools here
 			print "<table bgcolor='#C0C0C0' width='100%'><tr>
 			<td rowspan='2'>";
-			if ($lowers[$tb] == 0) {
+			if ($lower == 0) {
 				print "<input type='button' disabled='disabled' value='<<' />";
 			} else {
 				if ($currGID != -1 && $currGIDdone != -1) {
@@ -1533,7 +1524,7 @@ switch($function):
 			print "</td>		
 			<th align=\"left\"></th>
 			<td rowspan='2'>";
-			if (($lowers[$tb] + $recNos[$tb]) >= $tabRows) {
+			if (($lower + $recNo) >= $tabRows) {
 				print "<input type='button' disabled='disabled' value='>>' />";
 			} else {
 				if ($currGID != -1 && $currGIDdone != -1) {
@@ -1549,10 +1540,10 @@ switch($function):
 				<table width=\"100%\"><tr>
 				<td>
 						Number of Records to Display in the Table below:  
-						<select onchange='recNochange(\"" . $tb . "\",this.value)'>" . intval($recNos[$tb]);
+						<select onchange='recNochange(\"" . $tb . "\",this.value)'>" . intval($recNo);
 						$mlval = 5;
 						for ($ml=0;$ml<=9;$ml++) {
-							if ($mlval == intval($recNos[$tb])) {
+							if ($mlval == intval($recNo)) {
 								print "<option selected='selected' value='" . $mlval . "'>" . $mlval . "</option>";
 							} else {
 								print "<option value='" . $mlval . "'>" . $mlval . "</option>";
@@ -1589,10 +1580,10 @@ switch($function):
 			print "</td>
 			</tr><tr>
 			<td align=\"center\" colspan=\"5\">";
-				if (empty($recNos[$tb])) {
+				if (empty($recNo)) {
 					print "Currently showing a custom query";
 				} else {
-					print "Currently showing records " . $lowers[$tb] . " to " . ($lowers[$tb] + $recNos[$tb]) . " of " . $tabRows;
+					print "Currently showing records " . $lower . " to " . ($lower + $recNo) . " of " . $tabRows;
 				}
 			print "</td></tr></table>";
 			
@@ -1684,7 +1675,7 @@ switch($function):
 					$tmFun = 1;
 				}
 				if ($tmFun == 0){
-					print "<select id='rec_stat". $gidArray[$lowers[$tb] + $i] . "' name='rec_stat". $gidArray[$lowers[$tb] + $i] . "' onclick='changeSbutt(\"statusSpan" . $i . "-" . $tb ."\")'>";
+					print "<select id='rec_stat". $gidArray[$lower + $i] . "' name='rec_stat". $gidArray[$lower + $i] . "' onclick='changeSbutt(\"statusSpan" . $i . "-" . $tb ."\")'>";
 					
 					if ($lookupStatus == ''){
 						$sd = 0;
@@ -1722,7 +1713,7 @@ switch($function):
 						}
 					} else {
 						//OK, this is a variable status and we need to work out the options here?
-						$rowGID = $gidArray[$lowers[$tb] + $i];
+						$rowGID = $gidArray[$lower + $i];
 						$rowListID = $VstatusList[$rowGID];
 						
 						//Loop through the options and add as required
@@ -1738,7 +1729,7 @@ switch($function):
 						}
 						
 					}
-					$callerrow = "rec_stat". $gidArray[$lowers[$tb] + $i];
+					$callerrow = "rec_stat". $gidArray[$lower + $i];
 					// Deal with views Query
 					if(strrpos($table, "_view")!=false){
 						$qtable = substr($table,0,strrpos($table, "_view"));
@@ -1747,7 +1738,7 @@ switch($function):
 					}
 					// Query
 					print "</select><br />
-					<span id=\"statusSpan" . $i . "-" . $tb . "\" class=\"hideIt\"><input type=\"button\" onclick=\"gedCall('" . $qtable . "', 'supdate', '" . $gidArray[$lowers[$tb] + $i] . "', '" . $callerrow . "')\" value=\"Change Status\" /><br /></span>";
+					<span id=\"statusSpan" . $i . "-" . $tb . "\" class=\"hideIt\"><input type=\"button\" onclick=\"gedCall('" . $qtable . "', 'supdate', '" . $gidArray[$lower + $i] . "', '" . $callerrow . "')\" value=\"Change Status\" /><br /></span>";
 				}
 				//Is this a banned function?
 				$tmFun = 0;
@@ -1761,7 +1752,7 @@ switch($function):
 				}
 					
 				if ($tmFun == 0){
-					print "<input type=\"button\" onclick=\"gedCall('" . $qtable . "', 'drop', '" . $gidArray[$lowers[$tb] + $i] . "')\" value=\"Delete Row\" /><br />";
+					print "<input type=\"button\" onclick=\"gedCall('" . $qtable . "', 'drop', '" . $gidArray[$lower + $i] . "')\" value=\"Delete Row\" /><br />";
 				}
 
 				//Is this a banned function?
@@ -1775,7 +1766,7 @@ switch($function):
 					}
 				}
 				if ($tmFun == 0){
-					print "<input type=\"button\" onclick=\"updateRow('" . $table . "','" . $gidArray[$lowers[$tb] + $i] . "')\" value=\"Update Row\" /></td>";
+					print "<input type=\"button\" onclick=\"updateRow('" . $table . "','" . $gidArray[$lower + $i] . "')\" value=\"Update Row\" /></td>";
 				}
 
 				//We are now having scrolling tables rather than wrapped tables
@@ -2242,7 +2233,7 @@ switch($function):
 		<input type='hidden' id='Itable' name='Itable' value='" . $table . "' /><input type='hidden' id='Iproj' name='Iproj' value='" . $proj . "' /></div>";
 		break;
 	default:
-		print "<img src='../../apps/functions/blank.jpg' onload=\"resetView('" . $table . "', " . $recNos[0] . ", " . $lowers[0] . ", 0)\" />";
+		print "<img src='../../apps/functions/blank.jpg' onload=\"resetView('" . $table . "', 0, 0)\" />";
 		break;
 endswitch;
 

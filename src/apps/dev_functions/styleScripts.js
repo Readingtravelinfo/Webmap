@@ -9,15 +9,15 @@ var stylesheetTool = {
 	}
 };
 
-for (i=0;i<tableArray.length;i++){
-	window["backButtonArray" + i] = document.getElementsByName('backBut' + i);
-	window["forButtonArray" + i] = document.getElementsByName('forBut' + i);
-}
-
 var disableHandler = [];
 var dH1 = [];
 var dH2 = [];
 function SetUpToggleCols(dir, colNo, maxCol, tableNo) {
+	for (i=0;i<tableArray.length;i++){
+		window["backButtonArray" + i] = document.getElementsByName('backBut' + i);
+		window["forButtonArray" + i] = document.getElementsByName('forBut' + i);
+	}
+	
 	//OK, we are now using pure css and removing the need for a button. We need to know if this is the first run for a particular table?
 	var fr = -1;
 	for (i=0;i<disableHandler.length;i++){
@@ -49,11 +49,6 @@ function SetUpToggleCols(dir, colNo, maxCol, tableNo) {
 	}
 	
 	if (runScript === 1){
-		if (gidRunOK == 0){
-			if (typeof document.getElementById('gidArray') != 'undefined'){
-				setGID(2);
-			}		
-		}
 		var tableOb, colWarray, tableWidth2;
 		colWarray = [];
 		tableWidth2 = tableWidth - 220;

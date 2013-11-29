@@ -20,9 +20,6 @@ $projectPath = "../.." . $projectPath . 'config.xml';
 if (file_exists($projectPath)) {
     $xml = simplexml_load_file($projectPath);
 }
-//Output a listener / handler function for use later
-print "
-";
 
 //We need to define the map as early as possible to ensure the actions are not void
 print "
@@ -56,6 +53,20 @@ print "var gog = false;
 var ddFull = false;
 
 ";
+
+//We may now have multiple lower and recNo values
+print "var lowers = [];
+var recNos = [];
+";
+foreach ($xml->table->lower as $opt){
+	print "	lowers.push(" . $opt . ");
+	";
+}
+foreach ($xml->table->recNo as $opt){
+	print "recNos.push(" . $opt . ");
+	";
+}
+
 if ($xml->other->popupPan == "True") {
 	print "var popupPan = true;
 	";
@@ -334,6 +345,7 @@ foreach ($xml->wfs->overlay as $opt){
 	print "overlayType.push('" . $opt->overlayType . "');
 	";
 	print "var wfs" . $i . ";
+	var highlightwfs" . $i . ";
 	var sH" . $i . ";
 	legendFilters.push({layer: 'wfs" . $i . "', filter: new OpenLayers.Filter.Comparison({type:'', property:'', value:''})});
 	userFilters.push({layer: 'wfs" . $i . "', filter: new OpenLayers.Filter.Comparison({type:'', property:'', value:''})});
@@ -433,15 +445,20 @@ foreach($xml->table->selStyle as $opt){
 $i = 0;
 print "var tmpConObj = {};
 ";
+print "var tableRows = [];
+	";
 $tableconn = pg_connect($conn_string) or die('connection failed' . pg_last_error());
+$tableconn2 = pg_connect($conn_string) or die('connection failed' . pg_last_error());
 foreach ($xml->table->tableName as $opt) {
+	//Get the table constraints
 	if (strrpos($opt, "_view")!=false){
 		$tableConstr = 'select * from information_schema.table_constraints t1 LEFT JOIN information_schema.check_constraints t2 ON (t2.constraint_name = t1.constraint_name) WHERE table_name = \'' . substr($opt,0,strrpos($opt, "_view")) . '\';'; //The constraints we are after are table based so we convert views to tables
 	} else {
 		$tableConstr = 'select * from information_schema.table_constraints t1 LEFT JOIN information_schema.check_constraints t2 ON (t2.constraint_name = t1.constraint_name) WHERE table_name = \'' . $opt . '\';';
 	}
-	$tableres = pg_query($tableconn, $tableConstr) or die('Query failed: ' . pg_last_error());
-	print "// " . $tableConstr . " returns " . pg_num_rows($tableres) . " rows";
+	$tableres = pg_query($tableconn, $tableConstr);
+	print "// " . $tableConstr . " returns " . pg_num_rows($tableres) . " rows
+	";
 	for ($i=0;$i<pg_num_rows($tableres);$i++) {
 		print "
 		tmpConObj = {
@@ -453,9 +470,9 @@ foreach ($xml->table->tableName as $opt) {
 		tableConstraints.push(tmpConObj);
 		";
 	}
+	//Record the table details
 	if(strrpos($opt, "_view")!=false){
-		print "
-		tableArray.push('" . $opt . "');
+		print "tableArray.push('" . $opt . "');
 		";
 		print "tableHasView.push('IS');
 		tableArray.push('" . substr($opt,0,strrpos($opt, "_view")) . "');
@@ -469,6 +486,11 @@ foreach ($xml->table->tableName as $opt) {
 	print "var backButtonArray" . $i . ";
 	var forButtonArray" . $i . ";
 	var colRef" . $i . ";
+	";
+	//Pickup the table rows
+	$tableConstr = 'select * from ' . $opt . ';';
+	$tableres2 = pg_query($tableconn2, $tableConstr);
+	print "tableRows.push(" . pg_num_rows($tableres2) . ");
 	";
 	$i = $i + 1;
 }
@@ -680,22 +702,15 @@ foreach ($xml->table->tableName as $opt) {
 }
 
 //Define the gid array
-if ($table != '') {
-	$dbconn = pg_connect($conn_string) or die('connection failed' . pg_last_error());
-	print "var gidLookupToRow = [";
-	$query1 = 'SELECT gid, mod_by FROM ' . pg_escape_identifier($table) . ' ORDER BY gid ASC ;';
-	$res1 = pg_query($dbconn, $query1) or die('Query failed: ' . pg_last_error());
-	$tabRows = pg_num_rows($res1);
-	for ($i=0;$i<$tabRows;$i++){
-		if ($i==0){
-			print pg_fetch_result($res1,$i,0);
-		} else {
-			print ", " . pg_fetch_result($res1,$i,0);
-		}
-	}
-	print "]; //gid lookup to row number
+print "var gidLookupToRow = [];
+";
+foreach ($xml->table->tableName as $opt) {
+	print "gidLookupToRow.push(''); //gid lookup to row number
 	";
-	
+}
+
+
+if ($table != '') {
 	//Define the functions
 	print "var fieldNames = [];
 	function defineFieldNames(tableRef) {
@@ -711,9 +726,6 @@ if ($table != '') {
 			}
 		}
 	}";
-	// Free resultset
-	pg_free_result($res1);
-	pg_close($dbconn);
 }
 
 print "function defineTools(map, GeoExt, Ext) {

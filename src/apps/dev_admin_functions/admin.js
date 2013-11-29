@@ -12,34 +12,18 @@ var pUsers = '<tr><td id="pUr`c1" class="ed"></td><td><a onclick("moveRow(\"up\"
 var pBase = '<tr><td id="bMr`c1" class="ed"></td><td id="bMr`c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"bMr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"bMr`\")")>&#x25BC;</a></td></tr>';
 var pFExclusion = '<tr><td id="fEr`c1" class="ed"></td><td><a onclick("moveRow(\"up\",\"fEr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"fEr`\")")>&#x25BC;</a></td></tr>';
 var pPredef = '<tr><td id="pDmr`c1" class="ed"></td><td id="pDmr`c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"pDmr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pDmr`\")")>&#x25BC;</a></td></tr>';
-var pStyle = '<tr><td id="sCr`c1"><select id="sCsel"></select></td><td id="sCr`c2" class="ed"></td><td id="sCr`c3" class="ed"></td><td><a onclick("moveRow(\"up\",\"sCr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"sCr`\")")>&#x25BC;</a></td></tr>';
+var pStyle = '<tr><td id="sCr`c1"><select id="sCsel-`"></select></td><td id="sCr`c2" class="ed"></td><td id="sCr`c3" class="ed"></td><td><a onclick("moveRow(\"up\",\"sCr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"sCr`\")")>&#x25BC;</a></td></tr>';
 var pLayer = '<tr><td><a onclick("moveRow(\"up\",\"pLr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"pLr`\")")>&#x25BC;</a></td><td id="pLr`c1" class="ed"></td><td id="pLr`c2" class="ed"></td><td id="pLr`c3" class="ed"></td><td id="pLr`c4"><select id="pLbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c5"><select id="pLbool2-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c6" class="ed"></td><td id="pLr`c7"><select id="pLbool3-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c8" class="ed"></td><td id="pLr`c9" class="ed"></td><td id="pLr`c10"><select id="pLbool4-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c11"><select id="pLbool5-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c12" class="ed"></td></tr>';
 var pPopHov = '<tr><td id="pUhr`c1"></td><td id="pUhr`c2"><select id="pUhbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pUhr`c3" class="ed"></td><td id="pUhr`c4" class="ed"></td><td id="pUhr`c5" class="ed"></td><td id="pUhr`c6" class="ed"></td><td id="pUhr`c7" class="ed"></td><td id="pUhr`c8" class="ed"></td></tr>';
 var pZoom = '<tr><td id="pZr`c1"></td><td id="pZr`c2"><select id="pZbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr`c3" class="ed"></td><td id="pZr`c4" class="ed"></td><td id="pZr`c5" class="ed"></td><td id="pZr`c6" class="ed"></td></tr>';
 var pWFS = '<tr><td id="pWFSr`c1"></td><td id="pWFSr`c2" class="ed"></td><td id="pWFSr`c3" class="ed"></td><td id="pWFSr`c4" class="ed"></td><td id="pWFSr`c5" class="ed"></td><td id="pWFSr`c6" class="ed"></td><td id="pWFSr`c7" class="ed"></td><td id="pWFSr`c8" class="ed"></td><td id="pWFSr`c9" class="ed"></td></tr>';
 var pLookup = '<tr><td id="tLr`c1" class="ed"></td><td id="tLr`c2" class="ed"></td><td id="tLr`c3" class="ed"></td><td id="tLr`c4" class="ed"></td><td><a onclick("moveRow(\"up\",\"tLr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tLr`\")")>&#x25BC;</a></td></tr>';
 var pOption = '<tr><td id="tOr`c1" class="ed"></td><td id="tOr`c2" class="ed"></td><td id="tOr`c3" class="ed"></td><td id="tOr`c4" class="ed"></td><td><a onclick("moveRow(\"up\",\"tOr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tOr`\")")>&#x25BC;</a></td></tr>';
-var pStatus = '<tr><td id="tSr`c1" class="ed"></td><td id="tSr`c2"><select id="pSbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="tSr`c3" class="ed"></td><td id="tSr`c4"><select id="tSsel"></select></td><td id="tSr`c5" class="ed"></td><td><a onclick("moveRow(\"up\",\"tSr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tSr`\")")>&#x25BC;</a></td></tr>';
+var pStatus = '<tr><td id="tSr`c1" class="ed"></td><td id="tSr`c2"><select id="pSbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="tSr`c3" class="ed"></td><td id="tSr`c4"><select id="tSsel-`"></select></td><td id="tSr`c5" class="ed"></td><td><a onclick("moveRow(\"up\",\"tSr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tSr`\")")>&#x25BC;</a></td></tr>';
 var pOTable = '<tr><td><a onclick("moveRow(\"up\",\"oTr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"oTr`\")")>&#x25BC;</a></td><td id="oTr`c1" class="ed"></td><td id="oTr`c2"><select id="oTbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="oTr`c3" class="ed"></td><td id="oTr`c4" class="ed"></td><td id="oTr`c5" class="ed"></td><td id="oTr`c6" class="ed"></td><td id="oTr`c7" class="ed"></td><td id="oTr`c8" class="ed"></td></tr>';
-var pExclusion = '<tr><td id="tEr`c1" class="ed"></td><td id="tEr`c2"><select id="tEsel"></select></td><td><a onclick("moveRow(\"up\",\"tEr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tEr`\")")>&#x25BC;</a></td></tr>';
-var pDiscol = '<tr><td id="dCr`c1" class="ed"></td><td id="dCr`c2"><select id="dCsel"></select></td><td><a onclick("moveRow(\"up\",\"dCr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"dCr`\")")>&#x25BC;</a></td></tr>';
-var pLoops = '<tr><td id="tLor`c1"><select id="tLosel"></select></td><td id="tLor`c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"tLor`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tLor`\")")>&#x25BC;</a></td></tr>';
-var pUsers = '<tr><td id="pUr`c1" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pUsers\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pUsers\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'pUr`c1\',\'r`c\',\'pUsers\')" /></td></tr>';
-var pBase = '<tr><td id="bMr`c1" class="ed"></td><td id="bMr`c2" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pBase\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pBase\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'bMr`c1\',\'r`c\',\'pBase\')" /></td></tr>';
-var pFExclusion = '<tr><td id="fEr`c1" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pFExclusion\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pFExclusion\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'fEr`c1\')" /></td></tr>';
-var pPredef = '<tr><td id="pDmr`c1" class="ed"></td><td id="pDmr`c2" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pPredef\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pPredef\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'pDmr`c1\',\'r`c\',\'pPredef\')" /></td></tr>';
-var pStyle = '<tr><td id="sCr`c1"><select id="sCsel-`"></select></td><td id="sCr`c2" class="ed"></td><td id="sCr`c3" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pStyle\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pStyle\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'sCr`c1\',\'r`c\',\'pStyle\')" /></td></tr>';
-var pLayer = '<tr><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pLayer\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pLayer\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'pLr`c1\',\'r`c\',\'pLayer\')" /></td><td id="pLr`c1" class="ed"></td><td id="pLr`c2" class="ed"></td><td id="pLr`c3" class="ed"></td><td id="pLr`c4"><select id="pLbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c5"><select id="pLbool2-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c6" class="ed"></td><td id="pLr`c7"><select id="pLbool3-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c8" class="ed"></td><td id="pLr`c9" class="ed"></td><td id="pLr`c10"><select id="pLbool4-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c11"><select id="pLbool5-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pLr`c12" class="ed"></td></tr>';
-var pPopHov = '<tr><td id="pUhr`c1"></td><td id="pUhr`c2"><select id="pUhbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pUhr`c3" class="ed"></td><td id="pUhr`c4" class="ed"></td><td id="pUhr`c5" class="ed"></td><td id="pUhr`c6" class="ed"></td><td id="pUhr`c7" class="ed"></td><td id="pUhr`c8" class="ed"></td></tr>';
-var pZoom = '<tr><td id="pZr`c1"></td><td id="pZr`c2"><select id="pZbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pZr`c3" class="ed"></td><td id="pZr`c4" class="ed"></td><td id="pZr`c5" class="ed"></td><td id="pZr`c6" class="ed"></td></tr>';
-var pWFS = '<tr><td id="pWFSr`c1"></td><td id="pWFSr`c2"><select id="pWFStype-`"><option value="Postgis">Postgis</option><option value="Shapefile">Shapefile</option><option value="Other">Other</option></select></td><td id="pWFSr`c3" class="ed"></td><td id="pWFSr`c4" class="ed"></td><td id="pWFSr`c5" class="ed"></td><td id="pWFSr`c6"><select id="pWFSbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="pWFSr`c7" class="ed"></td><td id="pWFSr`c8" class="ed"></td><td id="pWFSr`c9" class="ed"></td></tr>';
-var pLookup = '<tr><td id="tLr`c1" class="ed"></td><td id="tLr`c2" class="ed"></td><td id="tLr`c3" class="ed"></td><td id="tLr`c4" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pLookup\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pLookup\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tLr`c1\',\'r`c\',\'pLookup\')" /></td></tr>';
-var pOption = '<tr><td id="tOr`c1" class="ed"></td><td id="tOr`c2" class="ed"></td><td id="tOr`c3" class="ed"></td><td id="tOr`c4" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pOption\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pOption\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tOr`c1\',\'r`c\',\'pOption\')" /></td></tr>';
-var pStatus = '<tr><td id="tSr`c1" class="ed"></td><td id="tSr`c2"><select id="pSbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="tSr`c3" class="ed"></td><td id="tSr`c4"><select id="tSsel"></select></td><td id="tSr`c5" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pStatus\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pStatus\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tSr`c1\',\'r`c\',\'pStatus\')" /></td></tr>';
-var pOTable = '<tr><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pOTable\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pOTable\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'oTr`c1\',\'r`c\',\'pOTable\')" /></td><td id="oTr`c1" class="ed"></td><td id="oTr`c2"><select id="oTbool1-`"><option value="True">True</option><option value="False">False</option></select></td><td id="oTr`c3" class="ed"></td><td id="oTr`c4"><select id="oTview-`"><option value="view">Highlighted Row</option><option value="view-edit">Record View</option></select></td><td id="oTr`c5" class="ed"></td><td id="oTr`c6" class="ed"></td><td id="oTr`c7" class="ed"></td><td id="oTr`c8" class="ed"></td></tr>';
-var pExclusion = '<tr><td id="tEr`c1" class="ed"></td><td id="tEr`c2"><select id="tEsel"></select></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pExclusion\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pExclusion\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tEr`c1\',\'r`c\',\'pExclusion\')" /></td></tr>';
-var pDiscol = '<tr><td id="dCr`c1" class="ed"></td><td id="dCr`c2"><select id="dCsel"></select></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pDiscol\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pDiscol\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'dCr`c1\',\'r`c\',\'pDiscol\')" /></td></tr>';
-var pLoops = '<tr><td id="tLor`c1"><select id="tLosel"></select></td><td id="tLor`c2" class="ed"></td><td><img src="../../apps/img/sort-asc.png" onclick="moveRow(\'up\',\'pLoops\',\'r`c\')" /><img src="../../apps/img/sort-dsc.png" onclick="moveRow(\'down\',\'pLoops\',\'r`c\')" /><img src="../../apps/img/del.png" onclick="deleteRow(\'tLor`c1\',\'r`c\',\'pLoops\')" /></td></tr>';
+var pExclusion = '<tr><td id="tEr`c1" class="ed"></td><td id="tEr`c2"><select id="tEsel-`"></select></td><td><a onclick("moveRow(\"up\",\"tEr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tEr`\")")>&#x25BC;</a></td></tr>';
+var pDiscol = '<tr><td id="dCr`c1" class="ed"></td><td id="dCr`c2"><select id="dCsel-`"></select></td><td><a onclick("moveRow(\"up\",\"dCr`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"dCr`\")")>&#x25BC;</a></td></tr>';
+var pLoops = '<tr><td id="tLor`c1"><select id="tLosel-`"></select></td><td id="tLor`c2" class="ed"></td><td><a onclick("moveRow(\"up\",\"tLor`\")")>&#x25B2;</a> <a onclick("moveRow(\"down\",\"tLor`\")")>&#x25BC;</a></td></tr>';
 
 //Column Function arrays
 var pUsersA, pBaseA, pLayerA, pWFSA, pOTableA, pLoopsA, pOptionA, pLookupA, pStatusA, pExclusionA, pDiscolA, pFExclusionA, pPredefA, pStyleA;
@@ -541,8 +525,8 @@ function pageSetup2(){
 				fieldL = [
 					"*",
 					"overlayType", 
-					"overlayTable", 
-					"overlayfeatureType", 
+					"overlayTable",
+					"overlayfeatureType", 					
 					"overlayPath", 
 					"overlayDILS", 
 					"overlaySRS", 
@@ -1543,7 +1527,7 @@ function addLine(tabRef,colNo){
 	var colList = runArray[0];
 	var objValA = runArray[1];
 	var prefix = runArray[2];
-	/*if(tabRef==='pZoom'){
+	/*if(tabRef==='pExclusion'){
 		alert(colList.toSource());
 		alert(objValA.toSource());
 		alert(prefix.toSource());
@@ -1578,7 +1562,7 @@ function addLine(tabRef,colNo){
 							ai4 = ai4 + 1;
 						});
 						if (selOpt!==''){
-							tmpJQ.prop('selectedIndex', selOpt);
+							document.getElementById(tmpJQ.attr('id')).selectedIndex = selOpt;
 						} //If we don't have a number by now then we failed to match any option in the select so we will leave it with the default value
 					} else if (hO.innerHTML === ''){
 						//This is a standard table cell so we can simply write in the value
@@ -1595,7 +1579,7 @@ function addLine(tabRef,colNo){
 				if(tabRef==='pOTable' &&  colList[ai3]==='c1'){
 					//We just added a table so we need to run the table handler
 					conTablesT.push(objValA[ai3][ai2]);
-					conTables.push('overlay' + conTablesT.length-1);
+					conTables.push(objValA[ai3][ai2]);
 					tableHandler(objValA[ai3][ai2], prefix + 'r' + tmpI + colList[ai3]);
 				} else if (tabRef==='pLayer' &&  colList[ai3]==='c1') {
 					//If we add a layer we need to add the layer to the selection options
@@ -1832,8 +1816,7 @@ function addRow(table, currRow){
 				if (matched!==1){
 					//Must be new; add the value
 					conTablesT.push(value);
-					conTables.push('overlay' + conTablesT.length-1);
-					
+					conTables.push(value);
 					tableHandler(value, $(this).attr("id"));
 				} //No need to do anything if matched
 			}
@@ -1914,6 +1897,7 @@ function layerHandle(val, id){
 
 var t1, t2, t3;
 function tableHandler(val, id){
+	var thandleTmp;
 	var thandle = ['tSsel', 'tEsel', 'dCsel', 'tLosel'];
 	var thandleP1 = ['tSr', 'tEr', 'dCr', 'tLor'];
 	var thandleP2 = ['c4','c2','c2','c1'];
@@ -1927,51 +1911,60 @@ function tableHandler(val, id){
 		TabNo = $(tableHandle[t1]).length;
 		id2 = thandleP1[t1] + id;
 		for (t2=0;t2<TabNo;t2++){
-			if(t2!==0){
-				if(thandleType[t1]==='s'){
-					ttdHandle = thandleP1[t1] + t2 + thandleP2[t1];
-					tableSelHTML = '<select id="' + thandle[t1] + '">';
-					if (conTables.length===0){
-						tableSelHTML += '<option value"">Please Add Tables First</option>'; 
-					} else {
-						selOpt = document.getElementById(thandle[t1]).options.selectedIndex;
-						if(selOpt===-1){
-							v = "";
-							t = "";
+			thandleTmp = thandle[t1];
+			if(thandleTmp.indexOf("-")===-1){
+				thandleTmp = thandle[t1] + "-" + t2;
+			} 
+			if(document.getElementById(thandleTmp)!==null){
+				if(t2!==0){
+					if(thandleType[t1]==='s'){
+						ttdHandle = thandleP1[t1] + t2 + thandleP2[t1];
+						tableSelHTML = '<select id="' + thandleTmp + '">';
+						if (conTables.length===0){
+							tableSelHTML += '<option value"">Please Add Tables First</option>'; 
 						} else {
-							sv = document.getElementById(thandle[t1]).options[selOpt].value;
-							st = document.getElementById(thandle[t1]).options[selOpt].text;
-							if (st==='Please Add Tables First' || st===''){
-								v = "";
-								t = "";
-							} else {
-								v = sv;
-								t = st;
-							}
-						}
-						for(t3=0;t3<conTables.length;t3++){
-							if(conTables[t3]!=='Click to edit' || conTables[t3]!=='Save'){
-								//Add this option
-								if (conTables[t3]===v){
-									tableSelHTML += '<option value"' + v + '" selected="selected">' + t + '</option>';
+							//***Start Here
+							if(document.getElementById(thandleTmp).options!==null){
+								selOpt = document.getElementById(thandleTmp).options.selectedIndex;
+								if(selOpt===-1){
+									v = "";
+									t = "";
 								} else {
-									tableSelHTML += '<option value"' + conTables[t3] + '">' + conTablesT[t3] + '</option>'; 
+									sv = document.getElementById(thandleTmp).options[selOpt].value;
+									st = document.getElementById(thandleTmp).options[selOpt].text;
+									if (st==='Please Add Tables First' || st===''){
+										v = "";
+										t = "";
+									} else {
+										v = sv;
+										t = st;
+									}
+								}
+								for(t3=0;t3<conTables.length;t3++){
+									if(conTables[t3]!=='Click to edit' || conTables[t3]!=='Save'){
+										//Add this option
+										if (conTables[t3]===v){
+											tableSelHTML += '<option value="' + v + '" selected="selected">' + t + '</option>';
+										} else {
+											tableSelHTML += '<option value="' + conTables[t3] + '">' + conTablesT[t3] + '</option>'; 
+										}
+									}
 								}
 							}
 						}
-					}
-					tableSelHTML += '</select>';
-					document.getElementById(ttdHandle).innerHTML = tableSelHTML; 
-				} else {
-					if (typeof val!=='undefined'){
-						ttdHandle = handleP1[t1] + t2 + 'c1';
-						if (ttdHandle===id2){
-							tableSelHTML = val;
-							document.getElementById(ttdHandle).innerHTML = tableSelHTML; 
+						tableSelHTML += '</select>';
+						document.getElementById(ttdHandle).innerHTML = tableSelHTML; 
+					} else {
+						if (typeof val!=='undefined'){
+							ttdHandle = handleP1[t1] + t2 + 'c1';
+							if (ttdHandle===id2){
+								tableSelHTML = val;
+								document.getElementById(ttdHandle).innerHTML = tableSelHTML; 
+							}
 						}
 					}
-				}
-			}//Miss the first row as this is the header row
+				}//Miss the first row as this is the header row
+			}
 		}
 	}
 }

@@ -324,14 +324,10 @@ function validateForm() {
 	}
 }
 
-function resetView(table, recNo, lower, filter) {
-	/*This is the only script that doesn't get the recNo, lower and filter from the document elements
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
-	filter = document.getElementById('filterS').value;*/
-
-	document.getElementById('recnoS').value = recNo;
-	document.getElementById('lowerS').value = lower;
+function resetView(table, tn, filter) {
+	//Reset the recNo and lower values
+	recNos[tn] = 0;
+	lowers[tn] = 0;
 	if (!filter) {
 		document.getElementById('filterS').value = filter;
 		updateTable();
@@ -549,8 +545,22 @@ function searchTranslator(table,layerFilter, gid, functionS){
 	}
 	//Do we need to update the attributes table now?
 	if (tableport.collapsed == false){
-		recNo = document.getElementById('recnoS').value;
-		lower = document.getElementById('lowerS').value;
+		//We need to pass the full lowers and recNos variables, we construct a string to pass
+		for (i=0;i<recNos.length;i++){
+			if(i===0){
+				recNo = recNos[i];
+			} else {
+				recNo += "|" + recNos[i];
+			}
+		}
+		for (i=0;i<lowers.length;i++){
+			if(i===0){
+				lower = lowers[i];
+			} else {
+				lower += "|" + lowers[i];
+			}
+		}
+		//Create the rest of the GET string
 		filter = document.getElementById('filterS').value;
 		if (typeof functionS == 'undefined'){
 			functionT = document.getElementById('functionS').value;
@@ -581,7 +591,7 @@ function searchTranslator(table,layerFilter, gid, functionS){
 
 function removeFilter(table, tableRef) {
 	document.getElementById('filterS').value = "";
-	document.getElementById('lower2S').value = 0; //reset the filter lower
+	//document.getElementById('lower2S').value = 0; //reset the filter lower
 	var tmpFl = new OpenLayers.Filter.Comparison({type:'', property:'', value:''});
 	remFilter("Table", "Table", table);
 }
@@ -1718,9 +1728,6 @@ function searchRec(table, tableRef) {
 
 	searchTranslator(table);
 
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
-
 	//Is this a geometry enabled table?
 	if (tableGeomEdit[tableRef]=='Yes'){
 		//Now we apply the new filter to the map
@@ -1748,9 +1755,23 @@ function searchRec(table, tableRef) {
 function updateRow(table, gid) {
 	var fieldName;
 	//This shows the hidden div so we need to pass some extra variables for the viewer on return
-
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
+	
+	//We need to pass the full lowers and recNos variables, we construct a string to pass
+	for (i=0;i<recNos.length;i++){
+		if(i===0){
+			recNo = recNos[i];
+		} else {
+			recNo += "|" + recNos[i];
+		}
+	}
+	for (i=0;i<lowers.length;i++){
+		if(i===0){
+			lower = lowers[i];
+		} else {
+			lower += "|" + lowers[i];
+		}
+	}
+	//Create the rest of the GET string
 	filter = document.getElementById('filterS').value;
 	if (fieldName== 'Please Select Column') {
 		updateTable();
@@ -1771,91 +1792,37 @@ function updateRow(table, gid) {
 	}
 }
 
-function lowerSet(recNo, lower){
-	document.getElementById('recnoS').value = recNo;
-	document.getElementById('lowerS').value = lower;
-}
-
 function backrecset(table, tableNo) {
-	recNo = document.getElementById('recnoS').value;
-	if (document.getElementById('filterS').value!=''){
-		lower = document.getElementById('lower2S').value;
+	/*This function should now update the lowers and recNos variables*/
+	currRecNo = parseInt(recNos[tableNo]);
+	currLower = parseInt(lowers[tableNo]);
+	if((currLower - currRecNo)<0){
+		//If we are going less than zero we simply set the value to zero
+		lowers[tableNo] = 0;
 	} else {
-		lower = document.getElementById('lowerS').value;
-	}
-
-	//We need to extract the correct lower value and then put it back together
-	var tokensR = recNo.split('|');
-	var tokensL = lower.split('|');
-	tokensL[tableNo] = parseInt(tokensL[tableNo]) - parseInt(tokensR[tableNo]);
-
-	recNo = "";
-	lower = "";
-	for (i=0;i<tokensL.length;i++){
-		if (i==0){
-			recNo += tokensR[i];
-			lower += tokensL[i];
-		} else {
-			recNo += "|" + tokensR[i];
-			lower += "|" + tokensL[i];
-		}
-	}
-	if (document.getElementById('filterS').value!=''){
-		document.getElementById('lower2S').value = lower;
-	} else {
-		document.getElementById('lowerS').value = lower;
+		//Otherwise, we take the current record number value off lower
+		lowers[tableNo] = currLower - currRecNo;
 	}
 	updateTable();
 }
 
 function nextrecset(table, tableNo) {
-	recNo = document.getElementById('recnoS').value;
-	if (document.getElementById('filterS').value!=''){
-		lower = document.getElementById('lower2S').value;
+	/*This function should now update the lowers and recNos variables*/
+	currRecNo = parseInt(recNos[tableNo]);
+	currLower = parseInt(lowers[tableNo]);
+	if((currLower + currRecNo)>tableRows[tableNo]){
+		//If we are going above the maximum we set lower as the maximum minus one recNo
+		lowers[tableNo] = parseInt(tableRows[tableNo]) - currRecNo;
 	} else {
-		lower = document.getElementById('lowerS').value;
-	}
-
-	//We need to extract the correct lower value and then put it back together
-	var tokensR = recNo.split('|');
-	var tokensL = lower.split('|');
-	tokensL[tableNo] = parseInt(tokensL[tableNo]) + parseInt(tokensR[tableNo]);
-
-	recNo = "";
-	lower = "";
-	for (i=0;i<tokensL.length;i++){
-		if (i==0){
-			recNo += tokensR[i];
-			lower += tokensL[i];
-		} else {
-			recNo += "|" + tokensR[i];
-			lower += "|" + tokensL[i];
-		}
-	}
-	if (document.getElementById('filterS').value!=''){
-		document.getElementById('lower2S').value = lower;
-	} else {
-		document.getElementById('lowerS').value = lower;
+		//Otherwise, we add the current record number value to lower
+		lowers[tableNo] = currLower + currRecNo;
 	}
 	updateTable();
 }
 
 function recNochange(tableNo, NEWrecNo) {
 	//We need to extract the correct lower value and then put it back together
-	recNo = document.getElementById('recnoS').value;
-	var tokensR = recNo.split('|');
-	tokensR[tableNo] = parseInt(NEWrecNo);
-
-	recNo = "";
-	lower = "";
-	for (i=0;i<tokensR.length;i++){
-		if (i==0){
-			recNo += tokensR[i];
-		} else {
-			recNo += "|" + tokensR[i];
-		}
-	}
-	document.getElementById('recnoS').value = recNo; //This is replaced
+	recNos[tableNo] = NEWrecNo;
 
 	updateTable();
 }
@@ -3550,7 +3517,7 @@ function edtoggleControl2(element, element2) {
 	var runOne2 = 0;
 	for(key in controls2) {
 		var control = controls2[key];
-		if (element2 == "select" && runOne == 0){
+		if (element2 === "select" && runOne === 0){
 			//Turn off measuring tool if active
 			if (edMOstActive == 1){
 				MeasurementSwitch('off2');
@@ -3559,16 +3526,16 @@ function edtoggleControl2(element, element2) {
 			}
 			infoS = 'off';
 			//OK this is a select tool so here we do need to turn off the editing tools
-			if (element == "select"){
-				edMO(3,102);
-			}
-			//We need to handle the select differently
-			edtoggleControl2select(element)
+			if (element === "select"){
+				edMO(3,102); 
+			} 
+			//edtoggleControl3("wfs");
+			edtoggleControl2select(element); 
 			runOne = 1;
 		} else {
 			MeasurementSwitch('off');
 			if (runOne2 == 0 && runOne == 0){
-				edtoggleControl2select('none')
+				edtoggleControl2select('none');
 				runOne2 = 1;
 			}
 			if(element == key) {
@@ -3617,55 +3584,22 @@ function edtoggleControl2(element, element2) {
 	}
 }
 
-var wfsVisible = [];
+var wfsVisible = []; 
+//This is the function that actually turns on the editing selection tools where 'sC' would be the existing to edit command
+//'select' is the standard selection tool
+//'none' turns the lot off
 function edtoggleControl2select(element) {
-	var CQLoutputFormatObj = new OpenLayers.Format.CQL();
-	if (element == 'sC') {
-		//This is a special case for switching existing to editable
-		existingToedit = 'Y';
-		//This next loop switches the select tools on and off
-		var tmpON2, tmpON3;
-		for (i=0;i<wfsArray.length;i++){
-
-			tmpON2 = "sH" + i;
-			if (window[tmpON2].active == null){
-				if (window["overlay" + i].visibility == true){
-					//This function is called when the edit button is called so we simply switch it on and off again.
-					window[tmpON2].activate();
-					window[tmpON2].deactivate();
-				}
-			} else if (window[tmpON2].active == false && switchCheck == 0){
-				//switches the selection tool on
-				if (window["overlay" + i].visibility == true){
-					//We need to replicate the current filter
-					tmpON3 = "wfs" + i;
-
-					//Switch the tool on
-					window[tmpON2].activate();
-				}
-			} else if (switchCheck == 1) {
-				//Switches the selection tool off
-				window[tmpON2].deactivate();
-			}
-		}
-		//Keeps track of off and on
-		if (switchCheck==0){
-			switchCheck = 1;
-		} else {
-			switchCheck = 0;
-		}
-	} else if (element == 'none') {
+	if (element == 'none') {
 		//Turning everything off
 		existingToedit = 'N';
 		switchCheck = 0;
 		for (i=0;i<wfsArray.length;i++){
-			var tmpON2 = "sH" + i;
+			tmpON2 = "sH" + i;
 			window[tmpON2].deactivate();
 		}
 		hover.removeAllFeatures(); //Remove any hover over elements
 		selectHandle('none'); //Remove the selection
 	} else {
-		existingToedit = 'N';
 		//Which layers are visible?
 		wfsVisible = [];
 		for (i=0;i<wfsArray.length;i++){
@@ -3678,9 +3612,9 @@ function edtoggleControl2select(element) {
 
 		//Update the active select based on the layer visibility
 		for (i=0;i<wfsArray.length;i++){
-			var tmpON2 = "sH" + i;
-			if (wfsVisible[i]=='no'){
-				if (window[tmpON2] == true){
+			tmpON2 = "sH" + i;
+			if (wfsVisible[i]==='no'){
+				if (window[tmpON2].active === true){
 					//In this scenario we should turn off the selection tool as the layer is not visible
 					window[tmpON2].deactivate();
 				}
@@ -3688,20 +3622,9 @@ function edtoggleControl2select(element) {
 			} else {
 				//These are the visible layers and we will toggle the selection tools
 				if (window[tmpON2].active == null){
-					//We need to replicate the current filter
-					tmpON3 = "wfs" + i;
-					/*CQLoutputFormatObj = CQLoutputFormatObj.write(window[tmpON3].filter);
-					if (CQLoutputFormatObj != null){
-						window[tmpON2].protocol.params.filter = window[tmpON3].filter;
-					} else {
-						window[tmpON2].protocol.params.filter = null;
-					}*/
 					//Switch the tool on
 					window[tmpON2].activate();
-				} else if (window[tmpON2].active == false){
-					//We need to replicate the current filter
-					tmpON3 = "wfs" + i;
-
+				} else if (window[tmpON2].active === false){
 					//Switch the tool on
 					window[tmpON2].activate();
 				} else {
@@ -3710,11 +3633,16 @@ function edtoggleControl2select(element) {
 				}
 			}
 		}
+		if(element == 'sC') {
+			existingToedit = 'Y';
+		} else {
+			existingToedit = 'N';
+		}
 	}
 	//This quick loop dectects if there is an active selection tool
 	selectOn = 'N';
 	for (i=0;i<wfsArray.length;i++){
-		var tmpON2 = "sH" + i;
+		tmpON2 = "sH" + i;
 		if (window[tmpON2].active == true){
 			selectOn = 'Y';
 		}
@@ -3722,23 +3650,27 @@ function edtoggleControl2select(element) {
 }
 
 function edtoggleControl3(element) {
-	var tmpON3;
-	for(key in controls3) {
-		var control = controls3[key];
-		if(element == key) {
-			/*if (element == "highlight"){
-				//We need to replicate the current filter
-				tmpON3 = "wfs" + i;
-				control.filter = window[tmpON3].filter;
-			}*/
-			//Switch the tool on
-			control.activate();
-		} else {
-			if (control.active == null) {
+	var control;
+	if (element==='none'){
+		//We are turning off the highlighting tools
+		for(key in controls3) {
+			control = controls3[key];
+			control.deactivate();
+		}
+	} else {
+		//This means we are trying to select from the editing layers and the control we want has been passed in the element field
+		for(key in controls3) {
+			control = controls3[key];
+			if(element === key) {
+				//Switch the tool on
 				control.activate();
-				control.deactivate();
 			} else {
-				control.deactivate();
+				if (control.active == null) {
+					control.activate();
+					control.deactivate();
+				} else {
+					control.deactivate();
+				}
 			}
 		}
 	}
@@ -3980,8 +3912,8 @@ function edMO(type, number, imageButton) {
 			if (number == 2) {
 				ET4 = 1;
 				edMO(3,100);
-				//Turn on highlight before select
-				edtoggleControl3("highlight");
+				//Turn on highlight before select ****Find it
+				edtoggleControl3("wfs");
 				edtoggleControl2('sC','select');
 				//Update the text at the bottom
 				tn2 = "Transfer an existing record to the edits";
@@ -4071,15 +4003,6 @@ function edMO(type, number, imageButton) {
 				handleTog(tn2, 'none');
 				ET3 = 8;
 			}
-			/*if (number == 99) {
-				//This toggles the highlighter
-				ET4 = 0;
-				toolName = "highlight";
-				edtoggleControl3(toolName);
-				//edtoggleControl2('sC','select');
-				tn2 = "Select a Feature";
-				handleTog(tn2, 'none');
-			}*/
 			if (number == 100) {
 				//Switch off the tools the edit, select and highlight tools
 				edtoggleControl('none');
@@ -4098,7 +4021,7 @@ function edMO(type, number, imageButton) {
 				edMOstActive = 0;
 				edtoggleControl('none');
 				edtoggleControl2('none','select');
-				edtoggleControl3('none');
+				//edtoggleControl3('none');
 				ET3 = 0;
 				//Mark the edit tools as deactive
 				var elements = document.getElementsByName('edfunc');
@@ -4120,6 +4043,7 @@ function navFake(){
 	//This is a fake function, the button doesn't do anything because nav is always active
 }
 
+//****Find it
 function transferit(evt) {
 	//This function only runs if we are transferring to editable (ET4 variable defines this)
 	if (ET4 == 1) {

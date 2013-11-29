@@ -1,6 +1,6 @@
 <?php
 // attempt a connection
-include '../../apps/dev_functions/housekeeping.php';
+include '../../apps/functions/housekeeping.php';
 ini_set('error_reporting', E_ALL & ~E_NOTICE);  //Stop logging notices for this script
 
 // Variable read in from config.xml file
@@ -38,6 +38,18 @@ foreach ($xml->userArray->option as $opt) {
 }
 print ");
 ";
+//We may now have multiple lower and recNo values
+print "var lowers = [];
+var recNos = [];
+";
+foreach ($xml->table->lower as $opt){
+	print "	lowers.push(" . $opt . ");
+	";
+}
+foreach ($xml->table->recNo as $opt){
+	print "recNos.push(" . $opt . ");
+	";
+}
 print ' 
 var appTitle = "' . $xml->other->appTitle . '";
 ';
@@ -74,7 +86,7 @@ print "fieldNamesMaster = [];
 fieldRange =[];
 ";
 
-//Define the dev_functions
+//Define the functions
 print "var fieldNames = [];
 function defineFieldNames(tableRef) {
 	for (i=0;i<tableArray.length;i++){

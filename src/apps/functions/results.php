@@ -210,7 +210,7 @@ if ($sortstr !== "no"){
 
 //This is only designed to handle a single case; I have chosen multiple tables to take priority over a single table queried
 //that means this loop will overwrite the one above if true.
-if (count($multiTableName) == 1 && $tableLooper == 0){
+if (count($multiTableName) === 1 && $tableLooper === 0){
 	//This means we have a single table, nothing fancy
 	$multiTable = 0;
 } elseif (count($multiTableName) > 1) {
@@ -237,18 +237,23 @@ $table = $_GET['table'];
 $function = $_GET['function'];
 $filter = $_GET['filter'];
 $geom_field = $_GET['geomF'];
-$recNo = $_GET['recNo'];
-$lower = $_GET['lower'];
+//We may now have multiple lower and recNo values to we are calculating an array splitting the values at each |
+$recNos = explode("|",$_GET['recNo']);
+$lowers = explode("|",$_GET['lower']);
 $status = $_GET['status'];
 $gid = $_GET['gid'];
 $sid = $_GET['sid'];
 $selMode = $_GET['selMode'];
 $mod_by = $_GET['mod_by'];
 $projMap = $_GET['geom'];
-if (is_numeric($_GET['currGID'])) {
-	$currGID = intval($_GET['currGID']); //Force this to be a number
-} else {
-	$currGID = -1;
+$currGID = intval($_GET['currGID']); //Force this to be a number
+
+//We need to format the array values as numbers
+for($i=0;$i<count($recNos);$i++){
+	$recNos[$i] = intval($recNos[$i]);
+}
+for($i=0;$i<count($lowers);$i++){
+	$lowers[$i] = intval($lowers[$i]);
 }
 
 //If Geometry field name is empty we need to pick up the value from the config
@@ -269,16 +274,12 @@ if($geom_field==''){
 	}
 }
 
-//We may now have multiple lower and recNo values to we are calculating an array splitting the values at each |
-$recNos = array();
-$lowers = array();
+//Setup the order_bys
 $order_bys = array();
-foreach ($xml->table as $opt){
-	array_push($recNos, $opt->recNo);
-	array_push($lowers, $opt->lower);
-	array_push($order_bys, $opt->order_by);
+foreach ($xml->table->order_by as $opt){
+	array_push($order_bys, $opt);
 }
-if($multiTable === 0){
+if(count($multiTable) === 0){
 	//Single table so first records
 	$recNo = $recNos[0];
 	$lower = $lowers[0];
@@ -1560,8 +1561,6 @@ switch($function):
             }
         }
 
-		//This sets the lowerS and recNoS values
-		print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"lowerSet( '" . $recNo . "', '" . $lower . "')\" />";
 		$colNoStr = "";
 		
 		if ($nofilter != 1) {
@@ -1597,7 +1596,7 @@ switch($function):
 			}
 			
 			if (!$filter) {
-				$res = pg_query($dbconn, $query) or header( print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"resetView('" . $table . "', " . $recNos[$tb] . ", " . $lowers[$tb] . ", 0)\" />");
+				$res = pg_query($dbconn, $query) or header( print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"resetView('" . $table . "', " . $tb . ", 0)\" />");
 			} else {
 				$res = pg_query($dbconn, $query);
 				
@@ -1613,7 +1612,7 @@ switch($function):
 				//If it still didn't work then we simply remove the filter from the table
 				if (!$res) {
 					$query = 'SELECT * FROM ' . $table . $sort . ' limit ' . $recNos[$tb] . ' offset ' . $lowers[$tb] . ';';
-					$res = pg_query($dbconn, $query) or header( print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"resetView('" . $table . "', " . $recNos[$tb] . ", " . $lowers[$tb] . ", 0)\" />");
+					$res = pg_query($dbconn, $query) or header( print "<img src=\"../../apps/functions/blank.jpg\" onLoad=\"resetView('" . $table . "', " . $tb . ", 0)\" />");
 				} 
 			}
 
@@ -1621,18 +1620,15 @@ switch($function):
 			//Generate a GID array
 			$gidArray = array();
 			$mod_byArray = array();
-			$currGID2 = -1;
-			$htmlString = "[-99,";
 			for ($i=0;$i<$tabRows;$i++){
 				array_push($gidArray, pg_fetch_result($res,$i,0));
 				array_push($mod_byArray, pg_fetch_result($res,$i,1));
-				$htmlString .= pg_fetch_result($res,$i,0) . ",";
+				if(intval(pg_fetch_result($res,$i,0))===$currGID){
+					$lowers[$tb] = $i; //Overide the lower if there is a currently selected GID
+				}
 			}
-			$htmlString .= "]";
 			// Free resultset
 			pg_free_result($res);
-			
-			print "<input type='hidden' id='gidArray' value='" . $htmlString . "' />";
 			
 			if ($nofilter == 0) {
 				$query = 'SELECT * FROM ' . $table . ' WHERE ' . $filter . $sort . ' limit ' . $recNos[$tb] . ' offset ' . $lowers[$tb] . ';';
@@ -1851,8 +1847,7 @@ switch($function):
 						$CurrStatus = pg_fetch_result($res,$i,$sf);
 					}
 				}
-				
-				if ($currGID == $gidArray[$lower + $i]){
+				if (intval($currGID) === intval($gidArray[$lowers[$tb] + $i])){
 					print "<tr class='selectedRow'>";
 				} else {
 					print "<tr class='mainRow'>";
@@ -2399,7 +2394,7 @@ switch($function):
 		<input type='hidden' id='Itable' name='Itable' value='" . $table . "' /><input type='hidden' id='Iproj' name='Iproj' value='" . $proj . "' /></div>";
 		break;
 	default:
-		print "<img src='../../apps/functions/blank.jpg' onload=\"resetView('" . $table . "', " . $recNos[0] . ", " . $lowers[0] . ", 0)\" />";
+		print "<img src='../../apps/functions/blank.jpg' onload=\"resetView('" . $table . "', 0, 0)\" />";
 		break;
 endswitch;
 

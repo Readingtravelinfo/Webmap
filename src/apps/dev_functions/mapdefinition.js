@@ -1,3 +1,11 @@
+/*
+Please note, you can use the line 
+
+debugger;
+
+If you need to debug a script in firebug without alerts
+*/
+
 //Global variables
 var i, i2, centrePanel, mapPanel, tbarVar, legendPanel, tableport, viewport, photoscroller, photoscroller2, pslow, pshigh, hoverpopup;
 var photoArray, tree, tableURL, accordion, fieldNames, currGID, currGID2, tableWidth;
@@ -14,7 +22,7 @@ var ETpoint, ETpath, ETpolygon, ETbox, draw;
 var doPopup, doZoom, doSelect;
 var copywriteTxt, copywriteTxt2;
 var poiSaveStrategy, linSaveStrategy, polSaveStrategy, sPolSaveStrategy;
-var firsttime, geoLoc, legendHTML, styleObj;
+var firsttime, geoLoc, legendHTML, styleObj, tmpON, tmpON2, tmpON3;
 var stickyvalue = 0;
 var popid = 0;
 var pixel;
@@ -1873,7 +1881,7 @@ function loadmap() {
 			//Set up the layer for hover.
 			filterStrategy2 = new OpenLayers.Strategy.Filter({filter: new OpenLayers.Filter.Comparison({type:'>', property:'gid', value:0})});
 			hover = new OpenLayers.Layer.Vector("Hover", {
-				strategies: [filterStrategy2],
+				//strategies: [filterStrategy2],
 				displayInLayerSwitcher: false,
 				projection: inline_projection,
 				styleMap: hosm
@@ -1884,7 +1892,6 @@ function loadmap() {
 			//using WFS so use getFeature to pull back the feature prior to selection
 
 			//Setup a select tool for each layer
-			var tmpON;
 			for (i=0;i<wfsPath.length;i++){
 				tmpON = "sH" + i;
 				window[tmpON] = new OpenLayers.Control.GetFeature({
@@ -1926,72 +1933,57 @@ function loadmap() {
 					{
 						hover: true,
 						highlightOnly: true,
-						renderIntent: "temporary",
-						eventListeners: {
-							beforefeaturehighlighted: report,
-							featurehighlighted: report,
-							featureunhighlighted: report
-						}
+						renderIntent: "temporary"
 					}
 				),
-
 				highlight1: new OpenLayers.Control.SelectFeature(
 					pointLayer,
 					{
 						hover: true,
 						highlightOnly: true,
-						renderIntent: "temporary",
-						eventListeners: {
-							beforefeaturehighlighted: report,
-							featurehighlighted: report,
-							featureunhighlighted: report
-						}
+						renderIntent: "temporary"
 					}
 				),
-
 				highlight2: new OpenLayers.Control.SelectFeature(
 					lineLayer,
 					{
 						hover: true,
 						highlightOnly: true,
-						renderIntent: "temporary",
-						eventListeners: {
-							beforefeaturehighlighted: report,
-							featurehighlighted: report,
-							featureunhighlighted: report
-						}
+						renderIntent: "temporary"
 					}
 				),
-
 				highlight3: new OpenLayers.Control.SelectFeature(
 					polygonLayer,
 					{
 						hover: true,
 						highlightOnly: true,
-						renderIntent: "temporary",
-						eventListeners: {
-							beforefeaturehighlighted: report,
-							featurehighlighted: report,
-							featureunhighlighted: report
-						}
+						renderIntent: "temporary"
 					}
 				),
-
 				highlight4: new OpenLayers.Control.SelectFeature(
 					simplePolygonLayer,
 					{
 						hover: true,
 						highlightOnly: true,
-						renderIntent: "temporary",
-						eventListeners: {
-							beforefeaturehighlighted: report,
-							featurehighlighted: report,
-							featureunhighlighted: report
-						}
+						renderIntent: "temporary"
 					}
 				)
-
 			};
+			
+			//Setup a highlight tool for each layer
+			
+			/*for (i=0;i<wfsPath.length;i++){
+				tmpON = "highlightwfs" + i;
+				tmpON2 = "wfs" + i;
+				window[tmpON] = new OpenLayers.Control.SelectFeature(
+					window[tmpON2],
+					{
+						hover: true,
+						highlightOnly: true,
+						renderIntent: "temporary"
+					}
+				);
+			}*/
 
 			var layer = new OpenLayers.Layer.Vector("VLayer");
 			for (i=0;i<overlayArray.length;i++){
@@ -2003,6 +1995,7 @@ function loadmap() {
             for(key in controls) {
                 map.addControl(controls[key]);
             }
+			//The events below deal with polygon edits but do they have an impact on selection tools?
 			polygonLayer.events.on({
 				'featureselected': selectEditHandle
 			});
@@ -3218,13 +3211,12 @@ function selectTog(conOn, groupN){
 	//Check for active select tool
 	selectOn = 'N';
 	for (i=0;i<wfsArray.length;i++){
-		var tmpON2 = "sH" + i;
-		if (window[tmpON2].active == true){
+		tmpON2 = "sH" + i;
+		if (window[tmpON2].active === true){
 			selectOn = 'Y';
 		}
 	}
-
-	if (selectOn == 'Y'){
+	if (selectOn === 'Y'){
 		//Deactivate the active tool
 		edtoggleControl2('select', 'select');
 		toolName = "highlight";
@@ -3244,6 +3236,7 @@ function handleInfo(){
 	}
 }
 
+//****Find it
 function selectEditHandle(){
 	//We need to determine the polygon type and enable the correct tool
 	var toolTog;
@@ -3272,6 +3265,8 @@ function selectHandle(feature){
 	//filter is based solely on a gid filter (singular). Therefore we will simply clear the
 	//layer before we start.
 	selection.removeAllFeatures();
+	
+	var currFID, currTAB, oTAB, tmpLayF;
 
 	if (feature!='none'){
 		//OK, is this a single record or a multiple selection?
@@ -3285,90 +3280,66 @@ function selectHandle(feature){
 				alert("multiple features");
 			} else {
 				feature = feature.feature;
-				//We need to get the active layer name
-				if (lastNode.search("wfs")!=-1){
-					tmpLayF = lastNode;
-				} else {
-					//If we don't know we take the first wfs layer in the map
-					var tmpLayF = "wfs0";
-				}
-				//Update the filter strategy
-				if(window[tmpLayF].filter!=null){
-					filterStrategy.setFilter(window[tmpLayF].filter);
-					selection.refresh({force: true});
-				}
-
-				//Add the feature only if it matches the strategy
-				selection.removeAllFeatures();
-				selection.addFeatures(feature);
 			}
 
-			//Next we undertake the selec
-			feature = selection.features[0];
+			//Next we undertake the selection
+			//feature = selection.features[0];
+			selection.removeAllFeatures();
+			selection.addFeatures(feature);
+			selection.refresh({force: true});
 			if (typeof feature.data.gid == 'undefined'){
 				currGID = feature.attributes.gid;
 			} else {
 				currGID = feature.data.gid;
 			}
-			document.getElementById('currGID').value = currGID;
-			document.getElementById('currGIDdone').value = parseInt(document.getElementById('lowerS').value);
-
-			if (typeof document.getElementById('gidArray') != 'undefined'){
-				setGID(1);
+			//The FID contains the layer name
+			if (typeof feature.fid !== 'undefined'){
+				currFID = feature.fid;
+				currFID = currFID.split(".");
+				currTAB = -1;
+				//Pickup the overlay table name
+				for(i=0;i<overlayTable.length;i++){
+					if("RBC:"+currFID[0]===overlayAddress[i] || "Client:"+currFID[0]===overlayAddress[i]){
+						//This is the overlay and the table is
+						oTAB = overlayTable[i];
+						for(i2=0;i2<tableArray.length;i2++){
+							//Which table does this represent?
+							if(tableArray[i2]===oTAB){
+								//i2 is now the table number
+								currTAB = i2;
+							}
+						}
+					}
+				}
+			}
+			if(currTAB!==-1){
+				//We are recording the currGID in the gidLookupToRow array so we can find the row number in the .php files
+				gidLookupToRow[currTAB] = parseInt(currGID);
+				document.getElementById('currGID').value = currGID;
+				document.getElementById('currGIDdone').value = parseInt(document.getElementById('lowerS').value);
 			} else {
-				setGID(2);
+				//If not, we will update the first layer
+				lowers[0] = 0;
+				document.getElementById('currGID').value = currGID;
+				document.getElementById('currGIDdone').value = parseInt(document.getElementById('lowerS').value);
 			}
 		}
 	} else {
 		//If this is a none command we are removing the selection
+		for (i=0;i<gidLookupToRow.length;i++){
+			gidLookupToRow[i] = '';
+		}
 		document.getElementById('currGID').value = "";
 	}
 }
 
-var gidRunOK = 0;
-function setGID(type){
-	if (type==1){
-		tableHTML = document.getElementById('urlS').value;
-		document.getElementById('functionS').value = "view";
-		updateTable(tableHTML);
-		gidRunOK = 0;
-	} else {
-		//Update the gidLookupToRow array here
-		gidLookupToRow = [];
-		gidLookupToRow = eval(document.getElementById('gidArray').value);
-		gidLookupToRow.splice(0,1);
-
-		//Write away the row number
-		for (i=0;i<gidLookupToRow.length;i++){
-			if (gidLookupToRow[i]==currGID){
-				if (document.getElementById('filterS').value!=''){
-					document.getElementById('lower2S').value = i;
-				} else {
-					document.getElementById('lowerS').value = i;
-				}
-			}
-		}
-		gidRunOK = 1;
-	}
-}
-
 function hoverHandle(features){
-	//We need to get the active layer name
-	if (lastNode.search("wfs")!=-1){
-		tmpLayF = lastNode;
-	} else {
-		//If we don't know we take the first wfs layer in the map
-		var tmpLayF = "wfs0";
-	}
-	//Update the filter strategy
-	if(window[tmpLayF].filter!=null){
-		filterStrategy2.setFilter(window[tmpLayF].filter);
+	if(typeof features!=='undefined'){
+		//Add the feature only if it matches the strategy
+		hover.removeAllFeatures();
+		hover.addFeatures([features.feature]);
 		hover.refresh({force: true});
 	}
-
-	//Add the feature only if it matches the strategy
-	hover.removeAllFeatures();
-	hover.addFeatures([features.feature]);
 }
 
 function selectHandleOff(feature){
@@ -3426,10 +3397,6 @@ function insertRow(tableHTML){
 		xhr = new XMLHttpRequest();
 	}
 	table = tableHTML;
-	//The recNo and lower values are now array variable so we need to split up the arrays however for now we simply pass it to the php file
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
-	lower2 = document.getElementById('lower2S').value;
 
     tableHTML = "../../apps/dev_functions/results.php?tableWidth=" + tableWidth + "&table=" + table + "&function=add";
 
@@ -3459,11 +3426,22 @@ function updateTable(tableHTML, override, tableSwap){
 	} else {
 		xhr = new XMLHttpRequest();
 	}
-
-	//The recNo and lower values are now array variable so we need to split up the arrays however for now we simply pass it to the php file
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
-	lower2 = document.getElementById('lower2S').value;
+	
+	//We need to pass the full lowers and recNos variables, we construct a string to pass
+	for (i=0;i<recNos.length;i++){
+		if(i===0){
+			recNo = recNos[i];
+		} else {
+			recNo += "|" + recNos[i];
+		}
+	}
+	for (i=0;i<lowers.length;i++){
+		if(i===0){
+			lower = lowers[i];
+		} else {
+			lower += "|" + lowers[i];
+		}
+	}
 
 	//OK, there may be a sort so we need to pick this up
 	var sortstr = "&sortstr=no";
@@ -3494,12 +3472,8 @@ function updateTable(tableHTML, override, tableSwap){
 	if (override != 'override'){
 		tableHTML = "../../apps/dev_functions/results.php?tableWidth=" + tableWidth + "&table=" + table + "&function=" + document.getElementById('functionS').value + sortstr;
 
-		//Add recNo and lower
-		if (document.getElementById('filterS').value!=''){
-			tableHTML = tableHTML + "&recNo=" + recNo + "&lower=" + lower2; //Need to temporarily override the lower if there is a filter
-		} else {
-			tableHTML = tableHTML + "&recNo=" + recNo + "&lower=" + lower;
-		}
+		tableHTML = tableHTML + "&recNo=" + recNo + "&lower=" + lower;
+		//Create the rest of the GET string
 
 		//Add a selected row where appropriate
 		if (currGID!==''){

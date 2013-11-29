@@ -61,25 +61,13 @@ if ($table != '' && $fun == 1) {
 }
 
 if ($table != '' && $fun == 2) {
-//Define the gid array
-	$dbconn = pg_connect($conn_string) or die('connection failed' . pg_last_error());
-	print "var gidLookupToRow = [";
-	$query1 = 'SELECT gid, mod_by FROM ' . pg_escape_identifier($table) . ' ORDER BY gid ASC ;';
-	$res1 = pg_query($dbconn, $query1) or die('Query failed: ' . pg_last_error());
-	$tabRows = pg_num_rows($res1);
-	for ($i=0;$i<$tabRows;$i++){
-		if ($i==0){
-			print pg_fetch_result($res1,$i,0);
-		} else {
-			print ", " . pg_fetch_result($res1,$i,0);
-		}
-	}
-	print "]; //gid lookup to row number
+	//Define the gid array
+	print "var gidLookupToRow = [];
 	";
-	
-	// Free resultset
-	pg_free_result($res1);
-	pg_close($dbconn);
+	foreach ($xml->table->tableName as $opt) {
+		print "gidLookupToRow.push(''); //gid lookup to row number
+		";
+	}
 }
 
 if ($table != '' && $fun == 3) {

@@ -8,34 +8,6 @@ $(document).ready(function () {
 
 var queryString, statusField;
 
-var gidRunOK = 0;
-function setGID(type){
-	if (type==1){
-		tableHTML = document.getElementById('urlS').value;
-		document.getElementById('functionS').value = "view";
-		updateTable(tableHTML);
-		gidRunOK = 0;
-	} else {
-		//Not required for the table editing
-		//Update the gidLookupToRow array here
-		/*gidLookupToRow = [];
-		gidLookupToRow = eval(document.getElementById('gidArray').value);
-		gidLookupToRow.splice(0,1); 
-						
-		//Write away the row number
-		for (i=0;i<gidLookupToRow.length;i++){
-			if (gidLookupToRow[i]==currGID){
-				if (document.getElementById('filterS').value!=''){
-					document.getElementById('lower2S').value = i;
-				} else {
-					document.getElementById('lowerS').value = i;
-				}
-			}
-		}*/
-		gidRunOK = 1;
-	}
-}
-
 function checkFrame() {
 	var finduser, stopuser, icontent, icontentChk;
 	document.getElementById('header').innerHTML = "<span style='font-weight: bold;'>"+appTitle+"</span><span style='font-size: small;color: #000000;position:absolute;right:0px;'>Logged in as: "+usertext+" <input type='button' value='Logout' onclick='logItOut()' /></span>";
@@ -191,15 +163,10 @@ function updateVariableIcon(listid, dis){
 	//If the input value is undefined then the status fields are coming from the config.xml and not from a variable status lookup
 }
 
-function resetView(table, recNo, lower, filter) {
-	/*This is the only script that doesn't get the recNo, lower and filter from the document elements
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
-	filter = document.getElementById('filterS').value;*/
-	
-	document.getElementById('recnoS').value = recNo;
-	document.getElementById('lowerS').value = lower;
-	
+function resetView(table, tn, filter) {
+	//Reset the recNo and lower values
+	recNos[tn] = 0;
+	lowers[tn] = 0;
 	if (!filter) {
 		document.getElementById('filterS').value = filter;
 		updateTable();
@@ -346,8 +313,15 @@ function loadTable(usertext) {
 							layout:'border',
 							items:[tableport]
 						});
-						recNo = document.getElementById('recnoS').value;
-						lower = document.getElementById('lowerS').value;
+						var ti, ti2;
+						ti2 = 0;
+						for (ti=0;ti<tableArray.length;ti++){
+							if (tableArray[ti]===table){
+								ti2 = ti;
+							}
+						}
+						recNo = recNos[ti2];
+						lower = lowers[ti2];
 						filter = document.getElementById('filterS').value;
 						tableWidth = winW;
 						if (site_ref == 0 && omu_ref == 0 && otu_ref == 0){
@@ -397,10 +371,21 @@ function updateTable(tableHTML, override, tableSwap){
 		xhr = new XMLHttpRequest();
 	}
 
-	//The recNo and lower values are now array variable so we need to split up the arrays however for now we simply pass it to the php file
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
-	lower2 = document.getElementById('lower2S').value;
+	//We need to pass the full lowers and recNos variables, we construct a string to pass
+	for (i=0;i<recNos.length;i++){
+		if(i===0){
+			recNo = recNos[i];
+		} else {
+			recNo += "|" + recNos[i];
+		}
+	}
+	for (i=0;i<lowers.length;i++){
+		if(i===0){
+			lower = lowers[i];
+		} else {
+			lower += "|" + lowers[i];
+		}
+	}
 	
 	if (typeof tableSwap != 'undefined'){
 		table = tableSwap;
@@ -412,11 +397,8 @@ function updateTable(tableHTML, override, tableSwap){
 		queryString += "tablewidth= " + tableWidth + "&table=" + table + "&function=" + document.getElementById('functionS').value
 
 		//Add recNo and lower
-		if (document.getElementById('filterS').value!=''){
-			queryString += "&recNo=" + recNo + "&lower=" + lower2; //Need to temporarily override the lower if there is a filter
-		} else {
-			queryString += "&recNo=" + recNo + "&lower=" + lower;
-		}
+		queryString = queryString + "&recNo=" + recNo + "&lower=" + lower;
+		//Create the rest of the GET string
 
 		//Add a selected row where appropriate
 		if (currGID!=''){
@@ -531,10 +513,16 @@ function insertRow(tableHTML){
 		xhr = new XMLHttpRequest();
 	}
 	table = tableHTML;
-	//The recNo and lower values are now array variable so we need to split up the arrays however for now we simply pass it to the php file
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
-	lower2 = document.getElementById('lower2S').value;
+	
+	var ti, ti2;
+	ti2 = 0;
+	for (ti=0;ti<tableArray.length;ti++){
+		if (tableArray[ti]===table){
+			ti2 = ti;
+		}
+	}
+	recNo = recNos[ti2];
+	lower = lowers[ti2];
     tableHTML = "../../apps/functions/tableedit.php";
 	queryString = "tableWidth=" + tableWidth + "&table=" + table + "&function=add";
 	
@@ -613,8 +601,22 @@ function updateRow(table, gid) {
 	var fieldName;
 	//This shows the hidden div so we need to pass some extra variables for the viewer on return
 	
-	recNo = document.getElementById('recnoS').value;
-	lower = document.getElementById('lowerS').value;
+	//We need to pass the full lowers and recNos variables, we construct a string to pass
+	for (i=0;i<recNos.length;i++){
+		if(i===0){
+			recNo = recNos[i];
+		} else {
+			recNo += "|" + recNos[i];
+		}
+	}
+	for (i=0;i<lowers.length;i++){
+		if(i===0){
+			lower = lowers[i];
+		} else {
+			lower += "|" + lowers[i];
+		}
+	}
+	//Create the rest of the GET string
 	filter = document.getElementById('filterS').value;
 	if (fieldName== 'Please Select Column') {
 		updateTable();
@@ -642,94 +644,40 @@ function updateRow(table, gid) {
 	}
 }
 
-function lowerSet(recNo, lower){
-	document.getElementById('recnoS').value = recNo;
-	document.getElementById('lowerS').value = lower;
-}
-
 function backrecset(table, tableNo) {
-	recNo = document.getElementById('recnoS').value;
-	if (document.getElementById('filterS').value!=''){
-		lower = document.getElementById('lower2S').value;
+	/*This function should now update the lowers and recNos variables*/
+	currRecNo = parseInt(recNos[tableNo]);
+	currLower = parseInt(lowers[tableNo]);
+	if((currLower - currRecNo)<0){
+		//If we are going less than zero we simply set the value to zero
+		lowers[tableNo] = 0;
 	} else {
-		lower = document.getElementById('lowerS').value;
-	}
-	
-	//We need to extract the correct lower value and then put it back together
-	var tokensR = recNo.split('|');
-	var tokensL = lower.split('|');
-	tokensL[tableNo] = parseInt(tokensL[tableNo]) - parseInt(tokensR[tableNo]);
-	
-	recNo = "";
-	lower = "";
-	for (i=0;i<tokensL.length;i++){
-		if (i==0){
-			recNo += tokensR[i];
-			lower += tokensL[i];
-		} else {
-			recNo += "|" + tokensR[i];
-			lower += "|" + tokensL[i];
-		}
-	}
-	if (document.getElementById('filterS').value!=''){
-		document.getElementById('lower2S').value = lower;
-	} else {
-		document.getElementById('lowerS').value = lower;
+		//Otherwise, we take the current record number value off lower
+		lowers[tableNo] = currLower - currRecNo;
 	}
 	updateTable();
 }
 
 function nextrecset(table, tableNo) {
-	recNo = document.getElementById('recnoS').value;
-	if (document.getElementById('filterS').value!=''){
-		lower = document.getElementById('lower2S').value;
+	/*This function should now update the lowers and recNos variables*/
+	currRecNo = parseInt(recNos[tableNo]);
+	currLower = parseInt(lowers[tableNo]);
+	if((currLower + currRecNo)>tableRows[tableNo]){
+		//If we are going above the maximum we set lower as the maximum minus one recNo
+		lowers[tableNo] = parseInt(tableRows[tableNo]) - currRecNo;
 	} else {
-		lower = document.getElementById('lowerS').value;
-	}
-	
-	//We need to extract the correct lower value and then put it back together
-	var tokensR = recNo.split('|');
-	var tokensL = lower.split('|');
-	tokensL[tableNo] = parseInt(tokensL[tableNo]) + parseInt(tokensR[tableNo]);
-	
-	recNo = "";
-	lower = "";
-	for (i=0;i<tokensL.length;i++){
-		if (i==0){
-			recNo += tokensR[i];
-			lower += tokensL[i];
-		} else {
-			recNo += "|" + tokensR[i];
-			lower += "|" + tokensL[i];
-		}
-	}
-	if (document.getElementById('filterS').value!=''){
-		document.getElementById('lower2S').value = lower;
-	} else {
-		document.getElementById('lowerS').value = lower;
+		//Otherwise, we add the current record number value to lower
+		lowers[tableNo] = currLower + currRecNo;
 	}
 	updateTable();
 }
 
 function recNochange(tableNo, NEWrecNo) {
 	//We need to extract the correct lower value and then put it back together
-	recNo = document.getElementById('recnoS').value;
-	var tokensR = recNo.split('|');
-	tokensR[tableNo] = parseInt(NEWrecNo);
-	
-	recNo = "";
-	lower = "";
-	for (i=0;i<tokensR.length;i++){
-		if (i==0){
-			recNo += tokensR[i];
-		} else {
-			recNo += "|" + tokensR[i];
-		}
-	}
-	document.getElementById('recnoS').value = recNo; //This is replaced
-	
+	recNos[tableNo] = NEWrecNo;
+
 	updateTable();
-} 
+}
 
 function gedCall(table2, funk, gid, callerrow,closeBack) {
 	//Which table is this?
